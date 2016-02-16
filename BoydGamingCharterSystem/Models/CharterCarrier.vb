@@ -1,35 +1,41 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 
-Public Class CharterOperator
 
+Public Class CharterCarrier
     <Key>
-    Private operatorId As Integer
+    Private carrierId As Integer
+    Private carrierName As String
 
-    Private operatorName As String
+
+
     Public Property Id() As Integer
         Get
-            Return operatorId
+            Return carrierId
         End Get
         Private Set(ByVal value As Integer)
-            operatorId = value
+            carrierId = value
         End Set
     End Property
 
 
     Public Property Name() As String
         Get
-            Return operatorName
+            Return carrierName
         End Get
         Set(value As String)
-            operatorName = value
+            carrierName = value
         End Set
 
     End Property
+    Public Sub New()
+        Me.Id = Nothing
+        Me.Name = Nothing
+    End Sub
+
     Public Sub New(id As Integer, name As String)
         Me.Id = id
         Me.Name = name
     End Sub
-
 
 
 End Class
