@@ -20,7 +20,7 @@
                     
                         <li>@Html.ActionLink("Trips", "Index", "Trip")</li>
                         <li>@Html.ActionLink("Charter Agreements", "Index", "CharterAgreement")</li>
-                        <li>@Html.ActionLink("Operators", "Index", "Operator")</li>
+                        <li>@Html.ActionLink("Operators", "Index", "CharterOperators")</li>
                         <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
                         <li>@Html.ActionLink("Reports", "Index", "Report")</li>
                         <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
