@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title| Boyd Gaming Charter System</title>
+    <title>@ViewBag.Title | Boyd Gaming Charter System</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -21,7 +21,7 @@
                         <li>@Html.ActionLink("Trips", "Index", "Trip")</li>
                         <li>@Html.ActionLink("Charter Agreements", "Index", "CharterAgreement")</li>
                         <li>@Html.ActionLink("Operators", "Index", "Operator")</li>
-                        <li>@Html.ActionLink("Carriers", "Index", "Carrier")</li>
+                        <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
                         <li>@Html.ActionLink("Reports", "Index", "Report")</li>
                         <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
 
