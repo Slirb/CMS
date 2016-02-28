@@ -71,6 +71,7 @@ Namespace Controllers
         Function Edit(<Bind(Include:="Id,Name")> ByVal charterCarrier As CharterCarrier) As ActionResult
             If ModelState.IsValid Then
                 db.Entry(charterCarrier).State = EntityState.Modified
+
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If

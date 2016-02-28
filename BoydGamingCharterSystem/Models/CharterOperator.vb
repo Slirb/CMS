@@ -6,6 +6,8 @@ Public Class CharterOperator
     Private operatorId As Integer
 
     Private operatorName As String
+
+
     Public Property Id() As Integer
         Get
             Return operatorId
