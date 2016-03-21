@@ -25,7 +25,9 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterCarrier As CharterCarrier = db.carriers.Find(id)
+
+            Dim charterCarrier As CharterCarrier = db.carriers.Include(Function(c) c.CharterCompany).Where(Function(c) c.Id = id).First()
+
             If IsNothing(charterCarrier) Then
                 Return HttpNotFound()
             End If
