@@ -16,6 +16,28 @@ Public Class CharterSystemInitializer
 
     Protected Overrides Sub Seed(context As CharterSystem)
 
+        Dim states As New List(Of State)
+        With states
+            .Add(New State("Alabama", "AL"))
+            .Add(New State("Indiana", "IN"))
+            .Add(New State("Kansas", "KS"))
+        End With
+        states.ForEach(Sub(stat) context.states.Add(stat))
+
+
+        context.SaveChanges()
+
+        Dim companies As New List(Of CharterCompany)
+        With companies
+            .Add(New CharterCompany("Greyhound", "Test", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Metra", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Bob's Buses", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+        End With
+        companies.ForEach(Sub(comp) context.companies.Add(comp))
+
+
+        context.SaveChanges()
+
         Dim carriers As New List(Of CharterCarrier)
         With carriers
             .Add(New CharterCarrier(15, "Greyhound"))
@@ -56,5 +78,7 @@ Public Class CharterSystemInitializer
 
 
     End Sub
+
+
 
 End Class
