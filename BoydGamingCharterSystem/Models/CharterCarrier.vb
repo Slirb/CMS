@@ -1,17 +1,60 @@
 ﻿Imports System.ComponentModel.DataAnnotations
-
-
+Imports System.ComponentModel.DataAnnotations.Schema
+Imports BoydGamingCharterSystem
+<Table("Carrier")>
 Public Class CharterCarrier
-    <Key>
+
+
+
     Private carrierId As Integer
-
-
+    '<ForeignKey("charterCompany")>
+    'Private companyId As Integer
     Private carrierName As String
+    Private carrierLicenseNumber As String
+    Private carrierInsuranceNumber As String
+    Private carrierInsuranceExpirationDate As DateTime
 
-    Private carrierContactInfo As ContactInformation
+    'Possible TODO if necessary
+    'Take this field and make it a list - a comments table will handle
+    'the comments for carriers and operators together, and data about
+    'those comments can be tracked
 
 
 
+    Private carrierCreateDateTime As DateTime
+
+    Private carrierLastUpdatedDateTime As DateTime
+
+    Private carrierCommentable As Commentable
+
+    'Private commentableId As Integer
+
+    '<ForeignKey("commentableId")>
+    Public Property Commentable As Commentable
+        Get
+            Return carrierCommentable
+        End Get
+        Set(value As Commentable)
+            carrierCommentable = value
+        End Set
+    End Property
+
+    <NotMapped>
+    Public Property Comments() As ICollection(Of CharterComment)
+        Get
+            Return Commentable.Comments
+        End Get
+        Set(value As ICollection(Of CharterComment))
+            Commentable.Comments = value
+        End Set
+    End Property
+
+
+    <ForeignKey("CarrierId")>
+    Public Property CharterAgreements As ICollection(Of CharterAgreement)
+
+
+    <Key>
     Public Property Id() As Integer
         Get
             Return carrierId
@@ -30,34 +73,22 @@ Public Class CharterCarrier
             carrierName = value
         End Set
     End Property
-    Public Property contactInfo() As ContactInformation
-        Get
-            Return carrierContactInfo
-        End Get
-        Set(value As ContactInformation)
-            carrierContactInfo = value
-        End Set
-    End Property
+
+
+    'Public Property CommentableId() As Integer
+
+
 
     Public Sub New()
+
         Me.Id = Nothing
         Me.Name = Nothing
-        Me.contactInfo = New ContactInformation
-
-
+        Me.Commentable = New Commentable
     End Sub
 
-
-
-    Public Sub New(id As Integer, name As String)
+    Public Sub New(name As String)
         Me.New()
-
-        Me.Id = id
         Me.Name = name
-
     End Sub
-
-
-
 
 End Class

@@ -16,15 +16,21 @@ Public Class CharterSystemInitializer
 
     Protected Overrides Sub Seed(context As CharterSystem)
 
+
+
         Dim carriers As New List(Of CharterCarrier)
         With carriers
-            .Add(New CharterCarrier(15, "Greyhound"))
-            .Add(New CharterCarrier(1893, "Metra"))
-            .Add(New CharterCarrier(7899, "Bob's Buses"))
-            .Add(New CharterCarrier(36, "Paradise Line"))
-            .Add(New CharterCarrier(489, "Spirit Tracks"))
-            .Add(New CharterCarrier(63, "Vegas Carriers"))
+            .Add(New CharterCarrier("Greyhound"))
+            .Add(New CharterCarrier("Metra"))
+            .Add(New CharterCarrier("Bob's Buses"))
+            .Add(New CharterCarrier("Paradise Line"))
+            .Add(New CharterCarrier("Spirit Tracks"))
+            .Add(New CharterCarrier("Vegas Carriers"))
         End With
+
+        carriers.Item(1).Comments.Add(New CharterComment("A comment for Metra"))
+        carriers.Item(1).Comments.Add(New CharterComment("And another comment for Metra"))
+        carriers.Item(3).Comments.Add(New CharterComment("A comment for Paradise Line"))
         carriers.ForEach(Sub(carr) context.carriers.Add(carr))
 
 
@@ -32,14 +38,17 @@ Public Class CharterSystemInitializer
 
         Dim operators As New List(Of CharterOperator)
         With operators
-            .Add(New CharterOperator(48, "Happy Holidays"))
-            .Add(New CharterOperator(6498, "Tim's Travel Services"))
-            .Add(New CharterOperator(8873, "Rich Springs Travel Companion"))
-            .Add(New CharterOperator(3368, "First Travel Center"))
-            .Add(New CharterOperator(783, "First Stop on the Journey Travel Agency"))
-            .Add(New CharterOperator(2, "Vegas Travellers"))
+            .Add(New CharterOperator("Happy Holidays"))
+            .Add(New CharterOperator("Tim's Travel Services"))
+            .Add(New CharterOperator("Rich Springs Travel Companion"))
+            .Add(New CharterOperator("First Travel Center"))
+            .Add(New CharterOperator("First Stop on the Journey Travel Agency"))
+            .Add(New CharterOperator("Vegas Travellers"))
 
         End With
+
+        operators.Item(2).Comments.Add(New CharterComment("A comment for Rich Springs Travel Companion"))
+
         operators.ForEach(Sub(oper) context.operators.Add(oper))
         context.SaveChanges()
 

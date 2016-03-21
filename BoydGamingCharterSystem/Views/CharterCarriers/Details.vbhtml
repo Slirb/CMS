@@ -17,10 +17,22 @@ End Code
         <dd>
             @Html.DisplayFor(Function(model) model.Name)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(Function(model) model.Comments)
+        </dt>
+               
+        
     </dl>
+    
+   
+        
+    @For Each item As CharterComment In Model.Comments()
+
+        Html.RenderPartial("~/Views/Shared/_CommentsDetails.vbhtml", item)
+
+    Next
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", New With {.id = Model.Id}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

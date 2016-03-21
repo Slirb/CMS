@@ -168,9 +168,9 @@
     </Compile>
     <Compile Include="Models\CharterAgreement.vb" />
     <Compile Include="Models\CharterCarrier.vb" />
+    <Compile Include="Models\CharterComment.vb" />
     <Compile Include="Models\CharterOperator.vb" />
     <Compile Include="DAL\CharterSystem.vb" />
-    <Compile Include="Models\ContactInformation.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -215,6 +215,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Shared\_CommentsDetails.vbhtml" />
     <Content Include="Views\CharterCarriers\Create.vbhtml" />
     <Content Include="Views\CharterCarriers\Delete.vbhtml" />
     <Content Include="Views\CharterCarriers\Details.vbhtml" />
@@ -255,12 +256,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Administration\" />
-    <Folder Include="Views\Carrier\" />
-    <Folder Include="Views\CharterAgreement\" />
-    <Folder Include="Views\CharterOperator\" />
-    <Folder Include="Views\Report\" />
-    <Folder Include="Views\Trips\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
