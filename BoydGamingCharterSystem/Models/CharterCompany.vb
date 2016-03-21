@@ -130,4 +130,17 @@ Public Class CharterCompany
         Me.Email = email
     End Sub
 
+    Public Sub New()
+        Me.Name = Nothing
+        Me.AddressLineOne = Nothing
+        Me.AddressLineTwo = Nothing
+        Me.City = Nothing
+        Me.State = Nothing
+        Me.PostalCode = Nothing
+        Me.PostalCodeSuffix = Nothing
+        Me.Country = Nothing
+        Me.Email = Nothing
+
+    End Sub
+
 End Class
