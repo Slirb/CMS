@@ -3,17 +3,23 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 Public Class CharterAgreement
 
-    <Key>
+
     Private charterAgreementId As Integer
 
-    <ForeignKey("CharterCarrier")>
-    Private charterAgreementCarrier As CharterCarrier
-
-    <ForeignKey("CharterOperator")>
-    Private charterAgreementOperator As CharterOperator
-    Private charterAgreementCreateDate As Date
 
 
+
+    Private charterAgreementCreatedDateTime As DateTime
+
+
+    Public Property CarrierId() As Integer
+    <ForeignKey("CarrierId")>
+    Public Property CharterCarrier() As CharterCarrier
+
+    Public Property OperatorId() As Integer
+    <ForeignKey("OperatorId")>
+    Public Property CharterOperator() As CharterOperator
+    <Key>
     Public Property Id() As Integer
         Get
             Return charterAgreementId
@@ -23,32 +29,15 @@ Public Class CharterAgreement
         End Set
     End Property
 
-    Public Overridable Property CharterCarrier() As CharterCarrier
+
+
+
+    Public Property CreateDateTime() As DateTime
         Get
-            Return charterAgreementCarrier
+            Return charterAgreementCreatedDateTime
         End Get
-        Set(value As CharterCarrier)
-            charterAgreementCarrier = value
-        End Set
-
-    End Property
-
-    Public Overridable Property CharterOperator() As CharterOperator
-        Get
-            Return charterAgreementOperator
-        End Get
-        Set(value As CharterOperator)
-            charterAgreementOperator = value
-        End Set
-    End Property
-
-
-    Public Property CreateDate() As Date
-        Get
-            Return charterAgreementCreateDate
-        End Get
-        Set(value As Date)
-            charterAgreementCreateDate = value
+        Set(value As DateTime)
+            charterAgreementCreatedDateTime = value
         End Set
     End Property
 
@@ -56,8 +45,7 @@ Public Class CharterAgreement
         Me.Id = id
         Me.CharterCarrier = charterCarrier
         Me.CharterOperator = charterOperator
-        Me.CreateDate = Date.Now
-
+        Me.CreateDateTime = DateTime.Now
     End Sub
 
 End Class

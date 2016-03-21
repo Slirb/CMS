@@ -8,7 +8,6 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports BoydGamingCharterSystem
 
-
 Namespace Controllers
     Public Class CharterCarriersController
         Inherits System.Web.Mvc.Controller
@@ -25,8 +24,8 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
+            Dim charterCarrier As CharterCarrier = db.carriers.Include(Function(c) c.Company).Include(Function(c) c.Commentable).Where(Function(c) c.Id = id).First()
 
-            Dim charterCarrier As CharterCarrier = db.carriers.Include(Function(c) c.CharterCompany).Where(Function(c) c.Id = id).First()
 
             If IsNothing(charterCarrier) Then
                 Return HttpNotFound()

@@ -22,6 +22,7 @@ Public Class CharterSystemInitializer
             .Add(New State("Indiana", "IN"))
             .Add(New State("Kansas", "KS"))
         End With
+
         states.ForEach(Sub(stat) context.states.Add(stat))
 
 
@@ -32,21 +33,40 @@ Public Class CharterSystemInitializer
             .Add(New CharterCompany("Greyhound", "Test", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
             .Add(New CharterCompany("Metra", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
             .Add(New CharterCompany("Bob's Buses", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Paradise Line", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Spirit Tracks", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Vegas Carriers", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Tim's Travel Services", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Rich Springs Travel Companion", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("First Travel Center", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("First Stop on the Journey Travel Agency", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Vegas Travellers", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Windy City Travel", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+
         End With
         companies.ForEach(Sub(comp) context.companies.Add(comp))
-
 
         context.SaveChanges()
 
         Dim carriers As New List(Of CharterCarrier)
         With carriers
-            .Add(New CharterCarrier(15, "Greyhound"))
-            .Add(New CharterCarrier(1893, "Metra"))
-            .Add(New CharterCarrier(7899, "Bob's Buses"))
-            .Add(New CharterCarrier(36, "Paradise Line"))
-            .Add(New CharterCarrier(489, "Spirit Tracks"))
-            .Add(New CharterCarrier(63, "Vegas Carriers"))
+            .Add(New CharterCarrier())
+            .Last().Company = companies.Item(0)
+            .Add(New CharterCarrier())
+            .Last().Company = companies.Item(1)
+            .Add(New CharterCarrier())
+            .Last().Company = companies.Item(2)
+            .Add(New CharterCarrier())
+            .Last().Company = companies.Item(3)
+            .Add(New CharterCarrier())
+            .Last().Company = companies.Item(4)
+            .Add(New CharterCarrier())
+            .Last().Company = companies.Item(5)
         End With
+
+        carriers.Item(1).Comments.Add(New CharterComment("A comment for Metra"))
+        carriers.Item(1).Comments.Add(New CharterComment("And another comment for Metra"))
+        carriers.Item(3).Comments.Add(New CharterComment("A comment for Paradise Line"))
         carriers.ForEach(Sub(carr) context.carriers.Add(carr))
 
 
@@ -54,14 +74,23 @@ Public Class CharterSystemInitializer
 
         Dim operators As New List(Of CharterOperator)
         With operators
-            .Add(New CharterOperator(48, "Happy Holidays"))
-            .Add(New CharterOperator(6498, "Tim's Travel Services"))
-            .Add(New CharterOperator(8873, "Rich Springs Travel Companion"))
-            .Add(New CharterOperator(3368, "First Travel Center"))
-            .Add(New CharterOperator(783, "First Stop on the Journey Travel Agency"))
-            .Add(New CharterOperator(2, "Vegas Travellers"))
+            .Add(New CharterOperator())
+            .Last().Company = companies.Item(6)
+            .Add(New CharterOperator())
+            .Last().Company = companies.Item(7)
+            .Add(New CharterOperator())
+            .Last().Company = companies.Item(8)
+            .Add(New CharterOperator())
+            .Last().Company = companies.Item(9)
+            .Add(New CharterOperator())
+            .Last().Company = companies.Item(10)
+            .Add(New CharterOperator())
+            .Last().Company = companies.Item(11)
 
         End With
+
+        operators.Item(2).Comments.Add(New CharterComment("A comment for Rich Springs Travel Companion"))
+
         operators.ForEach(Sub(oper) context.operators.Add(oper))
         context.SaveChanges()
 
