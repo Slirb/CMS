@@ -65,11 +65,11 @@ End Code
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(Function(model) model.Agreement)
+                @Html.DisplayNameFor(Function(model) model.charterAgreementId)
             </dt>
     
             <dd>
-                @Html.DisplayFor(Function(model) model.Agreement)
+                @Html.DisplayFor(Function(model) model.charterAgreementId)
             </dd>
     
             <dt>

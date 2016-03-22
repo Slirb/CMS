@@ -170,12 +170,14 @@
     </Compile>
     <Compile Include="Models\CharterAgreement.vb" />
     <Compile Include="Models\CharterCarrier.vb" />
+    <Compile Include="Models\CharterComment.vb" />
     <Compile Include="Models\CharterCompany.vb" />
     <Compile Include="Models\CharterOperator.vb" />
     <Compile Include="DAL\CharterSystem.vb" />
     <Compile Include="Models\CharterProperties.vb" />
     <Compile Include="Models\CharterTieredCommissions.vb" />
     <Compile Include="Models\CharterTrips.vb" />
+    <Compile Include="Models\State.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

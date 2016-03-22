@@ -3,7 +3,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 
 Public Class CharterTrips
-    <Key>
+
     Private tripsTripID As Integer
     Private tripsCarrierName As String
     Private tripsDestination As String
@@ -11,15 +11,15 @@ Public Class CharterTrips
     Private tripsStatus As String
     Private tripsConfirmationNumber As String
 
-    Public Property AgreementId() As Integer
-    <ForeignKey("AgreementId")>
-    Public Property CharterAgreement() As CharterAgreement
+    Public Property charterAgreementId() As Integer
+    <ForeignKey("charterAgreementId")>
+    Public Property CharterAgreements() As CharterAgreement
 
     Private tripsOperatorName As String
     Private tripsArrivalDateTime As Date
     Private tripsDepartureDateTime As Date
 
-
+    <Key>
     Public Property ID() As Integer
         Get
             Return tripsTripID
@@ -119,7 +119,7 @@ Public Class CharterTrips
         Me.TripCity = Nothing
         Me.TripStatus = Nothing
         Me.Confirmation = Nothing
-        Me.AgreementId = Nothing
+        Me.charterAgreementId = Nothing
         Me.OpName = Nothing
         Me.Arrival = Nothing
         Me.Departure = Nothing
@@ -128,14 +128,14 @@ Public Class CharterTrips
 
 
     ''Need to finish this
-    Public Sub New(id As Integer, name As String, dest As String, city As String, status As String, confNumber As String, agreeNumber As Integer, opName As String, arrivalDate As Date, departDate As Date)
+    Public Sub New(id As Integer, name As String, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, opName As String, arrivalDate As Date, departDate As Date)
         Me.ID = id
         Me.Carrier = name
         Me.TripDestination = dest
         Me.TripCity = city
         Me.TripStatus = status
         Me.Confirmation = confNumber
-        Me.AgreementId = agreeNumber
+        Me.CharterAgreements = charterAgreement
         Me.OpName = opName
         Me.Arrival = arrivalDate
         Me.Departure = departDate
