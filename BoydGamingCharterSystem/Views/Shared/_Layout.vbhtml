@@ -18,12 +18,15 @@
                 <nav class="mainNav">
                     <ul>
                     
-                        <li>@Html.ActionLink("Trips", "Index", "Trip")</li>
-                        <li>@Html.ActionLink("Charter Agreements", "Index", "CharterAgreement")</li>
-                        <li>@Html.ActionLink("Operators", "Index", "Operator")</li>
+                        <!--Changed folder names to unify naming scheme-->
+
+                        
+                        <li>@Html.ActionLink("Trips", "Index", "CharterTrips")</li>
+                        <li>@Html.ActionLink("Charter Agreements", "Index", "CharterAgreements")</li>
+                        <li>@Html.ActionLink("Operators", "Index", "CharterOperators")</li>
                         <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
-                        <li>@Html.ActionLink("Reports", "Index", "Report")</li>
-                        <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "CharterReports")</li>
+                        <li>@Html.ActionLink("Administration", "Index", "CharterAdministration")</li>
 
                 
                     </ul>
@@ -41,7 +44,9 @@
         </div>
         <footer>
             <div class="container">
-                <p>&copy; @DateTime.Now.Year - Boyd Gaming Bus-Charter System</p>
+
+                <!--Removed References to Client-->
+                <p>&copy; @DateTime.Now.Year - Charter System</p>
             </div>
         </footer>
 
