@@ -1,6 +1,14 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 
 Public Class CharterTrips
+
+    Public Property CarrierId() As Integer
+    <ForeignKey("AgreementID")>
+    Public Property CharterAgreement() As CharterAgreement
+
+
+
+
     <Key>
     Private tripsTripID As Integer
     Private tripsCarrierName As String
