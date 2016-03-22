@@ -3,14 +3,6 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 
 Public Class CharterTrips
-
-    Public Property AgreementId() As Integer
-    <ForeignKey("AgreementID")>
-    Public Property CharterAgreement() As CharterAgreement
-
-
-
-
     <Key>
     Private tripsTripID As Integer
     Private tripsCarrierName As String
@@ -18,6 +10,11 @@ Public Class CharterTrips
     Private tripsCity As String
     Private tripsStatus As String
     Private tripsConfirmationNumber As String
+
+    Public Property AgreementId() As Integer
+    <ForeignKey("AgreementId")>
+    Public Property CharterAgreement() As CharterAgreement
+
     Private tripsOperatorName As String
     Private tripsArrivalDateTime As Date
     Private tripsDepartureDateTime As Date
@@ -122,7 +119,7 @@ Public Class CharterTrips
         Me.TripCity = Nothing
         Me.TripStatus = Nothing
         Me.Confirmation = Nothing
-        Me.Agreement = Nothing
+        Me.AgreementId = Nothing
         Me.OpName = Nothing
         Me.Arrival = Nothing
         Me.Departure = Nothing
@@ -138,7 +135,7 @@ Public Class CharterTrips
         Me.TripCity = city
         Me.TripStatus = status
         Me.Confirmation = confNumber
-        Me.Agreement = agreeNumber
+        Me.AgreementId = agreeNumber
         Me.OpName = opName
         Me.Arrival = arrivalDate
         Me.Departure = departDate

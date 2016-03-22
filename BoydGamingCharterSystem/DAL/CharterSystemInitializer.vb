@@ -16,23 +16,6 @@ Public Class CharterSystemInitializer
 
     Protected Overrides Sub Seed(context As CharterSystem)
 
-        ''CHANGES---------------------------
-        Dim trips As New List(Of CharterTrips)
-        With trips
-            .Add(New CharterTrips(18, "Greyhound", "Biloxi", "Biloxi", "Potential", "BI75298TG", 25, "Happy Holidays", "2016-05-07", "2016-05-10"))
-            .Add(New CharterTrips(25, "Metra", "Biloxi", "Baton Rouge", "Cancelled", "BI68735TG", 25, "Tim's Travel Services", "2016-06-05", "2016-06-11"))
-            .Add(New CharterTrips(25, "Spirit Tracks", "Biloxi", "Orlando", "Active", "BI94682TG", 25, "Vegas Travellers", "2016-07-10", "2016-07-11"))
-            .Add(New CharterTrips(18, "Paradise Line", "Biloxi", "Mobile", "Applied", "BI68742TG", 25, "First Travel Center", "2016-05-07", "2016-05-10"))
-            .Add(New CharterTrips(25, "Bob's Buses", "Biloxi", "Atlanta", "Completed", "BI98761TG", 25, "Rich Springs Travel Companion", "2016-08-09", "2016-08-11"))
-
-
-        End With
-        trips.ForEach(Sub(trip) context.trips.Add(trip))
-        context.SaveChanges()
-
-
-
-        ''END CHANGES-----------------------
 
         Dim carriers As New List(Of CharterCarrier)
         With carriers
@@ -71,6 +54,24 @@ Public Class CharterSystemInitializer
         agreements.ForEach(Sub(agree) context.agreements.Add(agree))
         context.SaveChanges()
 
+
+        ''CHANGES---------------------------
+        Dim trips As New List(Of CharterTrips)
+        With trips
+            .Add(New CharterTrips(18, "Greyhound", "Biloxi", "Biloxi", "Potential", "BI75298TG", agreements.Item(0), "Happy Holidays", "2016-05-07", "2016-05-10"))
+            .Add(New CharterTrips(25, "Metra", "Biloxi", "Baton Rouge", "Cancelled", "BI68735TG", 456, "Tim's Travel Services", "2016-06-05", "2016-06-11"))
+            .Add(New CharterTrips(25, "Spirit Tracks", "Biloxi", "Orlando", "Active", "BI94682TG", 456, "Vegas Travellers", "2016-07-10", "2016-07-11"))
+            .Add(New CharterTrips(18, "Paradise Line", "Biloxi", "Mobile", "Applied", "BI68742TG", 3, "First Travel Center", "2016-05-07", "2016-05-10"))
+            .Add(New CharterTrips(25, "Bob's Buses", "Biloxi", "Atlanta", "Completed", "BI98761TG", 3, "Rich Springs Travel Companion", "2016-08-09", "2016-08-11"))
+
+
+        End With
+        trips.ForEach(Sub(trip) context.trips.Add(trip))
+        context.SaveChanges()
+
+
+
+        ''END CHANGES-----------------------
 
 
     End Sub
