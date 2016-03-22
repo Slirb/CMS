@@ -1,8 +1,10 @@
 ﻿Imports System.ComponentModel.DataAnnotations
+Imports System.ComponentModel.DataAnnotations.Schema
+
 
 Public Class CharterTrips
 
-    Public Property CarrierId() As Integer
+    Public Property AgreementId() As Integer
     <ForeignKey("AgreementID")>
     Public Property CharterAgreement() As CharterAgreement
 
@@ -16,7 +18,6 @@ Public Class CharterTrips
     Private tripsCity As String
     Private tripsStatus As String
     Private tripsConfirmationNumber As String
-    Private tripsAgreementID As Integer
     Private tripsOperatorName As String
     Private tripsArrivalDateTime As Date
     Private tripsDepartureDateTime As Date
@@ -94,14 +95,7 @@ Public Class CharterTrips
 
     End Property
 
-    Public Property Agreement() As Integer
-        Get
-            Return tripsAgreementID
-        End Get
-        Private Set(ByVal value As Integer)
-            tripsAgreementID = value
-        End Set
-    End Property
+
 
     Public Property Arrival() As Date
         Get

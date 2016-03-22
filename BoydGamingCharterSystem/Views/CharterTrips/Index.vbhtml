@@ -107,7 +107,7 @@ End Using
                 @Html.DisplayFor(Function(modelItem) item.Confirmation)
             </td>
             <td>
-                @Html.DisplayFor(Function(modelItem) item.Agreement)
+                @Html.DisplayFor(Function(modelItem) item.AgreementId)
             </td>
             <td>
                 @Html.DisplayFor(Function(modelItem) item.Arrival)
