@@ -144,5 +144,3 @@ Public Class CharterCompany
     End Sub
 
 End Class
-
-

@@ -1,5 +1,4 @@
-﻿
-Imports System.ComponentModel.DataAnnotations
+﻿Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 
 Public Class CharterComment
@@ -38,4 +37,3 @@ Public Class Commentable
     End Sub
 
 End Class
-

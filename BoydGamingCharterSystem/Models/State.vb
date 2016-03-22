@@ -1,5 +1,4 @@
-﻿
-Public Class State
+﻿Public Class State
 
     Private stateId As Integer
     Private stateName As String
@@ -38,5 +37,3 @@ Public Class State
     End Sub
 
 End Class
-
-
