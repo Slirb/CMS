@@ -227,11 +227,11 @@
     <Content Include="Views\CharterCarriers\Delete.vbhtml" />
     <Content Include="Views\CharterCarriers\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Edit.vbhtml" />
-    <Content Include="Views\CharterCarriers\Index.vbhtml" />
     <Content Include="Views\CharterTrips\Index.vbhtml" />
     <Content Include="Views\CharterTrips\Create.vbhtml" />
     <Content Include="Views\CharterTrips\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\Details.vbhtml" />
+    <Content Include="Views\CharterCarriers\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

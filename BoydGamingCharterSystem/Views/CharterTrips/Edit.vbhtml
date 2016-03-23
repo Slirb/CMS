@@ -26,7 +26,7 @@ End Code
             <div class="form-group">
                 @Html.LabelFor(Function(model) model.Carrier, htmlAttributes:= New With { .class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.Carrier, New With { .htmlAttributes = New With { .class = "form-control" } })
+                    @Html.EditorFor(Function(model) model.Carrier, New With {.htmlAttributes = New With {.class = "form-control"}})
                     @Html.ValidationMessageFor(Function(model) model.Carrier, "", New With { .class = "text-danger" })
                 </div>
             </div>

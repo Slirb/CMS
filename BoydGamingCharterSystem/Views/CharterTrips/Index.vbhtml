@@ -22,45 +22,50 @@ End Code
 @Using Html.BeginForm("Index", "CharterTrips", FormMethod.Get)
 
     @<p>
-        Find by name @Html.TextBox("SearchString")</p>
-
+    @Html.Label("searchLabel", "Confirmation Number: ")
+    @Html.TextBox("SearchString")
+    </p>
 
     @<p>
          <dl>
              <dd>
-                 @Html.Label("potentialLabel", "Potential:")
+                 @Html.Label("potentialLabel", "Potential: ")
                  @Html.CheckBox("Potential", True)
              </dd>
              <dd>
-                 @Html.Label("activeLabel", "Active:")
+                 @Html.Label("activeLabel", "Active: ")
                  @Html.CheckBox("Active", True)
              </dd>
              <dd>
-                 @Html.Label("appliedLabel", "Applied:")
+                 @Html.Label("appliedLabel", "Applied: ")
                  @Html.CheckBox("Applied", True)
              </dd>
              <dd>
-                 @Html.Label("completedLabel", "Completed:")
+                 @Html.Label("completedLabel", "Completed: ")
                  @Html.CheckBox("Completed", True)
              </dd>
              <dd>
-                 @Html.Label("cancelledLabel", "Canceled:")
+                 @Html.Label("cancelledLabel", "Canceled: ")
                  @Html.CheckBox("Cancelled", True)
+             </dd>
+             <dd>
+                 @Html.Label("carrierLabel", "Carrier: ")
+                 @Html.DropDownList("Carrier", "")
              </dd>
          </dl>
 
-    
+
     <input type = "submit" value="Search"  /></p>
 
 End Using
-    
+
    <Table Class="table">
         <tr>
-    <th>
-    Carrier
+                 <th>
+                 Carrier
             </th>
             <th>
-    Operator Name
+                 Operator Name
             </th>
             <th>
                 Destination
@@ -122,7 +127,7 @@ End Using
             </td>
         </tr>
     Next
-    
+
     </table>
 </body>
 </html>

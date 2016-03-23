@@ -27,6 +27,7 @@ Public Class CharterCarrier
 
     Private carrierCommentable As Commentable
 
+
     'Private commentableId As Integer
 
     '<ForeignKey("commentableId")>

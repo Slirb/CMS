@@ -16,45 +16,64 @@ Namespace Controllers
         Private db As New CharterSystem
 
 
+
+
         ' GET: CharterTrips
-        Function Index(Optional ByVal potential As Boolean = True, Optional ByVal active As Boolean = True, Optional ByVal applied As Boolean = True,
+        Function Index(Optional ByVal searchString As String = Nothing, Optional ByVal potential As Boolean = True, Optional ByVal active As Boolean = True, Optional ByVal applied As Boolean = True,
                        Optional ByVal completed As Boolean = True, Optional ByVal Cancelled As Boolean = True) As ActionResult
-            ''Dim trips
+
             Dim status As New List(Of String)
-
-            ''trips = db.trips.ToList()
-            Dim test() As String = {"Active", "Applied"}
-
-
+            Dim trips
+            'Check potential checkbox
             If (potential = True) Then
                 status.Add("Potential")
-                ''trips = db.trips.Where(Function(trip) trip.TripStatus.Contains("Potential"))
             End If
 
+            'Check active checkbox
             If (active = True) Then
                 status.Add("Active")
-                ''trips = db.trips.Where(Function(trip) trip.TripStatus.Contains("Active"))
             End If
 
+            'Check applied checkbox
             If (applied = True) Then
                 status.Add("Applied")
-                ''trips = db.trips.Where(Function(trip) trip.TripStatus.Contains("Applied"))
             End If
 
+            'Check completed checkbox
             If (completed = True) Then
                 status.Add("Completed")
-                ''trips = db.trips.Where(Function(trip) trip.TripStatus.Contains("Completed"))
             End If
 
+            'Check cancelled checkbox
             If (Cancelled = True) Then
                 status.Add("Cancelled")
-                ''trips = db.trips.Where(Function(trip) trip.TripStatus.Contains("Cancelled"))
             End If
 
 
-            Dim trips = From t In db.trips.ToList()
+            'Check for confirmation Number
+            If searchString IsNot Nothing Then
+                'Select trips matching search criteria
+                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
                         Join s In status On t.TripStatus Equals s
-                        Select t
+                        Select t Order By t.Arrival
+
+            Else
+                'Select trips matching search criteria
+                trips = From t In db.trips.ToList()
+                        Join s In status On t.TripStatus Equals s
+                        Select t Order By t.Arrival
+            End If
+
+
+            'Populate Dropdown Boxes
+            Dim IDs = (From x In db.carriers
+                       Order By x.Company.Name
+                       Select New SelectListItem With
+             {.Text = x.Company.Name, .Value = x.Id}).ToList()
+            ViewBag.Carrier = IDs
+
+
+
 
             Return View(trips)
         End Function
