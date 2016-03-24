@@ -55,6 +55,7 @@ Public Class CharterCarrier
     Public Property CharterAgreements As ICollection(Of CharterAgreement)
 
 
+
     <Key>
     Public Property Id() As Integer
         Get

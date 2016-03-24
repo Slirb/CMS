@@ -7,19 +7,28 @@
 End Code
 
 <!DOCTYPE html>
-
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
 <body>
+  
     <p>
         @Html.ActionLink("Create New", "Create")
-    </p>    
+    </p>
 
+@Using Html.BeginForm("Index", "CharterTrips", FormMethod.Post)
 
-@Using Html.BeginForm("Index", "CharterTrips", FormMethod.Get)
+    @<p>
+        @Html.Label("startLabel", "Start: ")
+        @Html.TextBox("StartDate")
+    </p>
+    @<p>
+        @Html.Label("endLabel", "End: ")
+        @Html.TextBox("EndString")
+    </p>
 
     @<p>
     @Html.Label("searchLabel", "Confirmation Number: ")
@@ -50,9 +59,16 @@ End Code
              </dd>
              <dd>
                  @Html.Label("carrierLabel", "Carrier: ")
-                 @Html.DropDownList("Carrier", "")
+                 @Html.DropDownList("Carriers", "All")                
              </dd>
+             <dd>
+                 @Html.Label("operatorLabel", "Operator: ")
+                 @Html.DropDownList("Operators", "All")  
+                            
+             </dd>
+            
          </dl>
+    
 
 
     <input type = "submit" value="Search"  /></p>
@@ -61,11 +77,11 @@ End Using
 
    <Table Class="table">
         <tr>
-                 <th>
-                 Carrier
+                <th>
+                Carrier
             </th>
             <th>
-                 Operator Name
+                Operator
             </th>
             <th>
                 Destination
@@ -94,10 +110,10 @@ End Using
     @For Each item In Model
         @<tr>
             <td>
-                @Html.DisplayFor(Function(modelItem) item.Carrier)
+                @Html.DisplayFor(Function(modelItem) item.TripCarrierName)
             </td>
             <td>
-                @Html.DisplayFor(Function(modelItem) item.OpName)
+                @Html.DisplayFor(Function(modelItem) item.TripOperatorName)
             </td>
             <td>
                 @Html.DisplayFor(Function(modelItem) item.TripDestination)

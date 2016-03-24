@@ -20,7 +20,10 @@ Namespace Controllers
 
         ' GET: CharterTrips
         Function Index(Optional ByVal searchString As String = Nothing, Optional ByVal potential As Boolean = True, Optional ByVal active As Boolean = True, Optional ByVal applied As Boolean = True,
-                       Optional ByVal completed As Boolean = True, Optional ByVal Cancelled As Boolean = True) As ActionResult
+                       Optional ByVal completed As Boolean = True, Optional ByVal cancelled As Boolean = True,
+                       Optional ByVal carriers As String = "", Optional ByVal operators As String = "") As ActionResult
+
+
 
             Dim status As New List(Of String)
             Dim trips
@@ -45,9 +48,42 @@ Namespace Controllers
             End If
 
             'Check cancelled checkbox
-            If (Cancelled = True) Then
+            If (cancelled = True) Then
                 status.Add("Cancelled")
             End If
+
+
+
+            'Check DropdownBoxes
+            'If carriers > 0 Then
+
+            '    If operators > 0 Then
+
+            '        'Check for confirmation Number
+            '        If searchString IsNot Nothing Then
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Where t.CarrierId = carriers And t.OperatorId = operators Order By t.Arrival
+            '        Else
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.ToList()
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Where t.CarrierId = carriers Order By t.Arrival
+            '        End If
+
+            '    End If
+
+            'Else
+
+            '    If operators > 0 Then
+
+
+
+            '    End If
+
+            'End If
+
 
 
             'Check for confirmation Number
@@ -56,7 +92,6 @@ Namespace Controllers
                 trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
                         Join s In status On t.TripStatus Equals s
                         Select t Order By t.Arrival
-
             Else
                 'Select trips matching search criteria
                 trips = From t In db.trips.ToList()
@@ -66,14 +101,17 @@ Namespace Controllers
 
 
             'Populate Dropdown Boxes
-            Dim IDs = (From x In db.carriers
+            Dim car = (From x In db.carriers
                        Order By x.Company.Name
                        Select New SelectListItem With
-             {.Text = x.Company.Name, .Value = x.Id}).ToList()
-            ViewBag.Carrier = IDs
+             {.Value = x.Id, .Text = x.Company.Name}).ToList()
+            ViewBag.Carriers = car
 
-
-
+            Dim ops = (From x In db.operators
+                       Order By x.Company.Name
+                       Select New SelectListItem With
+             {.Value = x.Id, .Text = x.Company.Name}).ToList()
+            ViewBag.Operators = ops
 
             Return View(trips)
         End Function
