@@ -20,9 +20,8 @@ Public Class CharterAgreement
     <ForeignKey("OperatorId")>
     Public Property CharterOperator() As CharterOperator
 
-
-
-
+    <ForeignKey("charterAgreementId")>
+    Public Property CharterTrips As ICollection(Of CharterTrips)
     'Might just make a list of trips instead of going through the schedule to get to trips
     'Public Property Schedule() As List(Of CharterSchedule)
 
@@ -35,8 +34,6 @@ Public Class CharterAgreement
             charterAgreementId = value
         End Set
     End Property
-
-
 
 
     Public Property CreateDateTime() As DateTime
@@ -55,8 +52,8 @@ Public Class CharterAgreement
     End Sub
 
     Public Sub New(id As Integer, charterCarrier As CharterCarrier, charterOperator As CharterOperator)
-        Me.New()
 
+        Me.New()
         Me.Id = id
         Me.CharterCarrier = charterCarrier
         Me.CharterOperator = charterOperator

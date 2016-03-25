@@ -16,6 +16,7 @@ Public Class CharterSystemInitializer
 
     Protected Overrides Sub Seed(context As CharterSystem)
 
+
         Dim states As New List(Of State)
         With states
             .Add(New State("Alabama", "AL"))
@@ -27,6 +28,7 @@ Public Class CharterSystemInitializer
 
 
         context.SaveChanges()
+
 
         Dim companies As New List(Of CharterCompany)
         With companies
@@ -106,8 +108,27 @@ Public Class CharterSystemInitializer
 
 
 
+
+
+        ''CHANGES---------------------------
+        Dim trips As New List(Of CharterTrips)
+        With trips
+            .Add(New CharterTrips(2, "Biloxi", "Biloxi", "Potential", "BI75298TG", agreements.Item(0), carriers.Item(0), operators.Item(0), "2016-05-07", "2016-05-10"))
+            .Add(New CharterTrips(3, "Biloxi", "Baton Rouge", "Cancelled", "BI68735TG", agreements.Item(1), carriers.Item(1), operators.Item(1), "2016-06-05", "2016-06-11"))
+            .Add(New CharterTrips(4, "Biloxi", "Orlando", "Active", "BI94682TG", agreements.Item(2), carriers.Item(2), operators.Item(2), "2016-07-10", "2016-07-11"))
+            .Add(New CharterTrips(5, "Biloxi", "Mobile", "Applied", "BI68742TG", agreements.Item(1), carriers.Item(3), operators.Item(3), "2016-05-07", "2016-05-10"))
+            .Add(New CharterTrips(7, "Biloxi", "Atlanta", "Completed", "BI98761TG", agreements.Item(0), carriers.Item(4), operators.Item(4), "2016-08-09", "2016-08-11"))
+
+
+        End With
+        trips.ForEach(Sub(trip) context.trips.Add(trip))
+        context.SaveChanges()
+
+
+
+        ''END CHANGES-----------------------
+
+
     End Sub
-
-
 
 End Class

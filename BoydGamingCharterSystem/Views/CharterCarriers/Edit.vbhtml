@@ -16,10 +16,10 @@ End Code
         @Html.HiddenFor(Function(model) model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(Function(model) model.Name, htmlAttributes:= New With { .class = "control-label col-md-2" })
+            @Html.LabelFor(Function(model) model.Company.Name, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(Function(model) model.Name, New With { .htmlAttributes = New With { .class = "form-control" } })
-                @Html.ValidationMessageFor(Function(model) model.Name, "", New With { .class = "text-danger" })
+                @Html.EditorFor(Function(model) model.Company.Name, New With {.htmlAttributes = New With {.class = "form-control"}})
+                @Html.ValidationMessageFor(Function(model) model.Company.Name, "", New With {.class = "text-danger"})
             </div>
         </div>
 

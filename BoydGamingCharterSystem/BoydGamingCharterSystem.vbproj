@@ -161,6 +161,8 @@
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
+    <Compile Include="Controllers\CharterTieredCommissionsController.vb" />
+    <Compile Include="Controllers\CharterTripsController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="DAL\CharterSystemInitializer.vb" />
     <Compile Include="Global.asax.vb">
@@ -173,6 +175,9 @@
     <Compile Include="Models\CharterContact.vb" />
     <Compile Include="Models\CharterOperator.vb" />
     <Compile Include="DAL\CharterSystem.vb" />
+    <Compile Include="Models\CharterProperties.vb" />
+    <Compile Include="Models\CharterTieredCommissions.vb" />
+    <Compile Include="Models\CharterTrips.vb" />
     <Compile Include="Models\State.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -223,6 +228,10 @@
     <Content Include="Views\CharterCarriers\Delete.vbhtml" />
     <Content Include="Views\CharterCarriers\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Edit.vbhtml" />
+    <Content Include="Views\CharterTrips\Index.vbhtml" />
+    <Content Include="Views\CharterTrips\Create.vbhtml" />
+    <Content Include="Views\CharterTrips\Edit.vbhtml" />
+    <Content Include="Views\CharterTrips\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +268,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CharterAdministration\" />
+    <Folder Include="Views\CharterAgreements\" />
+    <Folder Include="Views\CharterOperators\" />
+    <Folder Include="Views\CharterReports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -17,6 +17,7 @@ Public Class CharterOperator
     <ForeignKey("OperatorId")>
     Public Property CharterAgreements As List(Of CharterAgreement)
 
+
     <NotMapped>
     Public Property Comments() As List(Of CharterComment)
         Get
@@ -58,3 +59,4 @@ Public Class CharterOperator
     End Sub
 
 End Class
+

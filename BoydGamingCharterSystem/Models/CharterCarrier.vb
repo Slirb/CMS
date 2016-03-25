@@ -58,6 +58,7 @@ Public Class CharterCarrier
     Public Property CharterAgreements As ICollection(Of CharterAgreement)
 
 
+
     <Key>
     Public Property Id() As Integer
         Get
@@ -79,9 +80,6 @@ Public Class CharterCarrier
             carrierCompany = value
         End Set
     End Property
-
-
-
 
     Public Sub New()
 
