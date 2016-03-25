@@ -118,6 +118,15 @@ Public Class CharterCompany
     End Property
 
     Public Property Contactable As Contactable
+    Public Property Contacts As List(Of CharterContact)
+        Get
+            Return Me.Contactable.Contacts
+        End Get
+        Set(value As List(Of CharterContact))
+            Me.Contactable.Contacts = value
+        End Set
+    End Property
+
     Public Property CompanyPrimaryPhone As String
     Public Property CompanyPrimaryPhoneExtension As String
     Public Property CompanyAlternatePhone As String
@@ -126,6 +135,7 @@ Public Class CharterCompany
     Public Property CompanyEmergencyPhoneExt As String
     Public Property CompanyFax As String
     Public Property CompanyFaxExtension As String
+
 
 
     Public Sub New(name As String, addressLineOne As String, addressLineTwo As String,
