@@ -170,6 +170,7 @@
     <Compile Include="Models\CharterCarrier.vb" />
     <Compile Include="Models\CharterComment.vb" />
     <Compile Include="Models\CharterCompany.vb" />
+    <Compile Include="Models\CharterContact.vb" />
     <Compile Include="Models\CharterOperator.vb" />
     <Compile Include="DAL\CharterSystem.vb" />
     <Compile Include="Models\State.vb" />

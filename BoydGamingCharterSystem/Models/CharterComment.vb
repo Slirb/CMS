@@ -4,10 +4,11 @@ Imports System.ComponentModel.DataAnnotations.Schema
 Public Class CharterComment
 
 
-    Public Property Id() As Integer
-    Public Property Content() As String
-    Public Property CreateDateTime() As DateTime
-    Public Property Commentable() As Commentable
+    Public Property Id As Integer
+    Public Property Content As String
+    Public Property Highlight As Boolean
+    Public Property CreateDateTime As DateTime
+    Public Property Commentable As Commentable
 
 
     Public Sub New()

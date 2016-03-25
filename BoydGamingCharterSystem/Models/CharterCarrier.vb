@@ -13,10 +13,6 @@ Public Class CharterCarrier
     Private carrierInsuranceNumber As String
     Private carrierInsuranceExpirationDate As DateTime
 
-    'Possible TODO if necessary
-    'Take this field and make it a list - a comments table will handle
-    'the comments for carriers and operators together, and data about
-    'those comments can be tracked
 
 
 
@@ -27,9 +23,8 @@ Public Class CharterCarrier
 
     Private carrierCommentable As Commentable
 
-    'Private commentableId As Integer
 
-    '<ForeignKey("commentableId")>
+
     Public Property Commentable As Commentable
         Get
             Return carrierCommentable
@@ -49,6 +44,15 @@ Public Class CharterCarrier
         End Set
     End Property
 
+    <NotMapped>
+    Public Property Contacts() As List(Of CharterContact)
+        Get
+            Return Company.Contactable.Contacts()
+        End Get
+        Set(value As List(Of CharterContact))
+            Company.Contactable.Contacts = value
+        End Set
+    End Property
 
     <ForeignKey("CarrierId")>
     Public Property CharterAgreements As ICollection(Of CharterAgreement)
@@ -75,6 +79,9 @@ Public Class CharterCarrier
             carrierCompany = value
         End Set
     End Property
+
+
+
 
     Public Sub New()
 

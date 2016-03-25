@@ -12,6 +12,7 @@ Public Class CharterCompany
     Private companyState As State
     Private companyPostalCode As String
     Private companyPostalCodeSuffix As String
+
     Private companyCountry As String
     Private companyEmail As String
 
@@ -116,6 +117,17 @@ Public Class CharterCompany
 
     End Property
 
+    Public Property Contactable As Contactable
+    Public Property CompanyPrimaryPhone As String
+    Public Property CompanyPrimaryPhoneExtension As String
+    Public Property CompanyAlternatePhone As String
+    Public Property CompanyAlternatePhoneExtension As String
+    Public Property CompanyEmergencyPhone As String
+    Public Property CompanyEmergencyPhoneExt As String
+    Public Property CompanyFax As String
+    Public Property CompanyFaxExtension As String
+
+
     Public Sub New(name As String, addressLineOne As String, addressLineTwo As String,
                    city As String, state As State, postalCode As String, postalCodeSuffix As String,
                    country As String, email As String)
@@ -140,6 +152,8 @@ Public Class CharterCompany
         Me.PostalCodeSuffix = Nothing
         Me.Country = Nothing
         Me.Email = Nothing
+
+        Me.Contactable = New Contactable
 
     End Sub
 

@@ -40,6 +40,15 @@ Public Class CharterOperator
     End Property
 
 
+    <NotMapped>
+    Public Property Contacts() As List(Of CharterContact)
+        Get
+            Return Company.Contactable.Contacts()
+        End Get
+        Set(value As List(Of CharterContact))
+            Company.Contactable.Contacts = value
+        End Set
+    End Property
 
 
 

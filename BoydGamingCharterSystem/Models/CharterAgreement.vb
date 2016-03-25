@@ -19,6 +19,13 @@ Public Class CharterAgreement
     Public Property OperatorId() As Integer
     <ForeignKey("OperatorId")>
     Public Property CharterOperator() As CharterOperator
+
+
+
+
+    'Might just make a list of trips instead of going through the schedule to get to trips
+    'Public Property Schedule() As List(Of CharterSchedule)
+
     <Key>
     Public Property Id() As Integer
         Get
@@ -41,11 +48,19 @@ Public Class CharterAgreement
         End Set
     End Property
 
+    Public Sub New()
+        Me.CreateDateTime = DateTime.Now
+        'Me.Schedule = New List(Of CharterSchedule)
+
+    End Sub
+
     Public Sub New(id As Integer, charterCarrier As CharterCarrier, charterOperator As CharterOperator)
+        Me.New()
+
         Me.Id = id
         Me.CharterCarrier = charterCarrier
         Me.CharterOperator = charterOperator
-        Me.CreateDateTime = DateTime.Now
+
     End Sub
 
 End Class
