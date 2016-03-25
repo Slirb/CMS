@@ -4,35 +4,37 @@ Imports BoydGamingCharterSystem
 <Table("Carrier")>
 Public Class CharterCarrier
 
+    <Key>
+    Public Property Id() As Integer
 
+    <ForeignKey("CarrierId")>
+    Public Property CharterAgreements As ICollection(Of CharterAgreement)
 
-    Private carrierId As Integer
-    Private carrierCompany As CharterCompany
-
-    Private carrierLicenseNumber As String
-    Private carrierInsuranceNumber As String
-    Private carrierInsuranceExpirationDate As DateTime
-
-
-
-
-
-    Private carrierCreateDateTime As DateTime
-
-    Private carrierLastUpdatedDateTime As DateTime
-
-    Private carrierCommentable As Commentable
-
-
+    Public Property Company As CharterCompany
 
     Public Property Commentable As Commentable
+
+    Public Property HasLicense As Boolean
+    Public Property LicenseNumber As String
+
+    Public Property HasInsurance As Boolean
+    Public Property InsuranceNumber As String
+    Public Property InsuranceExpiration As Date?
+    Public Property Created As Date?
+
+    Public Property LastUpdated As Date?
+
+
+    <NotMapped>
+    Public Property Contacts() As List(Of CharterContact)
         Get
-            Return carrierCommentable
+            Return Company.Contacts()
         End Get
-        Set(value As Commentable)
-            carrierCommentable = value
+        Set(value As List(Of CharterContact))
+            Company.Contacts = value
         End Set
     End Property
+
 
     <NotMapped>
     Public Property Comments() As ICollection(Of CharterComment)
@@ -44,49 +46,11 @@ Public Class CharterCarrier
         End Set
     End Property
 
-    <NotMapped>
-    Public Property Contacts() As List(Of CharterContact)
-        Get
-            Return Company.Contactable.Contacts()
-        End Get
-        Set(value As List(Of CharterContact))
-            Company.Contactable.Contacts = value
-        End Set
-    End Property
-
-    <ForeignKey("CarrierId")>
-    Public Property CharterAgreements As ICollection(Of CharterAgreement)
-
-
-
-    <Key>
-    Public Property Id() As Integer
-        Get
-            Return carrierId
-        End Get
-        Private Set(ByVal value As Integer)
-            carrierId = value
-        End Set
-    End Property
-
-
-
-
-    Public Property Company As CharterCompany
-        Get
-            Return carrierCompany
-        End Get
-        Set(value As CharterCompany)
-            carrierCompany = value
-        End Set
-    End Property
-
     Public Sub New()
 
         Me.Id = Nothing
-
         Me.Commentable = New Commentable
-
+        Me.Created = DateTime.Now()
     End Sub
 
 

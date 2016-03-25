@@ -3,129 +3,47 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 Public Class CharterCompany
 
-    Private companyId As Integer
+    'Private companyId As Integer
 
-    Private companyName As String
-    Private companyAddressLineOne As String
-    Private companyAddressLineTwo As String
-    Private companyCity As String
-    Private companyState As State
-    Private companyPostalCode As String
-    Private companyPostalCodeSuffix As String
+    'Private companyName As String
+    'Private companyAddressLineOne As String
+    'Private companyAddressLineTwo As String
+    'Private companyCity As String
+    'Private companyState As State
+    'Private companyPostalCode As String
+    'Private companyPostalCodeSuffix As String
 
-    Private companyCountry As String
-    Private companyEmail As String
+    'Private companyCountry As String
+    'Private companyEmail As String
 
     <Key>
     Public Property Id() As Integer
-        Get
-            Return companyId
-        End Get
-        Private Set(ByVal value As Integer)
-            companyId = value
-        End Set
-    End Property
 
 
     Public Property Name() As String
-        Get
-            Return companyName
-        End Get
-        Set(value As String)
-            companyName = value
-        End Set
 
-    End Property
 
     Public Property AddressLineOne() As String
-        Get
-            Return companyAddressLineOne
-        End Get
-        Set(value As String)
-            companyAddressLineOne = value
-        End Set
 
-    End Property
 
     Public Property AddressLineTwo() As String
-        Get
-            Return companyAddressLineTwo
-        End Get
-        Set(value As String)
-            companyAddressLineTwo = value
-        End Set
-
-    End Property
 
     Public Property City() As String
-        Get
-            Return companyCity
-        End Get
-        Set(value As String)
-            companyCity = value
-        End Set
 
-    End Property
 
     Public Overridable Property State() As State
-        Get
-            Return companyState
-        End Get
-        Set(value As State)
-            companyState = value
-        End Set
 
-    End Property
 
     Public Property PostalCode() As String
-        Get
-            Return companyPostalCode
-        End Get
-        Set(value As String)
-            companyPostalCode = value
-        End Set
 
-    End Property
 
     Public Property PostalCodeSuffix() As String
-        Get
-            Return companyPostalCodeSuffix
-        End Get
-        Set(value As String)
-            companyPostalCodeSuffix = value
-        End Set
 
-    End Property
 
     Public Property Country() As String
-        Get
-            Return companyCountry
-        End Get
-        Set(value As String)
-            companyCountry = value
-        End Set
 
-    End Property
 
     Public Property Email() As String
-        Get
-            Return companyEmail
-        End Get
-        Set(value As String)
-            companyEmail = value
-        End Set
-
-    End Property
-
-    Public Property Contactable As Contactable
-    Public Property Contacts As List(Of CharterContact)
-        Get
-            Return Me.Contactable.Contacts
-        End Get
-        Set(value As List(Of CharterContact))
-            Me.Contactable.Contacts = value
-        End Set
-    End Property
 
     Public Property CompanyPrimaryPhone As String
     Public Property CompanyPrimaryPhoneExtension As String
@@ -136,6 +54,21 @@ Public Class CharterCompany
     Public Property CompanyFax As String
     Public Property CompanyFaxExtension As String
 
+    Public Property Created As Date?
+    Public Property LastUpdated As Date?
+
+
+    Public Property Contactable As Contactable
+
+    <NotMapped>
+    Public Property Contacts As List(Of CharterContact)
+        Get
+            Return Me.Contactable.Contacts
+        End Get
+        Set(value As List(Of CharterContact))
+            Me.Contactable.Contacts = value
+        End Set
+    End Property
 
 
     Public Sub New(name As String, addressLineOne As String, addressLineTwo As String,

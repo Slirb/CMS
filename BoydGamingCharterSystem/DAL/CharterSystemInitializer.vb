@@ -101,6 +101,8 @@ Public Class CharterSystemInitializer
         With carriers
             .Add(New CharterCarrier())
             .Last().Company = companies.Item(0)
+            .Last().HasInsurance = True
+            .Last().InsuranceNumber = "15879631"
             .Add(New CharterCarrier())
             .Last().Company = companies.Item(1)
             .Add(New CharterCarrier())

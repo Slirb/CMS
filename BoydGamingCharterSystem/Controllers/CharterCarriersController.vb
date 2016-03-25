@@ -16,7 +16,16 @@ Namespace Controllers
 
         ' GET: CharterCarriers
         Function Index() As ActionResult
-            Return View(db.carriers.ToList())
+            Dim carriers As List(Of CharterCarrier)
+            'This fetches all related data
+            'We may not want to do this as we don't need EVERY contact
+            'of each carrier - only a specific one
+            'This is something we could figure out a better solution if
+            'it turns out it's really slow
+            carriers = (From carrier In db.carriers.Include(Function(c) c.Commentable).Include(Function(c) c.Company).Include(Function(c) c.Company.Contactable)
+                        Select carrier).ToList()
+
+            Return View(carriers)
         End Function
 
         ' GET: CharterCarriers/Details/5

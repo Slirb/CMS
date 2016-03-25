@@ -6,17 +6,26 @@ Imports BoydGamingCharterSystem
 Public Class CharterOperator
 
 
-    Private operatorId As Integer
-
+    <Key>
+    Public Property Id As Integer
 
     Public Property Company As CharterCompany
 
+    Public Property VendorNumber As String
 
-    Public Property Commentable As Commentable
+    'In the current application, Type, Mode, Interest, and Stop Code
+    'are all stored as strings. I don't know how we should handle these
+    'as in the actual application, they need a dropdown menu 
+    ' - probably to be administered, so they need tables at a minimum
+    Public Property Type As String
+    Public Property Mode As String
+    Public Property Interest As String
+    Public Property StopCode As String
 
     <ForeignKey("OperatorId")>
     Public Property CharterAgreements As List(Of CharterAgreement)
 
+    Public Property Commentable As Commentable
 
     <NotMapped>
     Public Property Comments() As List(Of CharterComment)
@@ -30,15 +39,6 @@ Public Class CharterOperator
 
     End Property
 
-    <Key>
-    Public Property Id() As Integer
-        Get
-            Return operatorId
-        End Get
-        Private Set(ByVal value As Integer)
-            operatorId = value
-        End Set
-    End Property
 
 
     <NotMapped>
@@ -50,8 +50,6 @@ Public Class CharterOperator
             Company.Contactable.Contacts = value
         End Set
     End Property
-
-
 
 
     Public Sub New()
