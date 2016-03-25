@@ -19,6 +19,10 @@ Public Class CharterAgreement
     Public Property OperatorId() As Integer
     <ForeignKey("OperatorId")>
     Public Property CharterOperator() As CharterOperator
+
+    <ForeignKey("charterAgreementId")>
+    Public Property CharterTrips As ICollection(Of CharterTrips)
+
     <Key>
     Public Property Id() As Integer
         Get
@@ -28,8 +32,6 @@ Public Class CharterAgreement
             charterAgreementId = value
         End Set
     End Property
-
-
 
 
     Public Property CreateDateTime() As DateTime
@@ -49,3 +51,4 @@ Public Class CharterAgreement
     End Sub
 
 End Class
+

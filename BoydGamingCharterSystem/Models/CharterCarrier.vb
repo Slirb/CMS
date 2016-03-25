@@ -27,6 +27,7 @@ Public Class CharterCarrier
 
     Private carrierCommentable As Commentable
 
+
     'Private commentableId As Integer
 
     '<ForeignKey("commentableId")>
@@ -52,6 +53,7 @@ Public Class CharterCarrier
 
     <ForeignKey("CarrierId")>
     Public Property CharterAgreements As ICollection(Of CharterAgreement)
+
 
 
     <Key>

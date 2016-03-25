@@ -1,33 +1,35 @@
 ﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterCarrier)
+
 @Code
-ViewData("Title") = "Index"
-Layout = "~/Views/Shared/_Layout.vbhtml"
+    Layout = Nothing
 End Code
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(Function(model) model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@For Each item In Model
-    @<tr>
-        <td>
-            @Html.DisplayFor(Function(modelItem) item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.Id }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.Id })
-        </td>
-    </tr>
-Next
-
-</table>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+    
+    @For Each item In Model
+        @<tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", New With {.id = item.Id }) |
+                @Html.ActionLink("Details", "Details", New With {.id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", New With {.id = item.Id })
+            </td>
+        </tr>
+    Next
+    
+    </table>
+</body>
+</html>
