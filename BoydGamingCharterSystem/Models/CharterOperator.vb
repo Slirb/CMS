@@ -11,6 +11,7 @@ Public Class CharterOperator
 
     Public Property Company As CharterCompany
 
+    <Display(Name:="Vendor Number")>
     Public Property VendorNumber As String
 
     'In the current application, Type, Mode, Interest, and Stop Code
@@ -34,9 +35,7 @@ Public Class CharterOperator
         End Get
         Set(value As List(Of CharterComment))
             Commentable.Comments = value
-
         End Set
-
     End Property
 
 

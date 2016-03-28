@@ -30,8 +30,14 @@
             stateAbrv = value
         End Set
     End Property
+    Public Sub New()
+        Me.Name = Nothing
+        Me.Abrv = Nothing
+    End Sub
+
 
     Public Sub New(name As String, abrv As String)
+        Me.New()
         Me.Name = name
         Me.Abrv = abrv
     End Sub

@@ -161,6 +161,7 @@
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
+    <Compile Include="Controllers\CharterOperatorsController.vb" />
     <Compile Include="Controllers\CharterTieredCommissionsController.vb" />
     <Compile Include="Controllers\CharterTripsController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
@@ -178,6 +179,7 @@
     <Compile Include="Models\CharterProperties.vb" />
     <Compile Include="Models\CharterTieredCommissions.vb" />
     <Compile Include="Models\CharterTrips.vb" />
+    <Compile Include="Models\HtmlHelpers.vb" />
     <Compile Include="Models\State.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -223,6 +225,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Views\Shared\_CommentsDetails.vbhtml" />
     <Content Include="Views\CharterCarriers\Create.vbhtml" />
     <Content Include="Views\CharterCarriers\Delete.vbhtml" />
@@ -233,6 +236,9 @@
     <Content Include="Views\CharterTrips\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Index.vbhtml" />
+    <Content Include="Views\CharterOperators\Index.vbhtml" />
+    <Content Include="Views\CharterCarriers\ContactEntryEditor.vbhtml" />
+    <Content Include="Views\CharterCarriers\EditorTemplates\CharterContact.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -270,7 +276,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\CharterAdministration\" />
     <Folder Include="Views\CharterAgreements\" />
-    <Folder Include="Views\CharterOperators\" />
+    <Folder Include="Views\CharterContact\" />
     <Folder Include="Views\CharterReports\" />
   </ItemGroup>
   <ItemGroup>

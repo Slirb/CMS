@@ -157,6 +157,7 @@ Public Class CharterSystem
         'Code that moves entry from 
     End Sub
 
+    Public Property CharterContacts As System.Data.Entity.DbSet(Of CharterContact)
 
 End Class
 

@@ -50,11 +50,13 @@ End Code
     @For i As Int32 = 0 To Model.Count - 1
         'Using for loop instead of foreach in order to have a access to iteration counter
         Dim item = Model(i)
+        'Prevent an exception when a carrier has no contacts
         If Not (item.Contacts.Count > 0) Then
             item.Contacts.Add(New CharterContact())
         End If
 
         @<tr>
+        <!--There is probably a better way to access our data, but I don't know what it is-->
             <td>
                 @Html.DisplayFor(Function(modelItem) item.Company.Name)
             </td>

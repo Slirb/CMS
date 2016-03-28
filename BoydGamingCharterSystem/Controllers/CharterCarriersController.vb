@@ -14,6 +14,7 @@ Namespace Controllers
 
         Private db As New CharterSystem
 
+
         ' GET: CharterCarriers
         Function Index() As ActionResult
             Dim carriers As List(Of CharterCarrier)
@@ -44,7 +45,12 @@ Namespace Controllers
 
         ' GET: CharterCarriers/Create
         Function Create() As ActionResult
-            Return View()
+            Dim carrier As CharterCarrier = New CharterCarrier()
+            carrier.Company.CreateCharterContacts(2)
+
+            'I suspect there is a better way to do this
+            ViewBag.States = New SelectList(db.states, "Id", "Name")
+            Return View(carrier)
         End Function
 
         ' POST: CharterCarriers/Create

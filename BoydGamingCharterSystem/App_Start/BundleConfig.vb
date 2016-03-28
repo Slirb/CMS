@@ -14,6 +14,7 @@ Public Module BundleConfig
         ' ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
         bundles.Add(New ScriptBundle("~/bundles/modernizr").Include(
                     "~/Scripts/modernizr-*"))
+        bundles.Add(New ScriptBundle("~/bundles/site").Include("~/Scripts/site.js"))
 
         bundles.Add(New ScriptBundle("~/bundles/bootstrap").Include(
                   "~/Scripts/bootstrap.js",

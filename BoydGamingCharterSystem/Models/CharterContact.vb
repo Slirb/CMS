@@ -1,4 +1,8 @@
-﻿Public Class CharterContact
+﻿Imports System.ComponentModel.DataAnnotations
+Imports System.ComponentModel.DataAnnotations.Schema
+
+Imports BoydGamingCharterSystem
+Public Class CharterContact
     Public Property Id As Integer
     Public Property FirstName As String
     Public Property LastName As String
@@ -11,7 +15,30 @@
     Public Property FaxNumber As String
     Public Property FaxNumberExtension As String
     Public Property Email As String
-    Public Property CreatedDateTime As DateTime
+    Public Property CreatedDateTime As Date?
+    <NotMapped>
+    Public Property DeleteContact As Boolean
+
+    <NotMapped>
+    <Display(Name:="Contact Name")>
+    Public ReadOnly Property FullName As String
+        Get
+            Dim name As String = Me.FirstName & " " & Me.LastName
+            Return name
+        End Get
+    End Property
+
+    <NotMapped>
+    <Display(Name:="Contact Phone")>
+    Public ReadOnly Property Phone As String
+        Get
+            Dim contactPhone As String = Me.PrimaryPhone
+            If Not (String.IsNullOrEmpty(Me.PrimaryPhoneExtension)) Then
+                contactPhone &= "x" & Me.PrimaryPhoneExtension
+            End If
+            Return contactPhone
+        End Get
+    End Property
 
     Public Sub New()
         Me.CreatedDateTime = DateTime.Now()
