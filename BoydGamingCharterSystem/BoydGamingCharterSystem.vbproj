@@ -276,7 +276,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\CharterAdministration\" />
     <Folder Include="Views\CharterAgreements\" />
-    <Folder Include="Views\CharterContact\" />
     <Folder Include="Views\CharterReports\" />
   </ItemGroup>
   <ItemGroup>
