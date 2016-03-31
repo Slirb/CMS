@@ -135,16 +135,15 @@ Public Class CharterTrips
 
 
     ''Need to finish this
-    Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement,
-                   carrier As CharterCarrier, ops As CharterOperator, arrivalDate As Date, departDate As Date)
+    Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As Date, departDate As Date)
         Me.ID = id
-        Me.CarrierId = carrier.Id
+        Me.CarrierId = charterAgreement.CarrierId
         Me.TripDestination = dest
         Me.TripCity = city
         Me.TripStatus = status
         Me.Confirmation = confNumber
         Me.CharterAgreements = charterAgreement
-        Me.OperatorId = ops.Id
+        Me.OperatorId = charterAgreement.OperatorId
         Me.Arrival = arrivalDate
         Me.Departure = departDate
         Me.CarrierName = charterAgreement.CharterCarrier.Company.Name

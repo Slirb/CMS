@@ -4,30 +4,32 @@
     ViewData("Title") = "Index"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 
+
 End Code
 
+ 
 <!DOCTYPE html>
+
 <html>
+
 
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
 <body>
-  
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    
+    <!--<p>@Html.ActionLink("Create New", "Create")</p>-->
 
 @Using Html.BeginForm("Index", "CharterTrips", FormMethod.Post)
 
     @<p>
         @Html.Label("startLabel", "Start: ")
-        @Html.TextBox("StartDate")
+        @Html.TextBox("StartDate", Date.Now.ToString("MM/dd/yyyy"), New With {.class = "date"})
     </p>
     @<p>
         @Html.Label("endLabel", "End: ")
-        @Html.TextBox("EndString")
+        @Html.TextBox("EndDate", "", New With {.class = "date"})
     </p>
 
     @<p>
@@ -58,17 +60,23 @@ End Code
                  @Html.CheckBox("Cancelled", True)
              </dd>
              <dd>
-                 @Html.Label("carrierLabel", "Carrier: ")
-                 @Html.DropDownList("Carriers", "All")                
+                 @Html.Label("carrierLabel", "Carrier: ")                  
+                 @Html.DropDownList("SelectedCarrier", New SelectList(DirectCast(ViewData("Carriers"), IEnumerable), "Value", "Text", ViewData("SelectedCarrier")), "All")
+                 <!--@Html.TextBox("carz")-->               
              </dd>
              <dd>
                  @Html.Label("operatorLabel", "Operator: ")
-                 @Html.DropDownList("Operators", "All")  
+                 @Html.DropDownList("SelectedOperator", New SelectList(DirectCast(ViewData("Operators"), IEnumerable), "Value", "Text", ViewData("SelectedOperator")), "All")
+                 <!--@Html.TextBox("opz")-->
+
                             
-             </dd>
-            
-         </dl>
-    
+             </dd>             
+                 <!--@Html.DropDownList("Dept", DirectCast(ViewData("Carriers"), IEnumerable(Of SelectListItem)))-->
+                 <!--@Html.DropDownList("Tes", New SelectList(DirectCast(ViewData("Carriers"), IEnumerable), "Value", "Text", ViewData("Tes")), "All")-->
+
+                
+</dl>
+
 
 
     <input type = "submit" value="Search"  /></p>
@@ -77,11 +85,11 @@ End Using
 
    <Table Class="table">
         <tr>
-                <th>
-                Carrier
+    <th>
+    Carrier
             </th>
             <th>
-                Operator
+    Operator
             </th>
             <th>
                 Destination
@@ -138,12 +146,20 @@ End Using
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", New With {.id = item.ID}) |
-                @Html.ActionLink("Details", "Details", New With {.id = item.ID}) |
-                @Html.ActionLink("Delete", "Delete", New With {.id = item.ID})
+                @Html.ActionLink("Details", "Details", New With {.id = item.ID})
             </td>
+
+
         </tr>
     Next
 
     </table>
 </body>
+
 </html>
+<!--Hooks up the datepicker to date fields-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.date').datepicker({ dateFormat: "mm/dd/yy" });
+    });
+</script>

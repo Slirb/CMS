@@ -15,18 +15,17 @@ Namespace Controllers
 
         Private db As New CharterSystem
 
-
-
-
         ' GET: CharterTrips
-        Function Index(Optional ByVal searchString As String = Nothing, Optional ByVal potential As Boolean = True, Optional ByVal active As Boolean = True, Optional ByVal applied As Boolean = True,
-                       Optional ByVal completed As Boolean = True, Optional ByVal cancelled As Boolean = True,
-                       Optional ByVal carriers As String = "", Optional ByVal operators As String = "") As ActionResult
+        Function Index(Optional ByVal searchString As String = Nothing, Optional ByVal potential As Boolean = True, Optional ByVal active As Boolean = True,
+                       Optional ByVal applied As Boolean = True, Optional ByVal completed As Boolean = True, Optional ByVal cancelled As Boolean = True,
+                       Optional ByVal StartDate As String = Nothing, Optional ByVal EndDate As String = Nothing,
+                       Optional ByVal SelectedCarrier As String = Nothing, Optional ByVal SelectedOperator As String = Nothing) As ActionResult
 
 
 
             Dim status As New List(Of String)
             Dim trips
+
             'Check potential checkbox
             If (potential = True) Then
                 status.Add("Potential")
@@ -85,33 +84,439 @@ Namespace Controllers
             'End If
 
 
+            'Check for a selected carrier
+            If SelectedCarrier IsNot Nothing And SelectedCarrier IsNot "" Then
 
-            'Check for confirmation Number
-            If searchString IsNot Nothing Then
-                'Select trips matching search criteria
-                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
-                        Join s In status On t.TripStatus Equals s
-                        Select t Order By t.Arrival
+                'Check for a selected Operator
+                If SelectedOperator IsNot Nothing And SelectedOperator IsNot "" Then
+
+                    'Check Start Date field
+                    If StartDate IsNot Nothing And StartDate IsNot "" Then
+
+                        'Check End Date field
+                        If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And
+                                                     t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And
+                                                     t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
+                            End If
+
+                        Else
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And
+                                                     t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And
+                                                     t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
+                            End If
+
+                        End If
+
+                    Else
+
+                        'Check End Date field
+                        If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival < EndDate And
+                                                     t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival < EndDate And
+                                                     t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
+                            End If
+
+                        Else
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
+                            End If
+
+                        End If
+
+                    End If
+
+                Else
+                    'Check Start Date field
+                    If StartDate IsNot Nothing And StartDate IsNot "" Then
+
+                        'Check End Date field
+                        If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And
+                                                     t.CarrierId = SelectedCarrier Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And
+                                                     t.CarrierId = SelectedCarrier Order By t.Arrival
+                            End If
+
+                        Else
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And
+                                                     t.CarrierId = SelectedCarrier Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And
+                                                     t.CarrierId = SelectedCarrier Order By t.Arrival
+                            End If
+
+                        End If
+
+                    Else
+
+                        'Check End Date field
+                        If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival < EndDate And
+                                                     t.CarrierId = SelectedCarrier Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival < EndDate And
+                                                     t.CarrierId = SelectedCarrier Order By t.Arrival
+                            End If
+
+                        Else
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.CarrierId = SelectedCarrier Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.CarrierId = SelectedCarrier Order By t.Arrival
+                            End If
+
+                        End If
+
+                    End If
+
+                End If
+
             Else
-                'Select trips matching search criteria
-                trips = From t In db.trips.ToList()
-                        Join s In status On t.TripStatus Equals s
-                        Select t Order By t.Arrival
+
+                'Check for a selected Operator
+                If SelectedOperator IsNot Nothing And SelectedOperator IsNot "" Then
+
+                    'Check Start Date field
+                    If StartDate IsNot Nothing And StartDate IsNot "" Then
+
+                        'Check End Date field
+                        If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And t.OperatorId = SelectedOperator Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And t.OperatorId = SelectedOperator Order By t.Arrival
+                            End If
+
+                        Else
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.OperatorId = SelectedOperator Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.OperatorId = SelectedOperator Order By t.Arrival
+                            End If
+
+                        End If
+
+                    Else
+
+                        'Check End Date field
+                        If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival < EndDate And t.OperatorId = SelectedOperator Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival < EndDate And t.OperatorId = SelectedOperator Order By t.Arrival
+                            End If
+
+                        Else
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.OperatorId = SelectedOperator Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.OperatorId = SelectedOperator Order By t.Arrival
+                            End If
+
+                        End If
+
+                    End If
+
+                Else
+
+                    'Check Start Date field
+                    If StartDate IsNot Nothing And StartDate IsNot "" Then
+
+                        'Check End Date field
+                        If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.Arrival < EndDate Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate And t.Arrival < EndDate Order By t.Arrival
+                            End If
+
+                        Else
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival >= StartDate Order By t.Arrival
+                            End If
+
+                        End If
+
+                    Else
+
+                        'Check End Date field
+                        If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival < EndDate Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Where t.Arrival < EndDate Order By t.Arrival
+                            End If
+
+                        Else
+
+                            'Check for confirmation number
+                            If searchString IsNot Nothing Then
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Order By t.Arrival
+                            Else
+                                'Select trips matching search criteria
+                                trips = From t In db.trips.ToList()
+                                        Join s In status On t.TripStatus Equals s
+                                        Select t Order By t.Arrival
+                            End If
+
+                        End If
+
+                    End If
+
+                End If
+
             End If
+
+
+
+            ''Check Start Date field
+            'If StartDate IsNot Nothing And StartDate IsNot "" Then
+
+            '    'Check End Date field
+            '    If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+            '        'Check for confirmation number
+            '        If searchString IsNot Nothing Then
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Where t.Arrival >= StartDate And t.Arrival < EndDate Order By t.Arrival
+            '        Else
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.ToList()
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Where t.Arrival >= StartDate And t.Arrival < EndDate Order By t.Arrival
+            '        End If
+
+            '    Else
+
+            '        'Check for confirmation number
+            '        If searchString IsNot Nothing Then
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Where t.Arrival >= StartDate Order By t.Arrival
+            '        Else
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.ToList()
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Where t.Arrival >= StartDate Order By t.Arrival
+            '        End If
+
+            '    End If
+
+            'Else
+
+            '    'Check End Date field
+            '    If EndDate IsNot Nothing And EndDate IsNot "" Then
+
+            '        'Check for confirmation number
+            '        If searchString IsNot Nothing Then
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Where t.Arrival < EndDate Order By t.Arrival
+            '        Else
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.ToList()
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Where t.Arrival < EndDate Order By t.Arrival
+            '        End If
+
+            '    Else
+
+            '        'Check for confirmation number
+            '        If searchString IsNot Nothing Then
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Order By t.Arrival
+            '        Else
+            '            'Select trips matching search criteria
+            '            trips = From t In db.trips.ToList()
+            '                    Join s In status On t.TripStatus Equals s
+            '                    Select t Order By t.Arrival
+            '        End If
+
+            '    End If
+
+            'End If
+
+
+
+
+            ''Check for confirmation Number
+            'If searchString IsNot Nothing Then
+            '    'Select trips matching search criteria
+            '    trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
+            '            Join s In status On t.TripStatus Equals s
+            '            Select t Order By t.Arrival
+            'Else
+            '    'Select trips matching search criteria
+            '    trips = From t In db.trips.ToList()
+            '            Join s In status On t.TripStatus Equals s
+            '            Select t Order By t.Arrival
+            'End If
 
 
             'Populate Dropdown Boxes
             Dim car = (From x In db.carriers
                        Order By x.Company.Name
                        Select New SelectListItem With
-             {.Value = x.Id, .Text = x.Company.Name}).ToList()
-            ViewBag.Carriers = car
+             {.Value = x.Id.ToString(), .Text = x.Company.Name}).ToList()
+            ViewData("Carriers") = car
 
             Dim ops = (From x In db.operators
                        Order By x.Company.Name
                        Select New SelectListItem With
-             {.Value = x.Id, .Text = x.Company.Name}).ToList()
-            ViewBag.Operators = ops
+             {.Value = x.Id.ToString(), .Text = x.Company.Name}).ToList()
+            ViewData("Operators") = ops
+
+            'TestBoxes
+            'ViewData("Carz") = SelectedCarrier.ToString()
+            'ViewData("Opz") = SelectedOperator.ToString()
+
 
             Return View(trips)
         End Function
