@@ -13,12 +13,16 @@ Public Class CharterCarrier
     Public Property Company As CharterCompany
 
     Public Property Commentable As Commentable
-
+    <Display(Name:="License")>
     Public Property HasLicense As Boolean
+    <Display(Name:="License Number")>
     Public Property LicenseNumber As String
-
+    <Display(Name:="Insurance")>
     Public Property HasInsurance As Boolean
+    <Display(Name:="Insurance Number")>
     Public Property InsuranceNumber As String
+    <Display(Name:="Insurance Expiration Date")>
+    <UIHint("DateTime")>
     Public Property InsuranceExpiration As Date?
     Public Property Created As Date?
 
@@ -45,6 +49,12 @@ Public Class CharterCarrier
             Commentable.Comments = value
         End Set
     End Property
+
+    Friend Sub CreateCharterComments(Optional count As Integer = 1)
+        For i As Integer = 0 To count - 1
+            Me.Comments.Add(New CharterComment)
+        Next
+    End Sub
 
     Public Sub New()
 

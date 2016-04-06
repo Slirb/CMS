@@ -1,5 +1,20 @@
-﻿function removeNestedForm(element, container, deleteElement) {
-    $container = $(element).parents(container);
-    $container.find(deleteElement).val('True');
-    $container.hide();
-}
+﻿$(document).ready(function () {
+
+    $(".addItem").click(function () {
+        var container = $(this).data("append");
+        $.ajax({
+            url: this.href,
+            cache: false,
+            method: 'POST',
+            success: function (html) {
+                $(container).append(html);
+            }
+        });
+        return false;
+    });
+    $(document).on("click", ".deleteRow", function () {
+        $(this).parent().remove();
+        return false;
+    })
+});
+

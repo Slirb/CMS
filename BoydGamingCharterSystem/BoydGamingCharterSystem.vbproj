@@ -48,6 +48,10 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BeginCollectionItem, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -161,6 +165,9 @@
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
+    <Compile Include="Controllers\CharterCommentsController.vb" />
+    <Compile Include="Controllers\CharterCompanyController.vb" />
+    <Compile Include="Controllers\CharterContactsController.vb" />
     <Compile Include="Controllers\CharterOperatorsController.vb" />
     <Compile Include="Controllers\CharterTieredCommissionsController.vb" />
     <Compile Include="Controllers\CharterTripsController.vb" />
@@ -225,6 +232,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery.ext.datepicker.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Views\Shared\_CommentsDetails.vbhtml" />
     <Content Include="Views\CharterCarriers\Create.vbhtml" />
@@ -237,8 +245,12 @@
     <Content Include="Views\CharterTrips\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Index.vbhtml" />
     <Content Include="Views\CharterOperators\Index.vbhtml" />
-    <Content Include="Views\CharterCarriers\ContactEntryEditor.vbhtml" />
-    <Content Include="Views\CharterCarriers\EditorTemplates\CharterContact.vbhtml" />
+    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\Shared\_ContactEntry.vbhtml" />
+    <Content Include="Views\Shared\EditorTemplates\CharterCompanyCreate.vbhtml" />
+    <Content Include="Views\Shared\CharterContacts\CharterContactRow.vbhtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.vbhtml" />
+    <Content Include="Views\Shared\CharterComments\CharterCommentRow.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -276,7 +288,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\CharterAdministration\" />
     <Folder Include="Views\CharterAgreements\" />
+    <Folder Include="Views\CharterCarriers\EditorTemplates\" />
+    <Folder Include="Views\CharterCompany\" />
+    <Folder Include="Views\CharterContacts\" />
+    <Folder Include="Views\CharterContact\" />
     <Folder Include="Views\CharterReports\" />
+    <Folder Include="Views\Shared\CharterCompany\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

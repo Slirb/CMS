@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 
+<Serializable>
 Public Class CharterCompany
 
     'Private companyId As Integer
@@ -91,6 +92,8 @@ Public Class CharterCompany
             Me.Contacts.Add(New CharterContact)
         Next
     End Sub
+
+
 
     Public Sub New(name As String, addressLineOne As String, addressLineTwo As String,
                    city As String, state As State, postalCode As String, postalCodeSuffix As String,

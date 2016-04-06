@@ -46,8 +46,8 @@ Namespace Controllers
         ' GET: CharterCarriers/Create
         Function Create() As ActionResult
             Dim carrier As CharterCarrier = New CharterCarrier()
-            carrier.Company.CreateCharterContacts(2)
-
+            carrier.Company.CreateCharterContacts(1)
+            carrier.CreateCharterComments(1)
             'I suspect there is a better way to do this
             ViewBag.States = New SelectList(db.states, "Id", "Name")
             Return View(carrier)
@@ -58,13 +58,14 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="Id,Name")> ByVal charterCarrier As CharterCarrier) As ActionResult
+        Function Create(CharterCarrier As CharterCarrier)
+
             If ModelState.IsValid Then
-                db.carriers.Add(charterCarrier)
+                db.carriers.Add(CharterCarrier)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(charterCarrier)
+            Return View(CharterCarrier)
         End Function
 
         ' GET: CharterCarriers/Edit/5
@@ -72,7 +73,10 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterCarrier As CharterCarrier = db.carriers.Find(id)
+
+
+            Dim charterCarrier As CharterCarrier = (From carrier In db.carriers.Include(Function(c) c.Commentable).Include(Function(c) c.Company).Include(Function(c) c.Company.Contactable)
+                                                    Select carrier Where carrier.Id = id).FirstOrDefault()
             If IsNothing(charterCarrier) Then
                 Return HttpNotFound()
             End If
@@ -115,6 +119,8 @@ Namespace Controllers
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function
+
+
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then
