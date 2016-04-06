@@ -1,10 +1,16 @@
 ﻿@ModelType BoydGamingCharterSystem.CharterTrips
 
 @Code
-    Layout = Nothing
+    Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
 <!DOCTYPE html>
+<!--Hookup for the tabs-->
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
 
 <html>
 <head>
@@ -12,115 +18,178 @@ End Code
     <title>Edit</title>
 </head>
 <body>
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Using (Html.BeginForm())
         @Html.AntiForgeryToken()
-        
+
+        'Check for a confirmation number
+        Dim conf As String = "True"
+        If Model.Confirmation Is Nothing Then
+            conf = "False"
+        End If
+
+
+
+
         @<div class="form-horizontal">
             <h4>CharterTrips</h4>
             <hr />
-            @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
-            @Html.HiddenFor(Function(model) model.ID)
-    
+            @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
+            @Html.HiddenFor(Function(model) model.id)
+            @Html.HiddenFor(Function(model) model.charterAgreementId)
+            @Html.HiddenFor(Function(model) model.CarrierId)
+            @Html.HiddenFor(Function(model) model.OperatorId)
+            @Html.HiddenFor(Function(model) model.CarrierName)
+            @Html.HiddenFor(Function(model) model.OperatorName)
+            @Html.HiddenFor(Function(model) model.TripDestination)
+            @Html.HiddenFor(Function(model) model.TripCity)
+            @Html.HiddenFor(Function(model) model.TripStatus)
+            @Html.HiddenFor(Function(model) model.Confirmation)
+            @Html.HiddenFor(Function(model) model.CharterAgreements)
+
+             <div>
+                 <!--Need to add agreement name and pull from table-->
+                 @Html.DisplayFor(Function(model) model.charterAgreementId)
+             </div>
+
+             <div class="form-group">
+                 @Html.Label("Destination", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div class="col-md-10">
+                     @Html.DisplayFor(Function(model) model.TripDestination)
+                 </div>
+             </div>
+
+             <div class="form-group">
+                 @Html.Label("Carrier Name", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div class="col-md-10">
+                     @Html.DisplayFor(Function(model) model.CarrierName)
+                 </div>
+             </div>
+            
+             <div class="form-group">
+                 @Html.Label("Operator Name", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div class="col-md-10">
+                     @Html.DisplayFor(Function(model) model.OperatorName)
+                 </div>
+             </div>
+             
+             <div class="form-group">
+                 @Html.Label("Departure City", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div class="col-md-10">
+                     @Html.DisplayFor(Function(model) model.TripCity)
+                 </div>
+             </div>
+
+             <div class="form-group">
+                 @Html.LabelFor(Function(model) model.Arrival, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div class="col-md-10">
+                     @Html.EditorFor(Function(model) model.Arrival, New With {.htmlAttributes = New With {.class = "form-control"}})
+                     @Html.ValidationMessageFor(Function(model) model.Arrival, "", New With {.class = "text-danger"})
+                 </div>
+             </div>
+
+             <div class="form-group">
+                 @Html.LabelFor(Function(model) model.Departure, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div class="col-md-10">
+                     @Html.EditorFor(Function(model) model.Departure, New With {.htmlAttributes = New With {.class = "form-control"}})
+                     @Html.ValidationMessageFor(Function(model) model.Departure, "", New With {.class = "text-danger"})
+                 </div>
+             </div>
+
             <div class="form-group">
-                @Html.LabelFor(Function(model) model.charterAgreementId, "charterAgreementId", htmlAttributes:= New With { .class = "control-label col-md-2" })
+                @Html.Label("Status", htmlAttributes:=New With {.class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.charterAgreementId, New With {.htmlAttributes = New With {.class = "form-control"}})
-                    @Html.ValidationMessageFor(Function(model) model.charterAgreementId, "", New With {.class = "text-danger"})
+                    @Html.DisplayFor(Function(model) model.TripStatus)
                 </div>
             </div>
+
+
+             <div class="form-group">
+                 @Html.LabelFor(Function(model) model.TripCity, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div class="col-md-10">
+                     @Html.EditorFor(Function(model) model.TripCity, New With {.htmlAttributes = New With {.class = "form-control"}})
+                     @Html.ValidationMessageFor(Function(model) model.TripCity, "", New With {.class = "text-danger"})
+                 </div>
+             </div>
     
             <div class="form-group">
-                @Html.LabelFor(Function(model) model.CarrierId, htmlAttributes:= New With { .class = "control-label col-md-2" })
+                @Html.LabelFor(Function(model) model.Confirmation, htmlAttributes:=New With {.class = "control-label col-md-2"})
                 <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.CarrierId, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.CarrierId, "", New With { .class = "text-danger" })
+
+                    
+                        @Html.DisplayFor(Function(model) model.Confirmation)|
+                    
+                    <!--Displays a link if confirmation number exists-->
+                    @if conf Is "True" Then
+                        @Html.ActionLink("View Letter", "ConfirmationLetter", New With {.id = Model.id})
+                    End If
+                    
                 </div>
             </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.CarrierName, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.CarrierName, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.CarrierName, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.OperatorId, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.OperatorId, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.OperatorId, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.OperatorName, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.OperatorName, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.OperatorName, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.TripDestination, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.TripDestination, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.TripDestination, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.TripCarrierName, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.TripCarrierName, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.TripCarrierName, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.TripOperatorName, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.TripOperatorName, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.TripOperatorName, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.TripCity, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.TripCity, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.TripCity, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.TripStatus, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.TripStatus, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.TripStatus, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.Confirmation, htmlAttributes:= New With { .class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(Function(model) model.Confirmation, New With { .htmlAttributes = New With { .class = "form-control" } })
-                    @Html.ValidationMessageFor(Function(model) model.Confirmation, "", New With { .class = "text-danger" })
-                </div>
-            </div>
-    
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />
+                    @Html.ActionLink("Close", "Index")
+                    @Html.ActionLink("Cancel Trip", "CancelTrip", New With {.id = Model.id})                   
                 </div>
             </div>
         </div>
     End Using
     
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+    
+    <!--This is the tabbed section to be completed-->
+    <div id="tabs">
+
+    <ul>
+        <li><a href="#tabs-1">Manifest Details</a></li>
+        <li><a href="#tabs-2">Notes</a></li>
+        <li><a href="#tabs-3">Comission</a></li>
+    </ul>
+
+    <div id="tabs-1">
+        This will contain the passenger manifest
+        <Table Class="table">
+            <tr>
+                <th>
+                    Card No
+                </th>
+                <th>
+                    Full Name
+                </th>
+                <th>
+                    DOB
+                </th>
+                <th>
+                    Addr1
+                </th>
+                <th>
+                    Addr2
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    State
+                </th>
+                <th>
+                    Zip
+                </th>
+                <th></th>
+            </tr>
+        </Table>
+        
     </div>
+
+    <div id="tabs-2">
+        This will contain the notes for the trip
+    </div>
+
+    <div id="tabs-3">
+        Here is where the reports will be generated
+    </div>
+
+    </div>
+    
 </body>
 </html>

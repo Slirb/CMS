@@ -8,7 +8,6 @@ Imports System.Web
 Imports System.Web.Mvc
 Imports BoydGamingCharterSystem
 
-
 Namespace Controllers
     Public Class CharterTieredCommissionsController
         Inherits System.Web.Mvc.Controller
@@ -25,11 +24,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterCommission As CharterTieredCommissions = db.commissions.Find(id)
-            If IsNothing(charterCommission) Then
+            Dim charterTieredCommissions As CharterTieredCommissions = db.commissions.Find(id)
+            If IsNothing(charterTieredCommissions) Then
                 Return HttpNotFound()
             End If
-            Return View(charterCommission)
+            Return View(charterTieredCommissions)
         End Function
 
         ' GET: CharterTieredCommissions/Create
@@ -42,25 +41,25 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="Id,Name")> ByVal charterCommission As CharterTieredCommissions) As ActionResult
+        Function Create(<Bind(Include:="ID,Name,Description,Minimum,Maximum,Value")> ByVal charterTieredCommissions As CharterTieredCommissions) As ActionResult
             If ModelState.IsValid Then
-                db.commissions.Add(charterCommission)
+                db.commissions.Add(charterTieredCommissions)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(charterCommission)
+            Return View(charterTieredCommissions)
         End Function
 
-        ' GET: CharterTieredommissions/Edit/5
+        ' GET: CharterTieredCommissions/Edit/5
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterCommission As CharterTieredCommissions = db.commissions.Find(id)
-            If IsNothing(charterCommission) Then
+            Dim charterTieredCommissions As CharterTieredCommissions = db.commissions.Find(id)
+            If IsNothing(charterTieredCommissions) Then
                 Return HttpNotFound()
             End If
-            Return View(charterCommission)
+            Return View(charterTieredCommissions)
         End Function
 
         ' POST: CharterTieredCommissions/Edit/5
@@ -68,13 +67,13 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="Id,Name")> ByVal charterCommission As CharterTieredCommissions) As ActionResult
+        Function Edit(<Bind(Include:="ID,Name,Description,Minimum,Maximum,Value")> ByVal charterTieredCommissions As CharterTieredCommissions) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(charterCommission).State = EntityState.Modified
+                db.Entry(charterTieredCommissions).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(charterCommission)
+            Return View(charterTieredCommissions)
         End Function
 
         ' GET: CharterTieredCommissions/Delete/5
@@ -82,11 +81,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterCommission As CharterTieredCommissions = db.commissions.Find(id)
-            If IsNothing(charterCommission) Then
+            Dim charterTieredCommissions As CharterTieredCommissions = db.commissions.Find(id)
+            If IsNothing(charterTieredCommissions) Then
                 Return HttpNotFound()
             End If
-            Return View(charterCommission)
+            Return View(charterTieredCommissions)
         End Function
 
         ' POST: CharterTieredCommissions/Delete/5
@@ -94,8 +93,8 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim charterCommission As CharterTieredCommissions = db.commissions.Find(id)
-            db.commissions.Remove(charterCommission)
+            Dim charterTieredCommissions As CharterTieredCommissions = db.commissions.Find(id)
+            db.commissions.Remove(charterTieredCommissions)
             db.SaveChanges()
             Return RedirectToAction("Index")
         End Function

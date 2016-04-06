@@ -22,6 +22,18 @@ Public Class CharterSystem
     Private CharterTrips As DbSet(Of CharterTrips)
     Private CharterTieredCommissions As DbSet(Of CharterTieredCommissions)
     Private CharterProperties As DbSet(Of CharterProperties)
+    Private CharterManifests As DbSet(Of CharterManifest)
+
+    ''Added Manifest
+    Public Property manifests As DbSet(Of CharterManifest)
+        Get
+            Return CharterManifests
+        End Get
+        Set(value As DbSet(Of CharterManifest))
+            CharterManifests = value
+        End Set
+
+    End Property
 
 
     ''Added Properties

@@ -34,110 +34,125 @@ End Code
 
     @<p>
     @Html.Label("searchLabel", "Confirmation Number: ")
-    @Html.TextBox("SearchString")
+    @Html.TextBox("searchString")
     </p>
 
     @<p>
          <dl>
+             
              <dd>
-                 @Html.Label("potentialLabel", "Potential: ")
-                 @Html.CheckBox("Potential", True)
-             </dd>
-             <dd>
-                 @Html.Label("activeLabel", "Active: ")
+                 @Html.Label("activeLabel", "Active: ", New With {.style = "background-color:darkseagreen"})
                  @Html.CheckBox("Active", True)
              </dd>
              <dd>
-                 @Html.Label("appliedLabel", "Applied: ")
+                 @Html.Label("appliedLabel", "Applied: ", New With {.style = "background-color:yellow"})
                  @Html.CheckBox("Applied", True)
              </dd>
              <dd>
-                 @Html.Label("completedLabel", "Completed: ")
-                 @Html.CheckBox("Completed", True)
+                 @Html.Label("cancelledLabel", "Canceled: ", New With {.style = "background-color:grey"})
+                 @Html.CheckBox("Cancelled", True)
+            </dd>
+             <dd>
+                @Html.Label("completedLabel", "Completed: ", New With {.style = "background-color:lightblue"})
+                @Html.CheckBox("Completed", True)
              </dd>
              <dd>
-                 @Html.Label("cancelledLabel", "Canceled: ")
-                 @Html.CheckBox("Cancelled", True)
-             </dd>
+                @Html.Label("potentialLabel", "Potential: ", New With {.style = "background-color:mediumpurple"})
+                @Html.CheckBox("Potential", True)
+            </dd>
+             
              <dd>
                  @Html.Label("carrierLabel", "Carrier: ")                  
-                 @Html.DropDownList("SelectedCarrier", New SelectList(DirectCast(ViewData("Carriers"), IEnumerable), "Value", "Text", ViewData("SelectedCarrier")), "All")
-                 <!--@Html.TextBox("carz")-->               
+                 @Html.DropDownList("SelectedCarrier", New SelectList(DirectCast(ViewData("Carriers"), IEnumerable), "Value", "Text", ViewData("SelectedCarrier")), "All")                              
              </dd>
              <dd>
                  @Html.Label("operatorLabel", "Operator: ")
-                 @Html.DropDownList("SelectedOperator", New SelectList(DirectCast(ViewData("Operators"), IEnumerable), "Value", "Text", ViewData("SelectedOperator")), "All")
-                 <!--@Html.TextBox("opz")-->
-
-                            
-             </dd>             
-                 <!--@Html.DropDownList("Dept", DirectCast(ViewData("Carriers"), IEnumerable(Of SelectListItem)))-->
-                 <!--@Html.DropDownList("Tes", New SelectList(DirectCast(ViewData("Carriers"), IEnumerable), "Value", "Text", ViewData("Tes")), "All")-->
-
-                
+                 @Html.DropDownList("SelectedOperator", New SelectList(DirectCast(ViewData("Operators"), IEnumerable), "Value", "Text", ViewData("SelectedOperator")), "All")                                        
+             </dd>           
 </dl>
-
-
-
     <input type = "submit" value="Search"  /></p>
 
 End Using
 
    <Table Class="table">
         <tr>
-    <th>
-    Carrier
-            </th>
-            <th>
-    Operator
-            </th>
-            <th>
-                Destination
-            </th>
-            <th>
-                Departure City
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-               Confirmation Number
-            </th>
             <th>
                 Agreement ID
             </th>
             <th>
-                Arrival Date
+                Carrier
             </th>
             <th>
-                Departure Date
+                Operator
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Manifest
+            </th>
+            <th>
+                Confirmation Number
+            </th>
+            <th>
+                Arrival
+            </th>
+            <th>
+                Departure
             </th>
             <th></th>
         </tr>
 
     @For Each item In Model
-        @<tr>
+
+        Dim stat = item.TripStatus
+        Dim name
+
+        'Select proper background color for each row
+        Select Case stat
+            Case "Applied"
+                name = "yellow"
+
+            Case "Active"
+                name = "darkseagreen"
+
+            Case "Cancelled"
+                name = "grey"
+
+            Case "Completed"
+                name = "lightblue"
+
+            Case "Potential"
+                name = "mediumpurple"
+
+            Case Else
+                name = ""
+        End Select
+
+
+        @<tr style="background-color:@name">
+        @Html.HiddenFor(Function(model) item.id)
             <td>
-                @Html.DisplayFor(Function(modelItem) item.TripCarrierName)
+                <!--Need to add agreement name And pull from table-->
+                @Html.DisplayFor(Function(modelItem) item.charterAgreementId)
             </td>
             <td>
-                @Html.DisplayFor(Function(modelItem) item.TripOperatorName)
+                @Html.DisplayFor(Function(modelItem) item.CarrierName)
+            </td>
+            <td>
+                @Html.DisplayFor(Function(modelItem) item.OperatorName)
             </td>
             <td>
                 @Html.DisplayFor(Function(modelItem) item.TripDestination)
             </td>
             <td>
-                @Html.DisplayFor(Function(modelItem) item.TripCity)
-            </td>
-            <td>
+                <!--Need to add manifest # And pull from table-->
                 @Html.DisplayFor(Function(modelItem) item.TripStatus)
             </td>
             <td>
                 @Html.DisplayFor(Function(modelItem) item.Confirmation)
             </td>
-            <td>
-                @Html.DisplayFor(Function(modelItem) item.charterAgreementId)
-            </td>
+            
             <td>
                 @Html.DisplayFor(Function(modelItem) item.Arrival)
             </td>
@@ -145,11 +160,13 @@ End Using
                 @Html.DisplayFor(Function(modelItem) item.Departure)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", New With {.id = item.ID}) |
-                @Html.ActionLink("Details", "Details", New With {.id = item.ID})
+                <!--Change button to this style-->
+                <a href"">
+
+                </a>                
+                @Html.ActionLink("Edit", "Edit", New With {.id = item.id}) |
+                @Html.ActionLink("Details", "Details", New With {.id = item.id})
             </td>
-
-
         </tr>
     Next
 

@@ -172,6 +172,7 @@
     <Compile Include="Models\CharterCarrier.vb" />
     <Compile Include="Models\CharterComment.vb" />
     <Compile Include="Models\CharterCompany.vb" />
+    <Compile Include="Models\CharterManifest.vb" />
     <Compile Include="Models\CharterOperator.vb" />
     <Compile Include="DAL\CharterSystem.vb" />
     <Compile Include="Models\CharterProperties.vb" />
@@ -252,7 +253,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\DatePickerHookup.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -264,10 +264,15 @@
     <Content Include="Views\CharterCarriers\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\Index.vbhtml" />
-    <Content Include="Views\CharterTrips\Create.vbhtml" />
     <Content Include="Views\CharterTrips\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Index.vbhtml" />
     <Content Include="Views\CharterTrips\Edit.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Create.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Delete.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Details.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Index.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Edit.vbhtml" />
+    <Content Include="Views\CharterTrips\ConfirmationLetter.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

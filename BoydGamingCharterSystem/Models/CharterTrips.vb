@@ -4,7 +4,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 Public Class CharterTrips
 
-    Private tripsTripID As Integer
+    Private tripId As Integer
     Private tripsDestination As String
     Private tripsCity As String
     Private tripsStatus As String
@@ -22,16 +22,21 @@ Public Class CharterTrips
 
 
 
-    Private tripsArrivalDateTime As Date
-    Private tripsDepartureDateTime As Date
+    Public Property Arrival As DateTime?
+    Public Property Departure As DateTime?
+
+
+    <ForeignKey("tripId")>
+    Public Property CharterManifests() As ICollection(Of CharterManifest)
+
 
     <Key>
-    Public Property ID() As Integer
+    Public Property Id() As Integer
         Get
-            Return tripsTripID
+            Return tripId
         End Get
         Private Set(ByVal value As Integer)
-            tripsTripID = value
+            tripId = value
         End Set
     End Property
 
@@ -45,25 +50,6 @@ Public Class CharterTrips
 
     End Property
 
-    Public Property TripCarrierName() As String
-        Get
-            Return CarrierName
-        End Get
-        Set(value As String)
-            CarrierName = value
-        End Set
-
-    End Property
-
-    Public Property TripOperatorName() As String
-        Get
-            Return OperatorName
-        End Get
-        Set(value As String)
-            OperatorName = value
-        End Set
-
-    End Property
 
     Public Property TripCity() As String
         Get
@@ -97,33 +83,15 @@ Public Class CharterTrips
     End Property
 
 
-
-    Public Property Arrival() As Date
-        Get
-            Return tripsArrivalDateTime
-        End Get
-        Private Set(ByVal value As Date)
-            tripsArrivalDateTime = value
-        End Set
-    End Property
-
-    Public Property Departure() As Date
-        Get
-            Return tripsDepartureDateTime
-        End Get
-        Private Set(ByVal value As Date)
-            tripsDepartureDateTime = value
-        End Set
-    End Property
-
     Public Sub New()
-        Me.ID = Nothing
+        Me.id = Nothing
         Me.CarrierId = Nothing
         Me.TripDestination = Nothing
         Me.TripCity = Nothing
         Me.TripStatus = Nothing
         Me.Confirmation = Nothing
         Me.charterAgreementId = Nothing
+        Me.CharterAgreements = Nothing
         Me.OperatorId = Nothing
         Me.Arrival = Nothing
         Me.Departure = Nothing
@@ -136,13 +104,14 @@ Public Class CharterTrips
 
     ''Need to finish this
     Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As Date, departDate As Date)
-        Me.ID = id
+        Me.id = id
         Me.CarrierId = charterAgreement.CarrierId
         Me.TripDestination = dest
         Me.TripCity = city
         Me.TripStatus = status
         Me.Confirmation = confNumber
         Me.CharterAgreements = charterAgreement
+        Me.charterAgreementId = CharterAgreements.Id
         Me.OperatorId = charterAgreement.OperatorId
         Me.Arrival = arrivalDate
         Me.Departure = departDate

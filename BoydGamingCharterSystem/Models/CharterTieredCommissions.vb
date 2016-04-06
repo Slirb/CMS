@@ -1,7 +1,9 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 
 Public Class CharterTieredCommissions
-    <Key>
+
+    Private ID As Integer
+
     Private commissionID As Integer
     Private commissionName As String
     Private commissionDescription As String
@@ -10,7 +12,18 @@ Public Class CharterTieredCommissions
     Private commissionValuePerCustomer As Double
 
 
-    Public Property ID() As Integer
+    <Key>
+    Public Property keyID() As Integer
+        Get
+            Return ID
+        End Get
+        Private Set(ByVal value As Integer)
+            ID = value
+        End Set
+    End Property
+
+
+    Public Property comID() As Integer
         Get
             Return commissionID
         End Get
@@ -71,6 +84,7 @@ Public Class CharterTieredCommissions
     End Property
 
     Public Sub New()
+        Me.ID = Nothing
         Me.commissionID = Nothing
         Me.commissionName = Nothing
         Me.commissionDescription = Nothing
@@ -80,10 +94,15 @@ Public Class CharterTieredCommissions
     End Sub
 
 
-    ''Need to finish this
-    ''Public Sub New(id As Integer, name As String)
-    ''Me.ID = id
-    ''Me.Name = name
-    '' End Sub
+
+    Public Sub New(id As Integer, comId As Integer, name As String, description As String, min As Double, max As Double, valuePer As Double)
+        Me.keyID = id
+        Me.comID = comId
+        Me.Name = name
+        Me.Description = description
+        Me.Minimum = min
+        Me.Maximum = max
+        Me.Value = valuePer
+    End Sub
 
 End Class

@@ -53,35 +53,6 @@ Namespace Controllers
 
 
 
-            'Check DropdownBoxes
-            'If carriers > 0 Then
-
-            '    If operators > 0 Then
-
-            '        'Check for confirmation Number
-            '        If searchString IsNot Nothing Then
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Where t.CarrierId = carriers And t.OperatorId = operators Order By t.Arrival
-            '        Else
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.ToList()
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Where t.CarrierId = carriers Order By t.Arrival
-            '        End If
-
-            '    End If
-
-            'Else
-
-            '    If operators > 0 Then
-
-
-
-            '    End If
-
-            'End If
 
 
             'Check for a selected carrier
@@ -408,98 +379,6 @@ Namespace Controllers
 
             End If
 
-
-
-            ''Check Start Date field
-            'If StartDate IsNot Nothing And StartDate IsNot "" Then
-
-            '    'Check End Date field
-            '    If EndDate IsNot Nothing And EndDate IsNot "" Then
-
-            '        'Check for confirmation number
-            '        If searchString IsNot Nothing Then
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Where t.Arrival >= StartDate And t.Arrival < EndDate Order By t.Arrival
-            '        Else
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.ToList()
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Where t.Arrival >= StartDate And t.Arrival < EndDate Order By t.Arrival
-            '        End If
-
-            '    Else
-
-            '        'Check for confirmation number
-            '        If searchString IsNot Nothing Then
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Where t.Arrival >= StartDate Order By t.Arrival
-            '        Else
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.ToList()
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Where t.Arrival >= StartDate Order By t.Arrival
-            '        End If
-
-            '    End If
-
-            'Else
-
-            '    'Check End Date field
-            '    If EndDate IsNot Nothing And EndDate IsNot "" Then
-
-            '        'Check for confirmation number
-            '        If searchString IsNot Nothing Then
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Where t.Arrival < EndDate Order By t.Arrival
-            '        Else
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.ToList()
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Where t.Arrival < EndDate Order By t.Arrival
-            '        End If
-
-            '    Else
-
-            '        'Check for confirmation number
-            '        If searchString IsNot Nothing Then
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Order By t.Arrival
-            '        Else
-            '            'Select trips matching search criteria
-            '            trips = From t In db.trips.ToList()
-            '                    Join s In status On t.TripStatus Equals s
-            '                    Select t Order By t.Arrival
-            '        End If
-
-            '    End If
-
-            'End If
-
-
-
-
-            ''Check for confirmation Number
-            'If searchString IsNot Nothing Then
-            '    'Select trips matching search criteria
-            '    trips = From t In db.trips.Where(Function(trip) trip.Confirmation.Contains(searchString))
-            '            Join s In status On t.TripStatus Equals s
-            '            Select t Order By t.Arrival
-            'Else
-            '    'Select trips matching search criteria
-            '    trips = From t In db.trips.ToList()
-            '            Join s In status On t.TripStatus Equals s
-            '            Select t Order By t.Arrival
-            'End If
-
-
             'Populate Dropdown Boxes
             Dim car = (From x In db.carriers
                        Order By x.Company.Name
@@ -513,11 +392,6 @@ Namespace Controllers
              {.Value = x.Id.ToString(), .Text = x.Company.Name}).ToList()
             ViewData("Operators") = ops
 
-            'TestBoxes
-            'ViewData("Carz") = SelectedCarrier.ToString()
-            'ViewData("Opz") = SelectedOperator.ToString()
-
-
             Return View(trips)
         End Function
 
@@ -526,11 +400,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterTrip As CharterTrips = db.trips.Find(id)
-            If IsNothing(charterTrip) Then
+            Dim charterTrips As CharterTrips = db.trips.Find(id)
+            If IsNothing(charterTrips) Then
                 Return HttpNotFound()
             End If
-            Return View(charterTrip)
+            Return View(charterTrips)
         End Function
 
         ' GET: CharterTrips/Create
@@ -543,13 +417,13 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="Id,Name")> ByVal charterTrip As CharterTrips) As ActionResult
+        Function Create(<Bind(Include:="ID,charterAgreementId,CarrierId,CarrierName,OperatorId,OperatorName,TripDestination,TripCity,TripStatus,Confirmation,Arrival,Departure")> ByVal charterTrips As CharterTrips) As ActionResult
             If ModelState.IsValid Then
-                db.trips.Add(charterTrip)
+                db.trips.Add(charterTrips)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
-            Return View(charterTrip)
+            Return View(charterTrips)
         End Function
 
         ' GET: CharterTrips/Edit/5
@@ -557,11 +431,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterTrip As CharterTrips = db.trips.Find(id)
-            If IsNothing(charterTrip) Then
+            Dim charterTrips As CharterTrips = db.trips.Find(id)
+            If IsNothing(charterTrips) Then
                 Return HttpNotFound()
             End If
-            Return View(charterTrip)
+            Return View(charterTrips)
         End Function
 
         ' POST: CharterTrips/Edit/5
@@ -569,13 +443,40 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="Id,Name")> ByVal charterTrip As CharterTrips) As ActionResult
+        Function Edit(<Bind(Include:="ID,charterAgreementId,CarrierId,CarrierName,OperatorId,OperatorName,TripDestination,TripCity,TripStatus,Confirmation,Arrival,Departure")> ByVal charterTrips As CharterTrips) As ActionResult
             If ModelState.IsValid Then
-                db.Entry(charterTrip).State = EntityState.Modified
+
+                If charterTrips.Confirmation Is Nothing Then
+                    'Generate confirmation number
+                    charterTrips.Confirmation = "BI" + Date.Now.ToString("MMddyyyy") + charterTrips.CarrierId.ToString() + charterTrips.OperatorId.ToString()
+                End If
+
+                If charterTrips.TripStatus IsNot "Completed" AndAlso charterTrips.TripStatus IsNot "Applied" Or charterTrips.TripStatus Is Nothing Then
+                    charterTrips.TripStatus = "Active"
+                End If
+
+                db.Entry(charterTrips).State = EntityState.Modified
                 db.SaveChanges()
-                Return RedirectToAction("Index")
             End If
-            Return View(charterTrip)
+
+            Return View(charterTrips)
+        End Function
+
+        ' Cancel a trip
+        Function CancelTrip(ByVal id As Integer?) As ActionResult
+            If IsNothing(id) Then
+                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+            End If
+            Dim charterTrips As CharterTrips = db.trips.Find(id)
+            If IsNothing(charterTrips) Then
+                Return HttpNotFound()
+            End If
+
+            charterTrips.TripStatus = "Cancelled"
+            db.Entry(charterTrips).State = EntityState.Modified
+            db.SaveChanges()
+
+            Return RedirectToAction("Index")
         End Function
 
         ' GET: CharterTrips/Delete/5
@@ -583,11 +484,11 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterTrip As CharterTrips = db.trips.Find(id)
-            If IsNothing(charterTrip) Then
+            Dim charterTrips As CharterTrips = db.trips.Find(id)
+            If IsNothing(charterTrips) Then
                 Return HttpNotFound()
             End If
-            Return View(charterTrip)
+            Return View(charterTrips)
         End Function
 
         ' POST: CharterTrips/Delete/5
@@ -595,10 +496,27 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim charterTrip As CharterTrips = db.trips.Find(id)
-            db.trips.Remove(charterTrip)
+            Dim charterTrips As CharterTrips = db.trips.Find(id)
+            db.trips.Remove(charterTrips)
             db.SaveChanges()
             Return RedirectToAction("Index")
+        End Function
+
+        ' GET: ConfirmationLetter/Edit/5
+        Function ConfirmationLetter(ByVal id As Integer?) As ActionResult
+            If IsNothing(id) Then
+                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+            End If
+            Dim charterTrips As CharterTrips = db.trips.Find(id)
+            If IsNothing(charterTrips) Then
+                Return HttpNotFound()
+            End If
+
+            If charterTrips.Confirmation Is Nothing Then
+                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+            End If
+
+            Return View(charterTrips)
         End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)

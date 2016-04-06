@@ -111,21 +111,38 @@ Public Class CharterSystemInitializer
 
 
         ''CHANGES---------------------------
+
+        'Trips 
         Dim trips As New List(Of CharterTrips)
         With trips
-            .Add(New CharterTrips(2, "Biloxi", "Biloxi", "Potential", "BI75298TG", agreements.Item(0), "2016-05-07", "2016-05-10"))
-            .Add(New CharterTrips(3, "Biloxi", "Baton Rouge", "Cancelled", "BI68735TG", agreements.Item(1), "2016-06-05", "2016-06-11"))
-            .Add(New CharterTrips(4, "Biloxi", "Orlando", "Active", "BI94682TG", agreements.Item(2), "2016-07-10", "2016-07-11"))
-            .Add(New CharterTrips(5, "Biloxi", "Mobile", "Applied", "BI68742TG", agreements.Item(1), "2016-05-07", "2016-05-10"))
-            .Add(New CharterTrips(7, "Biloxi", "Atlanta", "Completed", "BI98761TG", agreements.Item(0), "2016-08-09", "2016-08-11"))
+            .Add(New CharterTrips(2, "Biloxi", "Biloxi", "Potential", Nothing, agreements.Item(0), Date.Now, Date.Now.AddDays(3)))
+            .Add(New CharterTrips(3, "Biloxi", "Baton Rouge", "Cancelled", "BI68735TG", agreements.Item(1), Date.Now.AddDays(20), Date.Now.AddDays(23)))
+            .Add(New CharterTrips(4, "Biloxi", "Orlando", "Active", "BI94682TG", agreements.Item(2), Date.Now.AddDays(40), Date.Now.AddDays(43)))
+            .Add(New CharterTrips(5, "Biloxi", "Mobile", "Applied", "BI68742TG", agreements.Item(1), Date.Now.AddDays(60), Date.Now.AddDays(63)))
+            .Add(New CharterTrips(7, "Biloxi", "Atlanta", "Completed", "BI98761TG", agreements.Item(0), Date.Now.AddDays(80), Date.Now.AddDays(83)))
 
 
         End With
         trips.ForEach(Sub(trip) context.trips.Add(trip))
         context.SaveChanges()
 
+        'Tiered Commissions
+        Dim commissions As New List(Of CharterTieredCommissions)
+        With commissions
+            .Add(New CharterTieredCommissions(1, 2, "test 1", "example", 200, 250, 100))
+            .Add(New CharterTieredCommissions(2, 2, "test 1", "example", 250, 450, 200))
+        End With
+        commissions.ForEach(Sub(commission) context.commissions.Add(commission))
+        context.SaveChanges()
 
-
+        'Manifests
+        Dim manifests As New List(Of CharterManifest)
+        With manifests
+            .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Houston", states.Item(1), "46511", trips.Item(2)))
+            .Add(New CharterManifest(2, 3028, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
+        End With
+        manifests.ForEach(Sub(manifest) context.manifests.Add(manifest))
+        context.SaveChanges()
         ''END CHANGES-----------------------
 
 
