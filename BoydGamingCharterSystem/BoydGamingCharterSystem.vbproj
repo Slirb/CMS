@@ -160,6 +160,7 @@
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Controllers\AdministrationController.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
     <Compile Include="Controllers\CharterTieredCommissionsController.vb" />
     <Compile Include="Controllers\CharterTripsController.vb" />
@@ -168,6 +169,10 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Administration\CharterOperatorInterest.vb" />
+    <Compile Include="Models\Administration\CharterOperatorMode.vb" />
+    <Compile Include="Models\Administration\CharterOperatorStopCode.vb" />
+    <Compile Include="Models\Administration\CharterOperatorType.vb" />
     <Compile Include="Models\CharterAgreement.vb" />
     <Compile Include="Models\CharterCarrier.vb" />
     <Compile Include="Models\CharterComment.vb" />
@@ -176,7 +181,7 @@
     <Compile Include="Models\CharterOperator.vb" />
     <Compile Include="DAL\CharterSystem.vb" />
     <Compile Include="Models\CharterProperties.vb" />
-    <Compile Include="Models\CharterTieredCommissions.vb" />
+    <Compile Include="Models\Administration\CharterTieredCommissions.vb" />
     <Compile Include="Models\CharterTrips.vb" />
     <Compile Include="Models\State.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -194,6 +199,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\Administration.vb" />
+    <Compile Include="ViewModels\EditTripsModel.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -273,6 +280,7 @@
     <Content Include="Views\CharterTieredCommissions\Index.vbhtml" />
     <Content Include="Views\CharterTieredCommissions\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\ConfirmationLetter.vbhtml" />
+    <Content Include="Views\Administration\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -308,7 +316,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CharterAdministration\" />
     <Folder Include="Views\CharterAgreements\" />
     <Folder Include="Views\CharterOperators\" />
     <Folder Include="Views\CharterReports\" />

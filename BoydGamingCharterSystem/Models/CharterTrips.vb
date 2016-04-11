@@ -15,9 +15,9 @@ Public Class CharterTrips
     Public Property CharterAgreements() As CharterAgreement
 
 
-    Public Property CarrierId() As Integer
+    Public Property CarrierId As Integer
     Public Property CarrierName As String
-    Public Property OperatorId() As Integer
+    Public Property OperatorId As Integer
     Public Property OperatorName As String
 
 
@@ -29,16 +29,16 @@ Public Class CharterTrips
     <ForeignKey("tripId")>
     Public Property CharterManifests() As ICollection(Of CharterManifest)
 
-
     <Key>
     Public Property Id() As Integer
         Get
             Return tripId
         End Get
-        Private Set(ByVal value As Integer)
+        Set(ByVal value As Integer)
             tripId = value
         End Set
     End Property
+
 
     Public Property TripDestination() As String
         Get
@@ -84,7 +84,7 @@ Public Class CharterTrips
 
 
     Public Sub New()
-        Me.id = Nothing
+        Me.Id = Nothing
         Me.CarrierId = Nothing
         Me.TripDestination = Nothing
         Me.TripCity = Nothing
@@ -97,19 +97,20 @@ Public Class CharterTrips
         Me.Departure = Nothing
         Me.OperatorName = Nothing
         Me.CarrierName = Nothing
+        'Me.CharterManifests = Nothing
 
 
     End Sub
 
 
     ''Need to finish this
-    Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As Date, departDate As Date)
-        Me.id = id
+    Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As DateTime, departDate As DateTime)
+        Me.Id = id
         Me.CarrierId = charterAgreement.CarrierId
         Me.TripDestination = dest
         Me.TripCity = city
         Me.TripStatus = status
-        Me.Confirmation = confNumber
+        Confirmation = confNumber
         Me.CharterAgreements = charterAgreement
         Me.charterAgreementId = CharterAgreements.Id
         Me.OperatorId = charterAgreement.OperatorId

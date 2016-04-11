@@ -31,7 +31,7 @@
                         <li>@Html.ActionLink("Operators", "Index", "CharterOperators")</li>
                         <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
                         <li>@Html.ActionLink("Reports", "Index", "CharterReports")</li>
-                        <li>@Html.ActionLink("Administration", "Index", "CharterAdministration")</li>
+                        <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
 
                 
                     </ul>

@@ -115,11 +115,11 @@ Public Class CharterSystemInitializer
         'Trips 
         Dim trips As New List(Of CharterTrips)
         With trips
-            .Add(New CharterTrips(2, "Biloxi", "Biloxi", "Potential", Nothing, agreements.Item(0), Date.Now, Date.Now.AddDays(3)))
-            .Add(New CharterTrips(3, "Biloxi", "Baton Rouge", "Cancelled", "BI68735TG", agreements.Item(1), Date.Now.AddDays(20), Date.Now.AddDays(23)))
-            .Add(New CharterTrips(4, "Biloxi", "Orlando", "Active", "BI94682TG", agreements.Item(2), Date.Now.AddDays(40), Date.Now.AddDays(43)))
-            .Add(New CharterTrips(5, "Biloxi", "Mobile", "Applied", "BI68742TG", agreements.Item(1), Date.Now.AddDays(60), Date.Now.AddDays(63)))
-            .Add(New CharterTrips(7, "Biloxi", "Atlanta", "Completed", "BI98761TG", agreements.Item(0), Date.Now.AddDays(80), Date.Now.AddDays(83)))
+            .Add(New CharterTrips(1, "Biloxi", "Biloxi", "Potential", Nothing, agreements.Item(0), Date.Now, Date.Now.AddDays(3)))
+            .Add(New CharterTrips(2, "Biloxi", "Baton Rouge", "Cancelled", "BI68735TG", agreements.Item(1), Date.Now.AddDays(20), Date.Now.AddDays(23)))
+            .Add(New CharterTrips(3, "Biloxi", "Orlando", "Active", "BI94682TG", agreements.Item(2), Date.Now.AddDays(40), Date.Now.AddDays(43)))
+            .Add(New CharterTrips(4, "Biloxi", "Mobile", "Applied", "BI68742TG", agreements.Item(1), Date.Now.AddDays(60), Date.Now.AddDays(63)))
+            .Add(New CharterTrips(5, "Biloxi", "Atlanta", "Completed", "BI98761TG", agreements.Item(0), Date.Now.AddDays(80), Date.Now.AddDays(83)))
 
 
         End With
@@ -135,15 +135,67 @@ Public Class CharterSystemInitializer
         commissions.ForEach(Sub(commission) context.commissions.Add(commission))
         context.SaveChanges()
 
+        'Operator Interests
+        Dim interests As New List(Of CharterOperatorInterest)
+        With interests
+            .Add(New CharterOperatorInterest(1, "Interest 1"))
+            .Add(New CharterOperatorInterest(1, "Interest 2"))
+        End With
+        interests.ForEach(Sub(interest) context.operatorInterests.Add(interest))
+        context.SaveChanges()
+
+
+        'Operator Modes
+        Dim modes As New List(Of CharterOperatorMode)
+        With modes
+            .Add(New CharterOperatorMode(1, "Mode 1"))
+            .Add(New CharterOperatorMode(1, "Mode 2"))
+        End With
+        modes.ForEach(Sub(mode) context.operatorModes.Add(mode))
+        context.SaveChanges()
+
+        'Operator Stop Codes
+        Dim codes As New List(Of CharterOperatorStopCode)
+        With codes
+            .Add(New CharterOperatorStopCode(1, "Stop Code 1"))
+            .Add(New CharterOperatorStopCode(1, "Stop Code 2"))
+        End With
+        codes.ForEach(Sub(code) context.operatorStopCodes.Add(code))
+        context.SaveChanges()
+
+
+        'Operator Types
+        Dim types As New List(Of CharterOperatorType)
+        With types
+            .Add(New CharterOperatorType(1, "Type 1"))
+            .Add(New CharterOperatorType(1, "Type 2"))
+        End With
+        types.ForEach(Sub(type) context.operatorTypes.Add(type))
+        context.SaveChanges()
+
         'Manifests
         Dim manifests As New List(Of CharterManifest)
         With manifests
             .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Houston", states.Item(1), "46511", trips.Item(2)))
-            .Add(New CharterManifest(2, 3028, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
+            .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
+            .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Houston", states.Item(1), "46511", trips.Item(1)))
+            .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Orlando", states.Item(2), "56533", trips.Item(1)))
+            .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Houston", states.Item(1), "46511", trips.Item(3)))
+            .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Orlando", states.Item(2), "56533", trips.Item(3)))
+            .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Houston", states.Item(1), "46511", trips.Item(4)))
+            .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Orlando", states.Item(2), "56533", trips.Item(4)))
+            .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Houston", states.Item(1), "46511", trips.Item(3)))
+            .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Houston", states.Item(1), "46511", trips.Item(4)))
+            .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
+            .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Houston", states.Item(1), "46511", trips.Item(3)))
+            .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
+            .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Houston", states.Item(1), "46511", trips.Item(4)))
+            .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
+            .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
         End With
         manifests.ForEach(Sub(manifest) context.manifests.Add(manifest))
         context.SaveChanges()
-        ''END CHANGES-----------------------
+        'END CHANGES-----------------------
 
 
     End Sub

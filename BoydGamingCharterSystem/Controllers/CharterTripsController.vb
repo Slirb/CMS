@@ -22,7 +22,6 @@ Namespace Controllers
                        Optional ByVal SelectedCarrier As String = Nothing, Optional ByVal SelectedOperator As String = Nothing) As ActionResult
 
 
-
             Dim status As New List(Of String)
             Dim trips
 
@@ -50,9 +49,6 @@ Namespace Controllers
             If (cancelled = True) Then
                 status.Add("Cancelled")
             End If
-
-
-
 
 
             'Check for a selected carrier
@@ -412,21 +408,7 @@ Namespace Controllers
             Return View()
         End Function
 
-        ' POST: CharterTrips/Create
-        'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        <HttpPost()>
-        <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="ID,charterAgreementId,CarrierId,CarrierName,OperatorId,OperatorName,TripDestination,TripCity,TripStatus,Confirmation,Arrival,Departure")> ByVal charterTrips As CharterTrips) As ActionResult
-            If ModelState.IsValid Then
-                db.trips.Add(charterTrips)
-                db.SaveChanges()
-                Return RedirectToAction("Index")
-            End If
-            Return View(charterTrips)
-        End Function
-
-        ' GET: CharterTrips/Edit/5
+        ' GET: CharterTrips/Edit
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
@@ -435,48 +417,201 @@ Namespace Controllers
             If IsNothing(charterTrips) Then
                 Return HttpNotFound()
             End If
-            Return View(charterTrips)
+
+
+
+            'Populate Hours DropdownBoxes
+            Dim hours = New List(Of SelectListItem)
+            hours.Add(New SelectListItem With {.Text = "00", .Value = "00"})
+            hours.Add(New SelectListItem With {.Text = "01", .Value = "01"})
+            hours.Add(New SelectListItem With {.Text = "02", .Value = "02"})
+            hours.Add(New SelectListItem With {.Text = "03", .Value = "03"})
+            hours.Add(New SelectListItem With {.Text = "04", .Value = "04"})
+            hours.Add(New SelectListItem With {.Text = "05", .Value = "05"})
+            hours.Add(New SelectListItem With {.Text = "06", .Value = "06"})
+            hours.Add(New SelectListItem With {.Text = "07", .Value = "07"})
+            hours.Add(New SelectListItem With {.Text = "08", .Value = "08"})
+            hours.Add(New SelectListItem With {.Text = "09", .Value = "09"})
+            hours.Add(New SelectListItem With {.Text = "10", .Value = "10"})
+            hours.Add(New SelectListItem With {.Text = "11", .Value = "11"})
+            hours.Add(New SelectListItem With {.Text = "12", .Value = "12"})
+            hours.Add(New SelectListItem With {.Text = "13", .Value = "13"})
+            hours.Add(New SelectListItem With {.Text = "14", .Value = "14"})
+            hours.Add(New SelectListItem With {.Text = "15", .Value = "15"})
+            hours.Add(New SelectListItem With {.Text = "16", .Value = "16"})
+            hours.Add(New SelectListItem With {.Text = "17", .Value = "17"})
+            hours.Add(New SelectListItem With {.Text = "18", .Value = "18"})
+            hours.Add(New SelectListItem With {.Text = "19", .Value = "19"})
+            hours.Add(New SelectListItem With {.Text = "20", .Value = "20"})
+            hours.Add(New SelectListItem With {.Text = "21", .Value = "21"})
+            hours.Add(New SelectListItem With {.Text = "22", .Value = "22"})
+            hours.Add(New SelectListItem With {.Text = "23", .Value = "23"})
+
+            'Set the selected value for each hour dropdownbox
+            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.ToString("HH"))
+            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Departure.Value.ToString("HH"))
+
+
+            Dim minutes = New List(Of SelectListItem)
+            minutes.Add(New SelectListItem With {.Text = "00", .Value = "00"})
+            minutes.Add(New SelectListItem With {.Text = "01", .Value = "01"})
+            minutes.Add(New SelectListItem With {.Text = "02", .Value = "02"})
+            minutes.Add(New SelectListItem With {.Text = "03", .Value = "03"})
+            minutes.Add(New SelectListItem With {.Text = "04", .Value = "04"})
+            minutes.Add(New SelectListItem With {.Text = "05", .Value = "05"})
+            minutes.Add(New SelectListItem With {.Text = "06", .Value = "06"})
+            minutes.Add(New SelectListItem With {.Text = "07", .Value = "07"})
+            minutes.Add(New SelectListItem With {.Text = "08", .Value = "08"})
+            minutes.Add(New SelectListItem With {.Text = "09", .Value = "09"})
+
+            For index As Integer = 10 To 59
+                minutes.Add(New SelectListItem With {.Text = index.ToString, .Value = index.ToString})
+            Next
+
+            'Set the selected value for each hour dropdownbox
+            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.ToString("mm"))
+            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Departure.Value.ToString("mm"))
+
+            'Manifest for the trip
+            Dim manifests As List(Of CharterManifest) = (From x In db.manifests
+                                                         Order By x.cardNumber
+                                                         Select x Where x.tripId = id).ToList()
+
+            'Create view model to hold data
+            Dim viewMod As New EditTripsModel
+            viewMod.trip = charterTrips
+            viewMod.manifests = manifests
+
+            Return View(viewMod)
         End Function
 
-        ' POST: CharterTrips/Edit/5
+        ' POST: CharterTrips/Edit
         'To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="ID,charterAgreementId,CarrierId,CarrierName,OperatorId,OperatorName,TripDestination,TripCity,TripStatus,Confirmation,Arrival,Departure")> ByVal charterTrips As CharterTrips) As ActionResult
+        Function Edit(<Bind(Include:="Id,charterAgreementId,CarrierId,CarrierName,OperatorId,OperatorName,TripDestination,TripCity,TripStatus,Confirmation", Prefix:="trip")> ByVal charterTrip As CharterTrips,
+                       ArrivalDay As String, ArrivalHour As String, ArrivalMinute As String, DepartureDay As String, DepartureHour As String, DepartureMinute As String) As ActionResult
+
+            charterTrip.Arrival = ArrivalDay + " " + ArrivalHour + ":" + ArrivalMinute + ":00"
+            charterTrip.Departure = DepartureDay + " " + DepartureHour + ":" + DepartureMinute + ":00"
+
             If ModelState.IsValid Then
 
-                If charterTrips.Confirmation Is Nothing Then
-                    'Generate confirmation number
-                    charterTrips.Confirmation = "BI" + Date.Now.ToString("MMddyyyy") + charterTrips.CarrierId.ToString() + charterTrips.OperatorId.ToString()
+                'Check for confirmation number and generate if needed
+                If charterTrip.Confirmation Is Nothing Or charterTrip.Confirmation = "" Then
+
+                    charterTrip.Confirmation = "BI" + Date.Now.ToString("MMddyyyy") + charterTrip.CarrierId.ToString() + charterTrip.OperatorId.ToString()
                 End If
 
-                If charterTrips.TripStatus IsNot "Completed" AndAlso charterTrips.TripStatus IsNot "Applied" Or charterTrips.TripStatus Is Nothing Then
-                    charterTrips.TripStatus = "Active"
+                'Check for trip status and set to active if not currently finished or active
+                If charterTrip.TripStatus.Equals("Completed") = False AndAlso charterTrip.TripStatus.Equals("Applied") = False Or charterTrip.TripStatus Is Nothing Then
+                    charterTrip.TripStatus = "Active"
                 End If
 
-                db.Entry(charterTrips).State = EntityState.Modified
+                db.Entry(charterTrip).State = EntityState.Modified
                 db.SaveChanges()
             End If
 
-            Return View(charterTrips)
+
+            'Populate Hours DropdownBoxes
+            Dim hours = New List(Of SelectListItem)
+            hours.Add(New SelectListItem With {.Text = "00", .Value = "00"})
+            hours.Add(New SelectListItem With {.Text = "01", .Value = "01"})
+            hours.Add(New SelectListItem With {.Text = "02", .Value = "02"})
+            hours.Add(New SelectListItem With {.Text = "03", .Value = "03"})
+            hours.Add(New SelectListItem With {.Text = "04", .Value = "04"})
+            hours.Add(New SelectListItem With {.Text = "05", .Value = "05"})
+            hours.Add(New SelectListItem With {.Text = "06", .Value = "06"})
+            hours.Add(New SelectListItem With {.Text = "07", .Value = "07"})
+            hours.Add(New SelectListItem With {.Text = "08", .Value = "08"})
+            hours.Add(New SelectListItem With {.Text = "09", .Value = "09"})
+            hours.Add(New SelectListItem With {.Text = "10", .Value = "10"})
+            hours.Add(New SelectListItem With {.Text = "11", .Value = "11"})
+            hours.Add(New SelectListItem With {.Text = "12", .Value = "12"})
+            hours.Add(New SelectListItem With {.Text = "13", .Value = "13"})
+            hours.Add(New SelectListItem With {.Text = "14", .Value = "14"})
+            hours.Add(New SelectListItem With {.Text = "15", .Value = "15"})
+            hours.Add(New SelectListItem With {.Text = "16", .Value = "16"})
+            hours.Add(New SelectListItem With {.Text = "17", .Value = "17"})
+            hours.Add(New SelectListItem With {.Text = "18", .Value = "18"})
+            hours.Add(New SelectListItem With {.Text = "19", .Value = "19"})
+            hours.Add(New SelectListItem With {.Text = "20", .Value = "20"})
+            hours.Add(New SelectListItem With {.Text = "21", .Value = "21"})
+            hours.Add(New SelectListItem With {.Text = "22", .Value = "22"})
+            hours.Add(New SelectListItem With {.Text = "23", .Value = "23"})
+
+            'Set the selected value for each hour dropdownbox
+            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Arrival.Value.ToString("HH"))
+            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Departure.Value.ToString("HH"))
+
+
+            Dim minutes = New List(Of SelectListItem)
+            minutes.Add(New SelectListItem With {.Text = "00", .Value = "00"})
+            minutes.Add(New SelectListItem With {.Text = "01", .Value = "01"})
+            minutes.Add(New SelectListItem With {.Text = "02", .Value = "02"})
+            minutes.Add(New SelectListItem With {.Text = "03", .Value = "03"})
+            minutes.Add(New SelectListItem With {.Text = "04", .Value = "04"})
+            minutes.Add(New SelectListItem With {.Text = "05", .Value = "05"})
+            minutes.Add(New SelectListItem With {.Text = "06", .Value = "06"})
+            minutes.Add(New SelectListItem With {.Text = "07", .Value = "07"})
+            minutes.Add(New SelectListItem With {.Text = "08", .Value = "08"})
+            minutes.Add(New SelectListItem With {.Text = "09", .Value = "09"})
+
+            For index As Integer = 10 To 59
+                minutes.Add(New SelectListItem With {.Text = index.ToString, .Value = index.ToString})
+            Next
+
+            'Set the selected value for each hour dropdownbox
+            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Arrival.Value.ToString("mm"))
+            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Departure.Value.ToString("mm"))
+
+
+            'Manifest for the trip
+            Dim manifests As List(Of CharterManifest) = (From x In db.manifests
+                                                         Order By x.cardNumber
+                                                         Select x Where x.tripId = charterTrip.Id).ToList()
+
+            'Create view model to hold data
+            Dim viewMod As New EditTripsModel
+            viewMod.trip = charterTrip
+            viewMod.manifests = manifests
+
+            Return View(viewMod)
         End Function
 
-        ' Cancel a trip
+        'Cancel a trip
         Function CancelTrip(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterTrips As CharterTrips = db.trips.Find(id)
-            If IsNothing(charterTrips) Then
+            Dim charterTrip As CharterTrips = db.trips.Find(id)
+            If IsNothing(charterTrip) Then
                 Return HttpNotFound()
             End If
 
-            charterTrips.TripStatus = "Cancelled"
-            db.Entry(charterTrips).State = EntityState.Modified
-            db.SaveChanges()
+            'Check completed status and cancel if not complete
+            If charterTrip.TripStatus.Equals("Completed") = False Then
+                charterTrip.TripStatus = "Cancelled"
+                db.Entry(charterTrip).State = EntityState.Modified
+                db.SaveChanges()
+            Else
+                Return RedirectToAction("Edit", New With {.id = charterTrip.Id})
+
+            End If
 
             Return RedirectToAction("Index")
+        End Function
+
+        ' Delete a person from manifest
+        Function DeletePerson(ByVal id As Integer?, ByVal tripId As Integer?) As ActionResult
+
+            Dim charterTrip As CharterTrips = db.trips.Find(tripId)
+            Dim charterManifest As CharterManifest = db.manifests.Find(id)
+            db.manifests.Remove(charterManifest)
+            db.SaveChanges()
+
+            Return RedirectToAction("Edit", New With {.id = charterTrip.Id})
         End Function
 
         ' GET: CharterTrips/Delete/5

@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterTrips
+﻿@ModelType BoydGamingCharterSystem.EditTripsModel
 
 @Code
     Layout = "~/Views/Shared/_Layout.vbhtml"
@@ -9,6 +9,10 @@ End Code
 <script type="text/javascript">
     $(function () {
         $("#tabs").tabs();
+    });
+
+    $(document).ready(function () {
+        $('.date').datepicker({ dateFormat: "mm/dd/yy" });
     });
 </script>
 
@@ -24,7 +28,7 @@ End Code
 
         'Check for a confirmation number
         Dim conf As String = "True"
-        If Model.Confirmation Is Nothing Then
+        If Model.trip.Confirmation Is Nothing Then
             conf = "False"
         End If
 
@@ -35,161 +39,208 @@ End Code
             <h4>CharterTrips</h4>
             <hr />
             @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
-            @Html.HiddenFor(Function(model) model.id)
-            @Html.HiddenFor(Function(model) model.charterAgreementId)
-            @Html.HiddenFor(Function(model) model.CarrierId)
-            @Html.HiddenFor(Function(model) model.OperatorId)
-            @Html.HiddenFor(Function(model) model.CarrierName)
-            @Html.HiddenFor(Function(model) model.OperatorName)
-            @Html.HiddenFor(Function(model) model.TripDestination)
-            @Html.HiddenFor(Function(model) model.TripCity)
-            @Html.HiddenFor(Function(model) model.TripStatus)
-            @Html.HiddenFor(Function(model) model.Confirmation)
-            @Html.HiddenFor(Function(model) model.CharterAgreements)
-
+            @Html.HiddenFor(Function(model) model.trip.Id)            
+            @Html.HiddenFor(Function(model) model.trip.charterAgreementId)
+            @Html.HiddenFor(Function(model) model.trip.CarrierId)
+            @Html.HiddenFor(Function(model) model.trip.OperatorId)
+            @Html.HiddenFor(Function(model) model.trip.CarrierName)
+            @Html.HiddenFor(Function(model) model.trip.OperatorName)
+            @Html.HiddenFor(Function(model) model.trip.TripDestination)
+            @Html.HiddenFor(Function(model) model.trip.TripStatus)
+            @Html.HiddenFor(Function(model) model.trip.Confirmation)
+            
              <div>
                  <!--Need to add agreement name and pull from table-->
-                 @Html.DisplayFor(Function(model) model.charterAgreementId)
+                 @Html.DisplayFor(Function(model) model.trip.charterAgreementId)
              </div>
 
              <div class="form-group">
                  @Html.Label("Destination", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
-                     @Html.DisplayFor(Function(model) model.TripDestination)
+                     @Html.DisplayFor(Function(model) model.trip.TripDestination)
                  </div>
              </div>
 
              <div class="form-group">
                  @Html.Label("Carrier Name", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
-                     @Html.DisplayFor(Function(model) model.CarrierName)
+                     @Html.DisplayFor(Function(model) model.trip.CarrierName)
                  </div>
              </div>
             
              <div class="form-group">
                  @Html.Label("Operator Name", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
-                     @Html.DisplayFor(Function(model) model.OperatorName)
+                     @Html.DisplayFor(Function(model) model.trip.OperatorName)
                  </div>
              </div>
              
              <div class="form-group">
                  @Html.Label("Departure City", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
-                     @Html.DisplayFor(Function(model) model.TripCity)
+                     @Html.DisplayFor(Function(model) model.trip.TripCity)
                  </div>
              </div>
 
              <div class="form-group">
-                 @Html.LabelFor(Function(model) model.Arrival, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 @Html.LabelFor(Function(model) model.trip.Arrival, htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
-                     @Html.EditorFor(Function(model) model.Arrival, New With {.htmlAttributes = New With {.class = "form-control"}})
-                     @Html.ValidationMessageFor(Function(model) model.Arrival, "", New With {.class = "text-danger"})
+                     @Html.TextBox("ArrivalDay", Model.trip.Arrival.Value.ToString("MM/dd/yyyy"), New With {.class = "date"})
+                     @Html.Label("ArrivealHourLabel", "Hour: ")
+                     @Html.DropDownList("ArrivalHour", DirectCast(ViewBag.ArriveHours, SelectList))
+                     <!--Html.TextBox("ArrivalHour", Model.trip.Arrival.Value.ToString("HH"))-->
+                     @Html.Label("ArrivalMinuteLabel", "Minute: ")
+                     @Html.DropDownList("ArrivalMinute", DirectCast(ViewBag.ArriveMinutes, SelectList))
+                     <!--Html.TextBox("ArrivalMinute", Model.trip.Arrival.Value.ToString("mm"))
+                     Html.EditorFor(Function(model) model.trip.Arrival, New With {.htmlAttributes = New With {.class = "form-control"}})-->
+                     @Html.ValidationMessageFor(Function(model) model.trip.Arrival, "", New With {.class = "text-danger"})
                  </div>
              </div>
 
-             <div class="form-group">
-                 @Html.LabelFor(Function(model) model.Departure, htmlAttributes:=New With {.class = "control-label col-md-2"})
-                 <div class="col-md-10">
-                     @Html.EditorFor(Function(model) model.Departure, New With {.htmlAttributes = New With {.class = "form-control"}})
-                     @Html.ValidationMessageFor(Function(model) model.Departure, "", New With {.class = "text-danger"})
+             <div Class="form-group">
+                 @Html.LabelFor(Function(model) model.trip.Departure, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div Class="col-md-10">
+                     @Html.TextBox("DepartureDay", Model.trip.Arrival.Value.ToString("MM/dd/yyyy"), New With {.class = "date"})
+                     @Html.Label("DepartureHourLabel", "Hour: ")
+                     @Html.DropDownList("DepartureHour", DirectCast(ViewBag.DepartHours, SelectList))
+                     <!--Html.TextBox("DepartureHour", Model.trip.Arrival.Value.ToString("HH"))-->
+                     @Html.Label("DepartureMinuteLabel", "Minute: ")
+                     @Html.DropDownList("DepartureMinute", DirectCast(ViewBag.DepartMinutes, SelectList))
+                     <!--Html.TextBox("DepartureMinute", Model.trip.Arrival.Value.ToString("mm"))
+                     Html.EditorFor(Function(model) model.trip.Departure, New With {.htmlAttributes = New With {.class = "form-control"}})-->
+                     @Html.ValidationMessageFor(Function(model) model.trip.Departure, "", New With {.class = "text-danger"})
                  </div>
              </div>
 
-            <div class="form-group">
+            <div Class="form-group">
                 @Html.Label("Status", htmlAttributes:=New With {.class = "control-label col-md-2"})
-                <div class="col-md-10">
-                    @Html.DisplayFor(Function(model) model.TripStatus)
+                <div Class="col-md-10">
+                    @Html.DisplayFor(Function(model) model.trip.TripStatus)
                 </div>
             </div>
 
 
-             <div class="form-group">
-                 @Html.LabelFor(Function(model) model.TripCity, htmlAttributes:=New With {.class = "control-label col-md-2"})
-                 <div class="col-md-10">
-                     @Html.EditorFor(Function(model) model.TripCity, New With {.htmlAttributes = New With {.class = "form-control"}})
-                     @Html.ValidationMessageFor(Function(model) model.TripCity, "", New With {.class = "text-danger"})
+             <div Class="form-group">
+                 @Html.LabelFor(Function(model) model.trip.TripCity, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div Class="col-md-10">
+                     @Html.EditorFor(Function(model) model.trip.TripCity, New With {.htmlAttributes = New With {.class = "form-control"}})
+                     @Html.ValidationMessageFor(Function(model) model.trip.TripCity, "", New With {.class = "text-danger"})
                  </div>
              </div>
-    
-            <div class="form-group">
-                @Html.LabelFor(Function(model) model.Confirmation, htmlAttributes:=New With {.class = "control-label col-md-2"})
-                <div class="col-md-10">
 
-                    
-                        @Html.DisplayFor(Function(model) model.Confirmation)|
-                    
+            <div Class="form-group">
+                @Html.LabelFor(Function(model) model.trip.Confirmation, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                <div Class="col-md-10">
+                        @Html.DisplayFor(Function(model) model.trip.Confirmation)
                     <!--Displays a link if confirmation number exists-->
                     @if conf Is "True" Then
-                        @Html.ActionLink("View Letter", "ConfirmationLetter", New With {.id = Model.id})
+                        @Html.ActionLink("View Letter", "ConfirmationLetter", New With {.id = Model.trip.Id})
                     End If
-                    
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+            <div Class="form-group">
+                <div Class="col-md-offset-2 col-md-10">
+                    <input type = "submit" value="Save" Class="btn btn-default" />
                     @Html.ActionLink("Close", "Index")
-                    @Html.ActionLink("Cancel Trip", "CancelTrip", New With {.id = Model.id})                   
+                    @Html.ActionLink("Cancel Trip", "CancelTrip", New With {.id = Model.trip.Id})
                 </div>
             </div>
         </div>
     End Using
-    
-    
-    <!--This is the tabbed section to be completed-->
-    <div id="tabs">
+
+
+    <!--This Is the tabbed section to be completed-->
+    <div id = "tabs" >
+
 
     <ul>
-        <li><a href="#tabs-1">Manifest Details</a></li>
-        <li><a href="#tabs-2">Notes</a></li>
-        <li><a href="#tabs-3">Comission</a></li>
+                                                                 <li> <a href = "#tabs-1" > Manifest Details</a></li>
+        <li> <a href = "#tabs-2" > Notes</a></li>
+        <li> <a href = "#tabs-3" > Comission</a></li>
     </ul>
 
-    <div id="tabs-1">
-        This will contain the passenger manifest
+    <div id = "tabs-1" >
+
         <Table Class="table">
             <tr>
-                <th>
-                    Card No
+                                                                     <th>
+                                                                     Card No
                 </th>
                 <th>
-                    Full Name
+                                                                     Full Name
                 </th>
                 <th>
-                    DOB
+                                                                     DOB
                 </th>
                 <th>
-                    Addr1
+                                                                     Addr1
                 </th>
                 <th>
-                    Addr2
+                                                                     Addr2
                 </th>
                 <th>
-                    City
+                                                                     City
                 </th>
                 <th>
-                    State
+                                                                     State
                 </th>
                 <th>
-                    Zip
+                                                                     Zip
                 </th>
                 <th></th>
             </tr>
+
+
+            @For Each item In Model.manifests
+
+                @<tr>
+                    <td>
+                        @Html.DisplayFor(Function(modelItem) item.cardNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Function(modelItem) item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Function(modelItem) item.dob)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Function(modelItem) item.addressLineOne)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Function(modelItem) item.addressLineTwo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Function(modelItem) item.city)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Function(modelItem) item.state)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Function(modelItem) item.postalCode)
+                    </td>
+                    <td>                                                                                                                         
+                        @Html.ActionLink("X", "DeletePerson", New With {.id = item.Id, .tripId = Model.trip.Id})
+                    </td>
+                </tr>
+            Next
+
         </Table>
-        
+
     </div>
 
-    <div id="tabs-2">
+    <div id = "tabs-2" >
         This will contain the notes for the trip
     </div>
 
-    <div id="tabs-3">
+    <div id = "tabs-3" >
         Here is where the reports will be generated
+        @Html.ActionLink("Player Stats", "PlayerStats", New With {.tripId = Model.trip.Id})
+        @Html.ActionLink("Analysis Report", "AnalysisReport", New With {.tripId = Model.trip.Id})
+        @Html.ActionLink("Commission Report", "Commission Report", New With {.tripId = Model.trip.Id})
     </div>
 
     </div>
-    
+
 </body>
 </html>

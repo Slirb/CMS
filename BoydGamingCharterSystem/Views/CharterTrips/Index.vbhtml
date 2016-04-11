@@ -131,7 +131,6 @@ End Using
 
 
         @<tr style="background-color:@name">
-        @Html.HiddenFor(Function(model) item.id)
             <td>
                 <!--Need to add agreement name And pull from table-->
                 @Html.DisplayFor(Function(modelItem) item.charterAgreementId)
@@ -160,12 +159,8 @@ End Using
                 @Html.DisplayFor(Function(modelItem) item.Departure)
             </td>
             <td>
-                <!--Change button to this style-->
-                <a href"">
-
-                </a>                
-                @Html.ActionLink("Edit", "Edit", New With {.id = item.id}) |
-                @Html.ActionLink("Details", "Details", New With {.id = item.id})
+                          
+                @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
             </td>
         </tr>
     Next

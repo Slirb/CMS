@@ -2,7 +2,6 @@
 
 Public Class CharterTieredCommissions
 
-    Private ID As Integer
 
     Private commissionID As Integer
     Private commissionName As String
@@ -13,14 +12,8 @@ Public Class CharterTieredCommissions
 
 
     <Key>
-    Public Property keyID() As Integer
-        Get
-            Return ID
-        End Get
-        Private Set(ByVal value As Integer)
-            ID = value
-        End Set
-    End Property
+    Public Property Id() As Integer
+
 
 
     Public Property comID() As Integer
@@ -84,7 +77,7 @@ Public Class CharterTieredCommissions
     End Property
 
     Public Sub New()
-        Me.ID = Nothing
+        Me.Id = Nothing
         Me.commissionID = Nothing
         Me.commissionName = Nothing
         Me.commissionDescription = Nothing
@@ -96,7 +89,7 @@ Public Class CharterTieredCommissions
 
 
     Public Sub New(id As Integer, comId As Integer, name As String, description As String, min As Double, max As Double, valuePer As Double)
-        Me.keyID = id
+        Me.Id = id
         Me.comID = comId
         Me.Name = name
         Me.Description = description
