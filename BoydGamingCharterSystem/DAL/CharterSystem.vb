@@ -13,16 +13,33 @@ Public Class CharterSystem
     Private CharterCompany As DbSet(Of CharterCompany)
     Private CharterCommentable As DbSet(Of Commentable)
     Private CharterComments As DbSet(Of CharterComment)
-
-
-
-    ''CHANGES----------------------------------
+    Private CharterContactable As DbSet(Of Contactable)
+    Private CharterContacts As DbSet(Of CharterContact)
 
 
     Private CharterTrips As DbSet(Of CharterTrips)
     Private CharterTieredCommissions As DbSet(Of CharterTieredCommissions)
     Private CharterProperties As DbSet(Of CharterProperties)
 
+
+
+    Public Property contactable As DbSet(Of Contactable)
+        Get
+            Return CharterContactable
+        End Get
+        Set(value As DbSet(Of Contactable))
+            CharterContactable = value
+        End Set
+    End Property
+
+    Public Property contacts As DbSet(Of CharterContact)
+        Get
+            Return CharterContacts
+        End Get
+        Set(value As DbSet(Of CharterContact))
+            CharterContacts = value
+        End Set
+    End Property
 
     ''Added Properties
     Public Property properties As DbSet(Of CharterProperties)
@@ -138,9 +155,6 @@ Public Class CharterSystem
         modelBuilder.Conventions.Remove(Of PluralizingTableNameConvention)()
 
 
-
-
-
     End Sub
 
     Public Overrides Function SaveChanges() As Integer
@@ -157,7 +171,7 @@ Public Class CharterSystem
         'Code that moves entry from 
     End Sub
 
-    Public Property CharterContacts As System.Data.Entity.DbSet(Of CharterContact)
+
 
 End Class
 

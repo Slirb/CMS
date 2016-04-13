@@ -13,7 +13,9 @@
         return false;
     });
     $(document).on("click", ".deleteRow", function () {
-        $(this).parent().remove();
+        
+      
+        $(this).parent().parent().remove();
         return false;
     })
 });

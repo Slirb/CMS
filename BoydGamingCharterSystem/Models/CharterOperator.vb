@@ -16,8 +16,8 @@ Public Class CharterOperator
 
     'In the current application, Type, Mode, Interest, and Stop Code
     'are all stored as strings. I don't know how we should handle these
-    'as in the actual application, they need a dropdown menu 
-    ' - probably to be administered, so they need tables at a minimum
+    'in the actual application, they need a dropdown menu 
+    ' - probably to be administered, so they need tables... ?
     Public Property Type As String
     Public Property Mode As String
     Public Property Interest As String
@@ -56,4 +56,6 @@ Public Class CharterOperator
     End Sub
 
 End Class
+
+
 

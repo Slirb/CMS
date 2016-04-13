@@ -18,11 +18,6 @@ End Code
 
         <div id="CharterCompany" class="form-group">
             @Html.EditorFor(Function(model) model.Company, "CharterCompanyCreate")
-
-                
-            
-
-
         </div>
         <div class="form-group">
             @Html.LabelFor(Function(model) model.HasLicense, htmlAttributes:=New With {.class = "control-label col-md-2"})
@@ -63,6 +58,7 @@ End Code
         </div>
         <div class="form-group">
             @Html.Label("Company Contacts", htmlAttributes:=New With {.class = "control-label col-md-2"})
+            @Html.HiddenFor(Function(model) model.Company.Contactable.ContactableId)
             <div class="CharterCompanyContacts col-md-10">
                 @For Each contact As CharterContact In Model.Contacts
                     Html.RenderPartial("CharterContacts/CharterContactRow", contact)
@@ -72,8 +68,10 @@ End Code
         </div>
         <div class="form-group">
             @Html.LabelFor(Function(model) model.Comments, htmlAttributes:=New With {.class = "control-label col-md-2"})
+            @Html.HiddenFor(Function(model) model.Commentable.CommentableId)
             <div class="CharterCompanyComments col-md-10">
                 @For Each comment As CharterComment In Model.Comments
+
                     Html.RenderPartial("CharterComments/CharterCommentRow", comment)
                 Next
             </div>

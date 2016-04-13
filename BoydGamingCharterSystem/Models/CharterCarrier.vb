@@ -61,7 +61,7 @@ Public Class CharterCarrier
         Me.Id = Nothing
         Me.Company = New CharterCompany
         Me.Commentable = New Commentable
-        Me.Created = DateTime.Now()
+
     End Sub
 
 

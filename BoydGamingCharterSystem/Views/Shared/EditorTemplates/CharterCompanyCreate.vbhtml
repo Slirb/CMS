@@ -56,8 +56,8 @@ End Code
     <div class="form-group">
         @Html.LabelFor(Function(model) model.State, htmlAttributes:=New With {.class = "control-label col-md-2"})
         <div class="col-md-10">
-            @Html.DropDownListFor(Function(model) model.State, ViewBag.States)
-            @Html.ValidationMessageFor(Function(model) model.State, "", New With {.class = "text-danger"})
+            @Html.DropDownListFor(Function(model) model.StateId, DirectCast(ViewBag.States, SelectList), "---Select A State---")
+            @Html.ValidationMessageFor(Function(model) model.StateId, "", New With {.class = "text-danger"})
         </div>
     </div>
     <div class="form-group">

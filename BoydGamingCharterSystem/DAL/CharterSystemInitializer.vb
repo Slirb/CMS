@@ -159,7 +159,7 @@ Public Class CharterSystemInitializer
 
 
 
-        ''CHANGES---------------------------
+
         Dim trips As New List(Of CharterTrips)
         With trips
             .Add(New CharterTrips(2, "Biloxi", "Biloxi", "Potential", "BI75298TG", agreements.Item(0), carriers.Item(0), operators.Item(0), "2016-05-07", "2016-05-10"))
@@ -175,7 +175,7 @@ Public Class CharterSystemInitializer
 
 
 
-        ''END CHANGES-----------------------
+
 
 
     End Sub

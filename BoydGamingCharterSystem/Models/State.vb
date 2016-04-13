@@ -1,4 +1,6 @@
-﻿Public Class State
+﻿Imports System.ComponentModel.DataAnnotations
+Imports System.ComponentModel.DataAnnotations.Schema
+Public Class State
 
     Private stateId As Integer
     Private stateName As String
@@ -12,7 +14,7 @@
             stateId = value
         End Set
     End Property
-
+    <Display(Name:="State")>
     Public Property Name As String
         Get
             Return stateName

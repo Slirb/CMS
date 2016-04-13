@@ -234,7 +234,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\jquery.ext.datepicker.js" />
     <Content Include="Scripts\site.js" />
-    <Content Include="Views\Shared\_CommentsDetails.vbhtml" />
     <Content Include="Views\CharterCarriers\Create.vbhtml" />
     <Content Include="Views\CharterCarriers\Delete.vbhtml" />
     <Content Include="Views\CharterCarriers\Details.vbhtml" />
@@ -251,6 +250,12 @@
     <Content Include="Views\Shared\CharterContacts\CharterContactRow.vbhtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.vbhtml" />
     <Content Include="Views\Shared\CharterComments\CharterCommentRow.vbhtml" />
+    <Content Include="Views\Shared\CharterContacts\CharterContactDetail.vbhtml" />
+    <Content Include="Views\Shared\CharterComments\CharterCommentDetail.vbhtml" />
+    <Content Include="Views\CharterOperators\Create.vbhtml" />
+    <Content Include="Views\CharterOperators\Delete.vbhtml" />
+    <Content Include="Views\CharterOperators\Details.vbhtml" />
+    <Content Include="Views\CharterOperators\Edit.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

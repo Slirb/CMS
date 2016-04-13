@@ -4,6 +4,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 Imports BoydGamingCharterSystem
 Public Class CharterContact
     Public Property Id As Integer
+    <Required(ErrorMessage:="First name is required")>
     <Display(Name:="First Name")>
     Public Property FirstName As String
     <Display(Name:="Last Name")>
@@ -28,6 +29,8 @@ Public Class CharterContact
     <DataType(DataType.EmailAddress)>
     <EmailAddress(ErrorMessage:="Invalid Email Address")>
     Public Property Email As String
+
+
     Public Property Contactable As Contactable
     Public Property CreatedDateTime As Date?
 
@@ -50,6 +53,13 @@ Public Class CharterContact
         End Get
     End Property
 
+    '<NotMapped>
+    'Public ReadOnly Property ContactableId As Integer
+    '    Get
+    '        Return Me.Contactable.ContactableId
+    '    End Get
+    'End Property
+
     <NotMapped>
     <Display(Name:="Contact Phone")>
     Public ReadOnly Property Phone As String
@@ -62,9 +72,10 @@ Public Class CharterContact
         End Get
     End Property
 
-    Public Sub New()
-        Me.CreatedDateTime = DateTime.Now()
 
+    Public Sub New()
+        'Me.Contactable = New Contactable
+        Me.CreatedDateTime = DateTime.Now()
     End Sub
 
 

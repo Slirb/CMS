@@ -4,23 +4,10 @@ Imports System.ComponentModel.DataAnnotations.Schema
 <Serializable>
 Public Class CharterCompany
 
-    'Private companyId As Integer
-
-    'Private companyName As String
-    'Private companyAddressLineOne As String
-    'Private companyAddressLineTwo As String
-    'Private companyCity As String
-    'Private companyState As State
-    'Private companyPostalCode As String
-    'Private companyPostalCodeSuffix As String
-
-    'Private companyCountry As String
-    'Private companyEmail As String
-
     <Key>
     Public Property Id() As Integer
 
-    '<Required(ErrorMessage:="A name is required")>
+    <Required(ErrorMessage:="A name is required")>
     <Display(Name:="Name")>
     Public Property Name() As String
 
@@ -34,6 +21,9 @@ Public Class CharterCompany
     '<Required(ErrorMessage:="A city is required")>
     <Display(Name:="City")>
     Public Property City() As String
+
+    <Display(Name:="State")>
+    Public Property StateId As Integer?
 
     'How do we do this validation?
     Public Overridable Property State() As State
@@ -75,7 +65,10 @@ Public Class CharterCompany
     Public Property Created As Date?
     Public Property LastUpdated As Date?
 
+
     Public Property Contactable As Contactable
+
+
 
     <NotMapped>
     Public Property Contacts As List(Of CharterContact)
@@ -98,6 +91,7 @@ Public Class CharterCompany
     Public Sub New(name As String, addressLineOne As String, addressLineTwo As String,
                    city As String, state As State, postalCode As String, postalCodeSuffix As String,
                    country As String, email As String)
+        Me.New()
         Me.Name = name
         Me.AddressLineOne = addressLineOne
         Me.AddressLineTwo = addressLineTwo
@@ -109,12 +103,10 @@ Public Class CharterCompany
         Me.CompanyEmail = email
     End Sub
 
-
-
     Public Sub New()
 
         Me.Contactable = New Contactable
-
+        Me.Contacts = New List(Of CharterContact)
     End Sub
 
 End Class

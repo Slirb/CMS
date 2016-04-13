@@ -7,7 +7,11 @@ End Code
 
 <div class="contactRow">
     @Using (Html.BeginCollectionItem("contacts"))
+
+
         @:<div class="form-group col-md-12">
+            @Html.HiddenFor(Function(model) model.Id)
+
             @Html.LabelFor(Function(model) model.FirstName, htmlAttributes:=New With {.class = "control-label"})
 
 
@@ -38,6 +42,7 @@ End Code
             @Html.LabelFor(Function(model) model.Email, htmlAttributes:=New With {.class = "control-label"})
             @Html.EditorFor(Function(model) model.Email, New With {.htmlAttributes = New With {.class = "form-control"}})
             @:<a href="#" Class="deleteRow">Remove</a>
+            
 
 
             @:<hr />
