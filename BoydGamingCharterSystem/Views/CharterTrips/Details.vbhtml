@@ -17,19 +17,19 @@ End Code
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(Function(model) model.Carrier)
+                @Html.DisplayNameFor(Function(model) model.CharterAgreements.CharterCarrier.Company.Name)
             </dt>
     
             <dd>
-                @Html.DisplayFor(Function(model) model.Carrier)
+                @Html.DisplayFor(Function(model) model.CharterAgreements.CharterCarrier.Company.Name)
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(Function(model) model.OpName)
+                @Html.DisplayNameFor(Function(model) model.CharterAgreements.CharterOperator.Company.Name)
             </dt>
     
             <dd>
-                @Html.DisplayFor(Function(model) model.OpName)
+                @Html.DisplayFor(Function(model) model.CharterAgreements.CharterOperator.Company.Name)
             </dd>
     
             <dt>

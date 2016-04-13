@@ -20,6 +20,67 @@ Public Class CharterSystem
     Private CharterTrips As DbSet(Of CharterTrips)
     Private CharterTieredCommissions As DbSet(Of CharterTieredCommissions)
     Private CharterProperties As DbSet(Of CharterProperties)
+    Private CharterManifests As DbSet(Of CharterManifest)
+    Private CharterOperatorInterests As DbSet(Of CharterOperatorInterest)
+    Private CharterOperatorModes As DbSet(Of CharterOperatorMode)
+    Private CharterOperatorStopCodes As DbSet(Of CharterOperatorStopCode)
+    Private CharterOperatorTypes As DbSet(Of CharterOperatorType)
+
+    ''Added Operator Interest
+    Public Property operatorInterests As DbSet(Of CharterOperatorInterest)
+        Get
+            Return CharterOperatorInterests
+        End Get
+        Set(value As DbSet(Of CharterOperatorInterest))
+            CharterOperatorInterests = value
+        End Set
+
+    End Property
+
+    ''Added Operator Mode
+    Public Property operatorModes As DbSet(Of CharterOperatorMode)
+        Get
+            Return CharterOperatorModes
+        End Get
+        Set(value As DbSet(Of CharterOperatorMode))
+            CharterOperatorModes = value
+        End Set
+
+    End Property
+
+    ''Added Operator Stop Codes
+    Public Property operatorStopCodes As DbSet(Of CharterOperatorStopCode)
+        Get
+            Return CharterOperatorStopCodes
+        End Get
+        Set(value As DbSet(Of CharterOperatorStopCode))
+            CharterOperatorStopCodes = value
+        End Set
+
+    End Property
+
+    ''Added Operator Types
+    Public Property operatorTypes As DbSet(Of CharterOperatorType)
+        Get
+            Return CharterOperatorTypes
+        End Get
+        Set(value As DbSet(Of CharterOperatorType))
+            CharterOperatorTypes = value
+        End Set
+
+    End Property
+
+
+    ''Added Manifest
+    Public Property manifests As DbSet(Of CharterManifest)
+        Get
+            Return CharterManifests
+        End Get
+        Set(value As DbSet(Of CharterManifest))
+            CharterManifests = value
+        End Set
+
+    End Property
 
 
 

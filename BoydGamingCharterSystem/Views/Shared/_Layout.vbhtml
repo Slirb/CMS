@@ -7,7 +7,12 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+
     @Scripts.Render("~/bundles/site")
 </head>
 <body>
@@ -29,7 +34,7 @@
                         <li>@Html.ActionLink("Operators", "Index", "CharterOperators")</li>
                         <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
                         <li>@Html.ActionLink("Reports", "Index", "CharterReports")</li>
-                        <li>@Html.ActionLink("Administration", "Index", "CharterAdministration")</li>
+                        <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
 
                 
                     </ul>
@@ -53,8 +58,9 @@
             </div>
         </footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    
+
+    
     @RenderSection("scripts", required:=False)
 </body>
 </html>

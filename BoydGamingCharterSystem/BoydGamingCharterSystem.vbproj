@@ -164,6 +164,7 @@
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Controllers\AdministrationController.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
     <Compile Include="Controllers\CharterCommentsController.vb" />
     <Compile Include="Controllers\CharterCompanyController.vb" />
@@ -176,15 +177,20 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Administration\CharterOperatorInterest.vb" />
+    <Compile Include="Models\Administration\CharterOperatorMode.vb" />
+    <Compile Include="Models\Administration\CharterOperatorStopCode.vb" />
+    <Compile Include="Models\Administration\CharterOperatorType.vb" />
     <Compile Include="Models\CharterAgreement.vb" />
     <Compile Include="Models\CharterCarrier.vb" />
     <Compile Include="Models\CharterComment.vb" />
     <Compile Include="Models\CharterCompany.vb" />
+    <Compile Include="Models\CharterManifest.vb" />
     <Compile Include="Models\CharterContact.vb" />
     <Compile Include="Models\CharterOperator.vb" />
     <Compile Include="DAL\CharterSystem.vb" />
     <Compile Include="Models\CharterProperties.vb" />
-    <Compile Include="Models\CharterTieredCommissions.vb" />
+    <Compile Include="Models\Administration\CharterTieredCommissions.vb" />
     <Compile Include="Models\CharterTrips.vb" />
     <Compile Include="Models\HtmlHelpers.vb" />
     <Compile Include="Models\State.vb" />
@@ -203,6 +209,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\Administration.vb" />
+    <Compile Include="ViewModels\EditTripsModel.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -215,6 +223,39 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -232,6 +273,9 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Views\Shared\_CommentsDetails.vbhtml" />
     <Content Include="Scripts\jquery.ext.datepicker.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Views\CharterCarriers\Create.vbhtml" />
@@ -239,10 +283,16 @@
     <Content Include="Views\CharterCarriers\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\Index.vbhtml" />
-    <Content Include="Views\CharterTrips\Create.vbhtml" />
-    <Content Include="Views\CharterTrips\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Index.vbhtml" />
+    <Content Include="Views\CharterTrips\Edit.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Create.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Delete.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Details.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Index.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Edit.vbhtml" />
+    <Content Include="Views\CharterTrips\ConfirmationLetter.vbhtml" />
+    <Content Include="Views\Administration\Index.vbhtml" />
     <Content Include="Views\CharterOperators\Index.vbhtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <Content Include="Views\Shared\_ContactEntry.vbhtml" />
@@ -291,7 +341,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CharterAdministration\" />
     <Folder Include="Views\CharterAgreements\" />
     <Folder Include="Views\CharterCarriers\EditorTemplates\" />
     <Folder Include="Views\CharterCompany\" />
