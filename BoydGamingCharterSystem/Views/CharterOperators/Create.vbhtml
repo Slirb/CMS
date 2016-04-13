@@ -1,0 +1,1 @@
+﻿@ModelType BoydGamingCharterSystem.CharterOperator
