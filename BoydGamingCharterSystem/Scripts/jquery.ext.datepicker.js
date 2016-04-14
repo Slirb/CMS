@@ -1,4 +1,4 @@
-﻿//var $ = jQuery.noConflict()
-//$(function () {
-//    $(".datepicker").datepicker();
-//})
+﻿var $ = jQuery.noConflict()
+$(function () {
+    $(".datepicker").datepicker();
+})
