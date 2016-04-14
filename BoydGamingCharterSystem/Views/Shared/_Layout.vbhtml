@@ -3,9 +3,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title | Boyd Gaming Charter System</title>
+    <title>@ViewBag.Title | Charter System</title>
     @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    @Scripts.Render("~/bundles/site")
 </head>
 <body>
     
@@ -18,11 +26,14 @@
                 <nav class="mainNav">
                     <ul>
                     
-                        <li>@Html.ActionLink("Trips", "Index", "Trip")</li>
-                        <li>@Html.ActionLink("Charter Agreements", "Index", "CharterAgreement")</li>
-                        <li>@Html.ActionLink("Operators", "Index", "Operator")</li>
+                        <!--Changed folder names to unify naming scheme-->
+
+                        
+                        <li>@Html.ActionLink("Trips", "Index", "CharterTrips")</li>
+                        <li>@Html.ActionLink("Charter Agreements", "Index", "CharterAgreements")</li>
+                        <li>@Html.ActionLink("Operators", "Index", "CharterOperators")</li>
                         <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
-                        <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "CharterReports")</li>
                         <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
 
                 
@@ -41,12 +52,15 @@
         </div>
         <footer>
             <div class="container">
-                <p>&copy; @DateTime.Now.Year - Boyd Gaming Bus-Charter System</p>
+
+                <!--Removed References to Client-->
+                <p>&copy; @DateTime.Now.Year - Charter System</p>
             </div>
         </footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    
+
+    
     @RenderSection("scripts", required:=False)
 </body>
 </html>
