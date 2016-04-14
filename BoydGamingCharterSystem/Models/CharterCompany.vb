@@ -127,7 +127,7 @@ Public Class CharterCompany
         Me.PostalCode = postalCode
         Me.PostalCodeSuffix = postalCodeSuffix
         Me.Country = country
-        Me.Email = email
+        Me.Email = Nothing
     End Sub
 
     Public Sub New()
