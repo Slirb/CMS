@@ -17,10 +17,16 @@ End Code
         <dd>
             @Html.DisplayFor(Function(model) model.Name)
         </dd>
-
     </dl>
 </div>
+
+<div>
+    @Code
+        Html.RenderPartial("~/Views/CharterCompany/Details.vbhtml", Model.CharterCompany)
+    End Code
+</div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", New With { .id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", New With {.id = Model.Id}) |
     @Html.ActionLink("Back to List", "Index")
 </p>

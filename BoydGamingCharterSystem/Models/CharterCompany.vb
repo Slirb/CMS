@@ -130,4 +130,8 @@ Public Class CharterCompany
         Me.Email = email
     End Sub
 
+    Public Sub New()
+
+    End Sub
+
 End Class
