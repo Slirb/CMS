@@ -113,35 +113,22 @@ Namespace Controllers
                 'Dim existingIds As List(Of Integer) = New List(Of Integer)
                 'Dim existingContacts As List(Of CharterContact) = New List(Of CharterContact)
                 'existingContacts = (db.carriers.Find(charterCarrier.Id).Contacts).ToList()
-                'For Each contact In charterCarrier.Contacts
-                '    submittedIds.Add(contact.Id)
-                'Next
-
-                'For Each contact In existingContacts
-                '    existingIds.Add(contact.Id)
-                'Next
+                'Dim deleteContacts As List(Of CharterContact) = existingContacts.Where(Function(c) Not (charterCarrier.Contacts.Any(Function(s) s.Id = c.Id)))
 
 
-
-                'TODO: Fix this error - 
-                '"Attaching an entity of type 'BoydGamingCharterSystem.CharterContact' 
-                'failed because another entity of the same type already has the same primary key value. 
-                'This can happen when using the 'Attach' method or setting 
-                'the State of an entity to 'Unchanged' or 'Modified' if any entities in the graph have 
-                'conflicting key values. This may be because some entities are New And have Not yet received database-generated 
-                'key values.In this case use the 'Add' method or the 'Added' entity state to track 
-                'the graph And then set the state of non-New entities to 'Unchanged' or 'Modified' as 
-                'appropriate.
-
-                'This happens in the following loop when a carrier has at least one contact associated with it
-                'and you try to add 2 or more contacts in the edit form - same issue with the comments
-
-                'Changing the content of any existing comments or contacts works fine
 
                 'Update and Edit new and existing contacts
+                'Make sure each new Id is not equal to any other new Id
+                For Each contact In charterCarrier.Contacts.Where(Function(c) c.Id = 0)
+                    Static Dim contactCounter As Integer = -1
+                    contact.Id = contactCounter
+                    contactCounter -= 1
+                Next
+
                 For Each contact In charterCarrier.Contacts
+
                     contact.Contactable = charterCarrier.Company.Contactable
-                    If contact.Id = 0 Then
+                    If contact.Id < 0 Then
                         db.Entry(contact).State = EntityState.Added
                     Else
                         db.Entry(contact).State = EntityState.Modified
@@ -150,6 +137,14 @@ Namespace Controllers
                 Next
 
                 'Update and Edit new and existing comments
+
+                For Each comment In charterCarrier.Comments.Where(Function(c) c.Id = 0)
+                    Static Dim commentCounter As Integer = -1
+                    comment.Id = commentCounter
+                    commentCounter -= 1
+                Next
+
+
                 For Each comment In charterCarrier.Comments
                     comment.Commentable = charterCarrier.Commentable
                     If comment.Id = 0 Then
