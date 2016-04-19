@@ -100,22 +100,11 @@ Namespace Controllers
         Function Edit(charterCarrier As CharterCarrier) As ActionResult
             If ModelState.IsValid Then
 
-                'Delete contacts
-                'CONTACTS CAN'T BE DELETED YET... don't know how :(
-                'The remove button removes the contact from the DOM so any that aren't removed
-                'will necessarily be missing from the CharterCarrier object coming in
-
-                'This needs to be done by comparing what's on the database and what is submitted in the contacts
-                'list I think. Not sure how I want to do this yet because it can cause some strange runtime errors
-
-
-                'Dim submittedIds As List(Of Integer) = New List(Of Integer)
-                'Dim existingIds As List(Of Integer) = New List(Of Integer)
-                'Dim existingContacts As List(Of CharterContact) = New List(Of CharterContact)
-                'existingContacts = (db.carriers.Find(charterCarrier.Id).Contacts).ToList()
-                'Dim deleteContacts As List(Of CharterContact) = existingContacts.Where(Function(c) Not (charterCarrier.Contacts.Any(Function(s) s.Id = c.Id)))
-
-
+                'Get existing carrier data and disconnect it from the database to prevent primary key collisions - this is for comparing
+                'the current data to the submitted data. Anything that's removed from the submitted will exist on the current
+                'and that difference will need to be reconciled
+                Dim existingCarrier As CharterCarrier = (From carrier In db.carriers.AsNoTracking().Include(Function(c) c.Commentable).AsNoTracking().Include(Function(c) c.Company).AsNoTracking().Include(Function(c) c.Company.Contactable).AsNoTracking()
+                                                         Select carrier Where carrier.Id = charterCarrier.Id).FirstOrDefault()
 
                 'Update and Edit new and existing contacts
                 'Make sure each new Id is not equal to any other new Id
@@ -136,28 +125,44 @@ Namespace Controllers
                     db.Entry(contact.Contactable).State = EntityState.Unchanged
                 Next
 
+                'Delete contacts
+
+                Dim existingContacts As List(Of CharterContact) = existingCarrier.Contacts
+                Dim deletedContacts As List(Of CharterContact) = existingContacts.Where(Function(p) Not charterCarrier.Contacts.Any(Function(p2) p2.Id = p.Id)).ToList()
+
+                For Each contact In deletedContacts
+                    Dim deleteContact As CharterContact = db.contacts.Find(contact.Id)
+                    db.contacts.Remove(deleteContact)
+                Next
+
+
                 'Update and Edit new and existing comments
 
+                'Prevent primary key collisions as new comments all have an id of 0
                 For Each comment In charterCarrier.Comments.Where(Function(c) c.Id = 0)
                     Static Dim commentCounter As Integer = -1
                     comment.Id = commentCounter
                     commentCounter -= 1
                 Next
 
-
                 For Each comment In charterCarrier.Comments
                     comment.Commentable = charterCarrier.Commentable
-                    If comment.Id = 0 Then
+                    If comment.Id < 0 Then
                         db.Entry(comment).State = EntityState.Added
-
                     Else
                         db.Entry(comment).State = EntityState.Modified
                     End If
                     db.Entry(comment.Commentable).State = EntityState.Unchanged
-                    db.SaveChanges()
+
                 Next
 
-
+                'Delete comments
+                Dim existingComments As List(Of CharterComment) = existingCarrier.Comments
+                Dim deletedComments As List(Of CharterComment) = existingComments.Where(Function(p) Not charterCarrier.Comments.Any(Function(p2) p2.Id = p.Id)).ToList()
+                For Each comment In deletedComments
+                    Dim deleteComment As CharterComment = db.comments.Find(comment.Id)
+                    db.comments.Remove(deleteComment)
+                Next
 
                 db.Entry(charterCarrier).State = EntityState.Modified
                 db.Entry(charterCarrier.Company).State = EntityState.Modified
