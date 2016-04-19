@@ -293,7 +293,6 @@
     <Content Include="Views\CharterTieredCommissions\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\ConfirmationLetter.vbhtml" />
     <Content Include="Views\Administration\Index.vbhtml" />
-    <Content Include="Views\CharterOperators\Index.vbhtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
     <Content Include="Views\Shared\_ContactEntry.vbhtml" />
     <Content Include="Views\Shared\EditorTemplates\CharterCompanyCreate.vbhtml" />
@@ -306,6 +305,7 @@
     <Content Include="Views\CharterOperators\Delete.vbhtml" />
     <Content Include="Views\CharterOperators\Details.vbhtml" />
     <Content Include="Views\CharterOperators\Edit.vbhtml" />
+    <Content Include="Views\CharterOperators\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
