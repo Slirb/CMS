@@ -16,7 +16,11 @@ Namespace Controllers
 
         ' GET: CharterOperators
         Function Index() As ActionResult
-            Return View(db.operators.ToList())
+            Dim operators As List(Of CharterOperator)
+            operators = (From charterOperator In db.operators.Include(Function(o) o.Commentable).Include(Function(o) o.Company).Include(Function(o) o.Company.Contactable)
+                         Select charterOperator).ToList()
+
+            Return View(operators)
         End Function
 
         ' GET: CharterOperators/Details/5
