@@ -1,7 +1,7 @@
 ﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterCarrier)
 
 @Code
-    ViewData("Title") = "Carrier Index"
+    ViewData("Title") = "Carriers"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
@@ -12,9 +12,13 @@ End Code
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
+
 <body>
+
+    <h1>@ViewBag.Title</h1>
+
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New Carrier", "Create")
     </p>
     <table class="table">
         <tr>

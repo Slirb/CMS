@@ -1,13 +1,13 @@
 ﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterOperator)
 @Code
-ViewData("Title") = "Index"
-Layout = "~/Views/Shared/_Layout.vbhtml"
+    ViewData("Title") = "Operators"
+    Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
-<h2>Index</h2>
+<h1>@ViewBag.Title</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Operator", "Create")
 </p>
 <table class="table">
     <tr>

@@ -21,7 +21,9 @@
         <header class="mainHeader">
             <div class="container">
                 <div class="logo">
-                    <img src="http://placehold.it/200x100" />
+
+                    <img src="~/Content/Logo/Charter_Bus.png" />
+
                 </div>
                 <nav class="mainNav">
                     <ul>
@@ -30,7 +32,7 @@
 
                         
                         <li>@Html.ActionLink("Trips", "Index", "CharterTrips")</li>
-                        <li>@Html.ActionLink("Charter Agreements", "Index", "CharterAgreements")</li>
+                        <li>@Html.ActionLink("Agreements", "Index", "CharterAgreements")</li>
                         <li>@Html.ActionLink("Operators", "Index", "CharterOperators")</li>
                         <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
                         <li>@Html.ActionLink("Reports", "Index", "CharterReports")</li>

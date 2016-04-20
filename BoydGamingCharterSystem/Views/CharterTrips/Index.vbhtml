@@ -1,7 +1,7 @@
 ﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterTrips)
 
 @Code
-    ViewData("Title") = "Index"
+    ViewData("Title") = "Trips"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 
 
@@ -18,6 +18,8 @@ End Code
     <title>Index</title>
 </head>
 <body>
+
+    <h1>@ViewBag.Title</h1>
     
     <!--<p>@Html.ActionLink("Create New", "Create")</p>-->
 
@@ -26,8 +28,8 @@ End Code
     @<p>
         @Html.Label("startLabel", "Start: ")
         @Html.TextBox("StartDate", Date.Now.ToString("MM/dd/yyyy"), New With {.class = "date"})
-    </p>
-    @<p>
+           
+    
         @Html.Label("endLabel", "End: ")
         @Html.TextBox("EndDate", "", New With {.class = "date"})
     </p>
@@ -38,39 +40,36 @@ End Code
     </p>
 
     @<p>
+
+
          <dl>
-             
              <dd>
                  @Html.Label("activeLabel", "Active: ", New With {.style = "background-color:darkseagreen"})
                  @Html.CheckBox("Active", True)
-             </dd>
-             <dd>
+                  | 
+             
                  @Html.Label("appliedLabel", "Applied: ", New With {.style = "background-color:yellow"})
                  @Html.CheckBox("Applied", True)
-             </dd>
-             <dd>
+                  | 
                  @Html.Label("cancelledLabel", "Canceled: ", New With {.style = "background-color:grey"})
                  @Html.CheckBox("Cancelled", True)
-            </dd>
-             <dd>
-                @Html.Label("completedLabel", "Completed: ", New With {.style = "background-color:lightblue"})
-                @Html.CheckBox("Completed", True)
-             </dd>
-             <dd>
-                @Html.Label("potentialLabel", "Potential: ", New With {.style = "background-color:mediumpurple"})
-                @Html.CheckBox("Potential", True)
+                  |      
+                 @Html.Label("completedLabel", "Completed: ", New With {.style = "background-color:lightblue"})
+                 @Html.CheckBox("Completed", True)
+                  | 
+                 @Html.Label("potentialLabel", "Potential: ", New With {.style = "background-color:mediumpurple"})
+                 @Html.CheckBox("Potential", True)
             </dd>
              
              <dd>
                  @Html.Label("carrierLabel", "Carrier: ")                  
                  @Html.DropDownList("SelectedCarrier", New SelectList(DirectCast(ViewData("Carriers"), IEnumerable), "Value", "Text", ViewData("SelectedCarrier")), "All")                              
-             </dd>
-             <dd>
+             
                  @Html.Label("operatorLabel", "Operator: ")
                  @Html.DropDownList("SelectedOperator", New SelectList(DirectCast(ViewData("Operators"), IEnumerable), "Value", "Text", ViewData("SelectedOperator")), "All")                                        
              </dd>           
 </dl>
-    <input type = "submit" value="Search"  /></p>
+    <input type = "submit" value="Search Trips"  /></p>
 
 End Using
 
