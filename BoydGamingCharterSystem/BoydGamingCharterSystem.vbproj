@@ -306,6 +306,7 @@
     <Content Include="Views\CharterOperators\Delete.vbhtml" />
     <Content Include="Views\CharterOperators\Details.vbhtml" />
     <Content Include="Views\CharterOperators\Edit.vbhtml" />
+    <Content Include="Views\CharterTrips\AddPerson.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
