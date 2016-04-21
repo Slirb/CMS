@@ -37,7 +37,16 @@ Namespace Controllers
 
         ' GET: CharterOperators/Create
         Function Create() As ActionResult
-            Return View()
+            Dim charterOperator As CharterOperator = New CharterOperator()
+            charterOperator.Company.CreateCharterContacts(1)
+            charterOperator.CreateCharterComments(1)
+
+            ViewBag.States = New SelectList(db.states, "Id", "Name")
+            ViewBag.OpInterests = New SelectList(db.operatorInterests, "Id", "Interest")
+            ViewBag.OpModes = New SelectList(db.operatorModes, "Id", "Mode")
+            ViewBag.OpStopCodes = New SelectList(db.operatorStopCodes, "Id", "StopCode")
+            ViewBag.OpTypes = New SelectList(db.operatorTypes, "Id", "Type")
+            Return View(charterOperator)
         End Function
 
         ' POST: CharterOperators/Create
@@ -45,12 +54,18 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="Id,VendorNumber,Type,Mode,Interest,StopCode")> ByVal charterOperator As CharterOperator) As ActionResult
+        Function Create(ByVal charterOperator As CharterOperator) As ActionResult
             If ModelState.IsValid Then
+                charterOperator.Created = DateTime.Now()
                 db.operators.Add(charterOperator)
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
+            ViewBag.States = New SelectList(db.states, "Id", "Name")
+            ViewBag.OpInterests = New SelectList(db.operatorInterests, "Id", "Interest")
+            ViewBag.OpModes = New SelectList(db.operatorModes, "Id", "Mode")
+            ViewBag.OpStopCodes = New SelectList(db.operatorStopCodes, "Id", "StopCode")
+            ViewBag.OpTypes = New SelectList(db.operatorTypes, "Id", "Type")
             Return View(charterOperator)
         End Function
 
@@ -59,10 +74,18 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterOperator As CharterOperator = db.operators.Find(id)
+            Dim charterOperator As CharterOperator = (From op In db.operators.Include(Function(c) c.Commentable).Include(Function(c) c.Company).Include(Function(c) c.Company.Contactable)
+                                                      Select op Where op.Id = id).FirstOrDefault()
             If IsNothing(charterOperator) Then
                 Return HttpNotFound()
             End If
+
+
+            ViewBag.States = New SelectList(db.states, "Id", "Name")
+            ViewBag.OpInterests = New SelectList(db.operatorInterests, "Id", "Interest")
+            ViewBag.OpModes = New SelectList(db.operatorModes, "Id", "Mode")
+            ViewBag.OpStopCodes = New SelectList(db.operatorStopCodes, "Id", "StopCode")
+            ViewBag.OpTypes = New SelectList(db.operatorTypes, "Id", "Type")
             Return View(charterOperator)
         End Function
 
@@ -71,12 +94,72 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="Id,VendorNumber,Type,Mode,Interest,StopCode")> ByVal charterOperator As CharterOperator) As ActionResult
+        Function Edit(ByVal charterOperator As CharterOperator) As ActionResult
             If ModelState.IsValid Then
+                Dim existingOperator As CharterOperator = (From op In db.operators.AsNoTracking().Include(Function(c) c.Commentable).AsNoTracking().Include(Function(c) c.Company).AsNoTracking().Include(Function(c) c.Company.Contactable).AsNoTracking()
+                                                           Select op Where op.Id = charterOperator.Id).FirstOrDefault()
+
+                'update and edit existing operator contacts
+                For Each contact In charterOperator.Contacts.Where(Function(c) c.Id = 0)
+                    Static Dim contactCounter As Integer = -1
+                    contact.Id = contactCounter
+                    contactCounter -= 1
+                Next
+
+                For Each contact In charterOperator.Contacts
+                    contact.Contactable = charterOperator.Company.Contactable
+                    If contact.Id < 0 Then
+                        db.Entry(contact).State = EntityState.Added
+                    Else
+                        db.Entry(contact).State = EntityState.Modified
+                    End If
+                    db.Entry(contact.Contactable).State = EntityState.Unchanged
+                Next
+
+                'Delete contacts
+                Dim existingContacts As List(Of CharterContact) = existingOperator.Contacts
+                Dim deletedCOntacts As List(Of CharterContact) = existingContacts.Where(Function(p) Not charterOperator.Contacts.Any(Function(p2) p2.Id = p.Id)).ToList()
+
+                For Each contact In deletedCOntacts
+                    Dim deleteContact As CharterContact = db.contacts.Find(contact.Id)
+                    db.contacts.Remove(deleteContact)
+                Next
+
+                'update and edit existing comments
+                For Each comment In charterOperator.Comments.Where(Function(c) c.Id = 0)
+                    Static Dim commentCounter As Integer = -1
+                    comment.Id = commentCounter
+                    commentCounter -= 1
+                Next
+
+                For Each comment In charterOperator.Comments
+                    comment.Commentable = charterOperator.Commentable
+                    If comment.Id < 0 Then
+                        db.Entry(comment).State = EntityState.Added
+                    Else
+                        db.Entry(comment).State = EntityState.Modified
+                    End If
+                    db.Entry(comment.Commentable).State = EntityState.Unchanged
+                Next
+
+                'delete comments
+                Dim existingComments As List(Of CharterComment) = existingOperator.Comments
+                Dim deletedComments As List(Of CharterComment) = existingComments.Where(Function(p) Not charterOperator.Comments.Any(Function(p2) p2.Id = p.Id)).ToList()
+                For Each comment In deletedComments
+                    Dim deleteComment As CharterComment = db.comments.Find(comment.Id)
+                    db.comments.Remove(deleteComment)
+                Next
                 db.Entry(charterOperator).State = EntityState.Modified
+                db.Entry(charterOperator.Company).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
+
+            ViewBag.States = New SelectList(db.states, "Id", "Name")
+            ViewBag.OpInterests = New SelectList(db.operatorInterests, "Id", "Interest")
+            ViewBag.OpModes = New SelectList(db.operatorModes, "Id", "Mode")
+            ViewBag.OpStopCodes = New SelectList(db.operatorStopCodes, "Id", "StopCode")
+            ViewBag.OpTypes = New SelectList(db.operatorTypes, "Id", "Type")
             Return View(charterOperator)
         End Function
 
@@ -97,7 +180,14 @@ Namespace Controllers
         <ActionName("Delete")>
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim charterOperator As CharterOperator = db.operators.Find(id)
+            Dim charterOperator As CharterOperator = (From op In db.operators.Include(Function(c) c.Commentable).Include(Function(c) c.Company).Include(Function(c) c.Company.Contactable)
+                                                      Select op Where op.Id = id).FirstOrDefault()
+            'Delete all related data
+            db.comments.RemoveRange(charterOperator.Comments)
+            db.contacts.RemoveRange(charterOperator.Contacts)
+            db.contactable.Remove(charterOperator.Company.Contactable)
+            db.commentable.Remove(charterOperator.Commentable)
+            db.companies.Remove(charterOperator.Company)
             db.operators.Remove(charterOperator)
             db.SaveChanges()
             Return RedirectToAction("Index")

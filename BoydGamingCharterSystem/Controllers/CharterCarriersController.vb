@@ -193,8 +193,6 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function DeleteConfirmed(ByVal id As Integer) As ActionResult
 
-            'This actually worked how I expected it to :)
-
             'Load all related data
             Dim charterCarrier As CharterCarrier = (From carrier In db.carriers.Include(Function(c) c.Commentable).Include(Function(c) c.Company).Include(Function(c) c.Company.Contactable)
                                                     Select carrier Where carrier.Id = id).FirstOrDefault()

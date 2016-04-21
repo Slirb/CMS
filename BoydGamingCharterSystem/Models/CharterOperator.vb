@@ -22,6 +22,7 @@ Public Class CharterOperator
     Public Property Mode As String
     Public Property Interest As String
     Public Property StopCode As String
+    Public Property Created As Date?
 
     <ForeignKey("OperatorId")>
     Public Property CharterAgreements As List(Of CharterAgreement)
@@ -50,8 +51,16 @@ Public Class CharterOperator
         End Set
     End Property
 
+    Friend Sub CreateCharterComments(Optional count As Integer = 1)
+        For i As Integer = 0 To count - 1
+            Me.Comments.Add(New CharterComment)
+
+        Next
+    End Sub
 
     Public Sub New()
+
+        Me.Company = New CharterCompany
         Me.Commentable = New Commentable
     End Sub
 
