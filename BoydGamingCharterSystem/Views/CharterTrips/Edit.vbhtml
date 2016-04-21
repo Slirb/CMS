@@ -48,6 +48,8 @@ End Code
             @Html.HiddenFor(Function(model) model.trip.TripDestination)
             @Html.HiddenFor(Function(model) model.trip.TripStatus)
             @Html.HiddenFor(Function(model) model.trip.Confirmation)
+            @Html.HiddenFor(Function(model) model.trip.ManifestCount)
+            @Html.HiddenFor(Function(model) model.trip.TripNotes))
             
              <div>
                  <!--Need to add agreement name and pull from table-->
@@ -88,11 +90,8 @@ End Code
                      @Html.TextBox("ArrivalDay", Model.trip.Arrival.Value.ToString("MM/dd/yyyy"), New With {.class = "date"})
                      @Html.Label("ArrivealHourLabel", "Hour: ")
                      @Html.DropDownList("ArrivalHour", DirectCast(ViewBag.ArriveHours, SelectList))
-                     <!--Html.TextBox("ArrivalHour", Model.trip.Arrival.Value.ToString("HH"))-->
                      @Html.Label("ArrivalMinuteLabel", "Minute: ")
                      @Html.DropDownList("ArrivalMinute", DirectCast(ViewBag.ArriveMinutes, SelectList))
-                     <!--Html.TextBox("ArrivalMinute", Model.trip.Arrival.Value.ToString("mm"))
-                     Html.EditorFor(Function(model) model.trip.Arrival, New With {.htmlAttributes = New With {.class = "form-control"}})-->
                      @Html.ValidationMessageFor(Function(model) model.trip.Arrival, "", New With {.class = "text-danger"})
                  </div>
              </div>
@@ -103,11 +102,8 @@ End Code
                      @Html.TextBox("DepartureDay", Model.trip.Arrival.Value.ToString("MM/dd/yyyy"), New With {.class = "date"})
                      @Html.Label("DepartureHourLabel", "Hour: ")
                      @Html.DropDownList("DepartureHour", DirectCast(ViewBag.DepartHours, SelectList))
-                     <!--Html.TextBox("DepartureHour", Model.trip.Arrival.Value.ToString("HH"))-->
                      @Html.Label("DepartureMinuteLabel", "Minute: ")
                      @Html.DropDownList("DepartureMinute", DirectCast(ViewBag.DepartMinutes, SelectList))
-                     <!--Html.TextBox("DepartureMinute", Model.trip.Arrival.Value.ToString("mm"))
-                     Html.EditorFor(Function(model) model.trip.Departure, New With {.htmlAttributes = New With {.class = "form-control"}})-->
                      @Html.ValidationMessageFor(Function(model) model.trip.Departure, "", New With {.class = "text-danger"})
                  </div>
              </div>
@@ -155,38 +151,54 @@ End Code
 
 
     <ul>
-                                                                 <li> <a href = "#tabs-1" > Manifest Details</a></li>
+        <li> <a href = "#tabs-1" > Manifest Details</a></li>
         <li> <a href = "#tabs-2" > Notes</a></li>
         <li> <a href = "#tabs-3" > Comission</a></li>
     </ul>
 
     <div id = "tabs-1" >
 
+        @Using Html.BeginForm("AddPerson", "CharterTrips")
+            @Html.Hidden("tripId", Model.trip.Id)
+            @Html.Label("searchLabel", "Card Number: ")
+            @Html.TextBox("searchPerson", "")
+            @<input id="subButton" type="submit" value="Add" title="" />
+        End Using
+
+        @Using Html.BeginForm("ImportManifest", "CharterTrips", FormMethod.Post, New With {.enctype = "multipart/form-data"})
+            @Html.Hidden("id", Model.trip.Id)
+            @<input type = "file" name="manifest" />
+            @<input id = "subButton" type="submit" value="UploadFile" title="" />
+        End Using
+
+        @Html.ActionLink("Allocate Offers", "AllocateOffers", New With {.tripId = Model.trip.Id})
+
+
         <Table Class="table">
             <tr>
-                                                                     <th>
-                                                                     Card No
+            <th>
+            Card No
                 </th>
                 <th>
-                                                                     Full Name
+            Full Name
                 </th>
                 <th>
-                                                                     DOB
+            DOB
                 </th>
                 <th>
-                                                                     Addr1
+            Addr1
                 </th>
                 <th>
-                                                                     Addr2
+            Addr2
                 </th>
                 <th>
-                                                                     City
+            City
                 </th>
                 <th>
-                                                                     State
+            State
                 </th>
                 <th>
-                                                                     Zip
+            Zip
                 </th>
                 <th></th>
             </tr>
@@ -202,7 +214,7 @@ End Code
                         @Html.DisplayFor(Function(modelItem) item.FullName)
                     </td>
                     <td>
-                        @Html.DisplayFor(Function(modelItem) item.dob)
+                        @Html.DisplayFor(Function(modelItem) item.ShortDate)
                     </td>
                     <td>
                         @Html.DisplayFor(Function(modelItem) item.addressLineOne)
@@ -230,7 +242,13 @@ End Code
     </div>
 
     <div id = "tabs-2" >
-        This will contain the notes for the trip
+        @Using Html.BeginForm("SubmitNotes", "CharterTrips", FormMethod.Post)
+            @Html.Hidden("id", Model.trip.Id)
+            @Html.TextArea("tripNotes", Model.trip.TripNotes, New With {.class = "form-control", .name = "tripNotes"})
+            @<input id="notesButton" type="submit" value="Save Notes" title="" />
+        End Using
+
+        
     </div>
 
     <div id = "tabs-3" >

@@ -38,6 +38,14 @@ Public Class CharterManifest
         End Get
     End Property
 
+    'Returns a formatted DOB
+    Public ReadOnly Property ShortDate() As String
+        Get
+            Return dob.Value.ToString("MM/dd/yyyy")
+        End Get
+    End Property
+
+
 
     Public Sub New()
         Me.Id = Nothing

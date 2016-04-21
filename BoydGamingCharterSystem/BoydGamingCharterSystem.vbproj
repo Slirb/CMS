@@ -313,6 +313,7 @@
     <Content Include="Views\CharterAgreements\Edit.vbhtml" />
     <Content Include="Views\CharterAgreements\Index.vbhtml" />
     <Content Include="Views\Shared\CharterTrips\CharterTripCreateRow.vbhtml" />
+    <Content Include="Views\CharterTrips\AddPerson.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

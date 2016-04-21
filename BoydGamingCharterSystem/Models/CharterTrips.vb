@@ -30,13 +30,30 @@ Public Class CharterTrips
 
 
 
-    Public Property Arrival As Date?
-    Public Property Departure As Date?
-
-
+    Public Property Arrival As DateTime?
+    Public Property Departure As DateTime?
+    Public Property ManifestCount As Integer
+    Public Property TripNotes As String
 
     <ForeignKey("tripId")>
     Public Property CharterManifests() As ICollection(Of CharterManifest)
+
+
+    'Formats the arrival time for display
+    Public ReadOnly Property DisplayArrival() As String
+        Get
+            Return Arrival.Value.ToString("MM/dd/yyyy hh:mm tt")
+        End Get
+    End Property
+
+
+    'Formats the departure time for display
+    Public ReadOnly Property DisplayDeparture() As String
+        Get
+            Return Departure.Value.ToString("MM/dd/yyyy hh:mm tt")
+        End Get
+    End Property
+
 
     <Key>
     Public Property Id() As Integer
@@ -177,7 +194,9 @@ Public Class CharterTrips
         Me.Departure = DateTime.MinValue
         Me.OperatorName = Nothing
         Me.CarrierName = Nothing
-        'Me.CharterManifests = Nothing
+        Me.ManifestCount = Nothing
+        Me.CharterManifests = Nothing
+        Me.TripNotes = Nothing
 
 
     End Sub
@@ -185,6 +204,7 @@ Public Class CharterTrips
 
     ''Need to finish this
     Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As DateTime, departDate As DateTime)
+        Me.New()
         Me.Id = id
         Me.CarrierId = charterAgreement.CharterCarrier.Id
         Me.TripDestination = dest
@@ -198,6 +218,8 @@ Public Class CharterTrips
         Me.Departure = departDate
         Me.CarrierName = charterAgreement.CharterCarrier.Company.Name
         Me.OperatorName = charterAgreement.CharterOperator.Company.Name
+
+
     End Sub
 
 

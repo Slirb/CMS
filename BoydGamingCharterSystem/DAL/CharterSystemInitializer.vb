@@ -245,6 +245,12 @@ Public Class CharterSystemInitializer
         End With
         manifests.ForEach(Sub(manifest) context.manifests.Add(manifest))
         context.SaveChanges()
+
+
+
+        'Updates the count for each trip
+        trips.ForEach(Sub(trip) trip.ManifestCount = (From t In context.manifests.ToList()
+                                                      Select t Where t.tripId = trip.Id).Count)
         'END CHANGES-----------------------
 
 
