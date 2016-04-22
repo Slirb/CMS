@@ -252,10 +252,10 @@ End Code
     </div>
 
     <div id = "tabs-3" >
-        Here is where the reports will be generated
-        @Html.ActionLink("Player Stats", "PlayerStats", New With {.tripId = Model.trip.Id})
-        @Html.ActionLink("Analysis Report", "AnalysisReport", New With {.tripId = Model.trip.Id})
-        @Html.ActionLink("Commission Report", "Commission Report", New With {.tripId = Model.trip.Id})
+        
+        @Html.ActionLink("Player Stats", "PlayerStats", New With {.tripId = Model.trip.Id})<br />
+        @Html.ActionLink("Analysis Report", "AnalysisReport", New With {.tripId = Model.trip.Id})<br/>
+        @Html.ActionLink("Commission Report", "Commission Report", New With {.tripId = Model.trip.Id})<br />
     </div>
 
     </div>

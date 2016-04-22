@@ -169,7 +169,11 @@
     <Compile Include="Controllers\CharterCommentsController.vb" />
     <Compile Include="Controllers\CharterCompanyController.vb" />
     <Compile Include="Controllers\CharterContactsController.vb" />
+    <Compile Include="Controllers\CharterOperatorInterestsController.vb" />
+    <Compile Include="Controllers\CharterOperatorModesController.vb" />
     <Compile Include="Controllers\CharterOperatorsController.vb" />
+    <Compile Include="Controllers\CharterOperatorStopCodesController.vb" />
+    <Compile Include="Controllers\CharterOperatorTypesController.vb" />
     <Compile Include="Controllers\CharterTieredCommissionsController.vb" />
     <Compile Include="Controllers\CharterTripsController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
@@ -307,6 +311,18 @@
     <Content Include="Views\CharterOperators\Details.vbhtml" />
     <Content Include="Views\CharterOperators\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\AddPerson.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Edit.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
