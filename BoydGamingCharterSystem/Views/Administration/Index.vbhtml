@@ -23,7 +23,7 @@ End Code
             <th>
                 Interest
             </th>            
-            <th></th>
+            <th>@Html.ActionLink("Create", "CreateInterest")</th>
         </tr>
 
         @For Each item In Model.operatorInterest
@@ -34,7 +34,7 @@ End Code
                 </td>
                 <td>
 
-                    @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
+                    @Html.ActionLink("Edit", "EditInterest", New With {.id = item.Id})
                 </td>
             </tr>
         Next
@@ -47,7 +47,7 @@ End Code
             <th>
                 Mode
             </th>
-            <th></th>
+            <th>@Html.ActionLink("Create", "CreateMode")</th>
         </tr>
 
         @For Each item In Model.operatorMode
@@ -58,7 +58,7 @@ End Code
                 </td>
                 <td>
 
-                    @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
+                    @Html.ActionLink("Edit", "EditMode", New With {.id = item.Id})
                 </td>
             </tr>
         Next
@@ -73,7 +73,7 @@ End Code
             <th>
                 StopCode
             </th>
-            <th></th>
+            <th>@Html.ActionLink("Create", "CreateStopCode")</th>
         </tr>
 
         @For Each item In Model.operatorStopCode
@@ -84,7 +84,7 @@ End Code
                 </td>
                 <td>
 
-                    @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
+                    @Html.ActionLink("Edit", "EditStopCode", New With {.id = item.Id})
                 </td>
             </tr>
         Next
@@ -99,7 +99,7 @@ End Code
             <th>
                 Operator Type
             </th>
-            <th></th>
+            <th>@Html.ActionLink("Create", "CreateType")</th>
         </tr>
 
         @For Each item In Model.operatorType
@@ -110,7 +110,7 @@ End Code
                 </td>
                 <td>
 
-                    @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
+                    @Html.ActionLink("Edit", "EditType", New With {.id = item.Id})
                 </td>
             </tr>
         Next

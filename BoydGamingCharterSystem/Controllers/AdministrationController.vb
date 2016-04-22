@@ -91,5 +91,53 @@ Namespace Controllers
                 Return View()
             End Try
         End Function
+
+
+        'Enable Operator Interest to be edited
+        Function EditInterest(ByVal id As Integer) As ActionResult
+            Return RedirectToAction("Edit", "CharterOperatorInterests", New With {.id = id})
+        End Function
+
+        'Enable creation of an Operator Interest
+        Function CreateInterest() As ActionResult
+            Return RedirectToAction("Create", "CharterOperatorInterests")
+        End Function
+
+
+        'Enable Operator Mode to be edited
+        Function EditMode(ByVal id As Integer) As ActionResult
+            Return RedirectToAction("Edit", "CharterOperatorModes", New With {.id = id})
+        End Function
+
+
+        'Enable creation of an Operator Mode
+        Function CreateMode() As ActionResult
+            Return RedirectToAction("Create", "CharterOperatorModes")
+        End Function
+
+
+        'Enable Operator Stop Code to be edited
+        Function EditStopCode(ByVal id As Integer) As ActionResult
+            Return RedirectToAction("Edit", "CharterOperatorStopCodes", New With {.id = id})
+        End Function
+
+
+        'Enable creation of an Operator Stop Code
+        Function CreateStopCode() As ActionResult
+            Return RedirectToAction("Create", "CharterOperatorStopCodes")
+        End Function
+
+        'Enable Operator Type to be edited
+        Function EditType(ByVal id As Integer) As ActionResult
+            Return RedirectToAction("Edit", "CharterOperatorTypes", New With {.id = id})
+        End Function
+
+
+        'Enable creation of an Operator Type
+        Function CreateType() As ActionResult
+            Return RedirectToAction("Create", "CharterOperatorTypes")
+        End Function
+
+
     End Class
 End Namespace
