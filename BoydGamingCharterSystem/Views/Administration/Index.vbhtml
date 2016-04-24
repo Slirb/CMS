@@ -16,19 +16,22 @@ End Code
     <title>Index</title>
 </head>
 <body>
+    
+    
+    <div style="float:left; width:30%">
+        <!--Operator Interest List-->
+        <h3>Operator Interests</h3>
+        <Table Class="table">
+            <tr>
+                <th>
+                    Interest
+                </th>
+                <th>@Html.ActionLink("Create", "CreateInterest")</th>
+            </tr>
 
-    <!--Operator Interest List-->
-    <Table Class="table">
-        <tr>
-            <th>
-                Interest
-            </th>            
-            <th>@Html.ActionLink("Create", "CreateInterest")</th>
-        </tr>
+            @For Each item In Model.operatorInterest
 
-        @For Each item In Model.operatorInterest
-
-            @<tr >                
+            @<tr>
                 <td>
                     @Html.DisplayFor(Function(modelItem) item.Interest)
                 </td>
@@ -37,46 +40,55 @@ End Code
                     @Html.ActionLink("Edit", "EditInterest", New With {.id = item.Id})
                 </td>
             </tr>
-        Next
+            Next
 
-    </Table>
+        </Table>
+    </div>
 
-    <!--Operator Mode List-->
-    <Table Class="table">
-        <tr>
-            <th>
-                Mode
-            </th>
-            <th>@Html.ActionLink("Create", "CreateMode")</th>
-        </tr>
-
-        @For Each item In Model.operatorMode
-
-            @<tr>
-                <td>
-                    @Html.DisplayFor(Function(modelItem) item.Mode)
-                </td>
-                <td>
-
-                    @Html.ActionLink("Edit", "EditMode", New With {.id = item.Id})
-                </td>
+    <div style="float:right; width:30%">
+        <!--Operator Mode List-->
+        <h3>Operator Modes</h3>        
+        <Table Class="table">
+            <tr>
+                <th>
+                    Mode
+                </th>
+                <th>@Html.ActionLink("Create", "CreateMode")</th>
             </tr>
-        Next
 
-    </Table>
+            @For Each item In Model.operatorMode
 
+        @<tr>
+            <td>
+                @Html.DisplayFor(Function(modelItem) item.Mode)
+            </td>
+            <td>
 
-
-    <!--Operator StopCode List-->
-    <Table Class="table">
-        <tr>
-            <th>
-                StopCode
-            </th>
-            <th>@Html.ActionLink("Create", "CreateStopCode")</th>
+                @Html.ActionLink("Edit", "EditMode", New With {.id = item.Id})
+            </td>
         </tr>
+            Next
 
-        @For Each item In Model.operatorStopCode
+        </Table>
+
+        </div>
+    <div style="clear:both"></div>
+    <br />
+    <br />
+    <br />
+
+    <div style="float:left; width:30%; position:relative">
+        <!--Operator StopCode List-->
+        <h3>Operator Stop Codes</h3>        
+        <Table Class="table">
+            <tr>
+                <th>
+                    Stop Code
+                </th>
+                <th>@Html.ActionLink("Create", "CreateStopCode")</th>
+            </tr>
+
+            @For Each item In Model.operatorStopCode
 
             @<tr>
                 <td>
@@ -87,22 +99,24 @@ End Code
                     @Html.ActionLink("Edit", "EditStopCode", New With {.id = item.Id})
                 </td>
             </tr>
-        Next
+            Next
 
-    </Table>
+        </Table>
+        </div>
 
 
+    <div style="float:right; width:30%">
+        <h3>Operator Types</h3>
+        <!--Operator Type List-->
+        <Table Class="table">
+            <tr>
+                <th>
+                    Type
+                </th>
+                <th>@Html.ActionLink("Create", "CreateType")</th>
+            </tr>
 
-    <!--Operator Type List-->
-    <Table Class="table">
-        <tr>
-            <th>
-                Operator Type
-            </th>
-            <th>@Html.ActionLink("Create", "CreateType")</th>
-        </tr>
-
-        @For Each item In Model.operatorType
+            @For Each item In Model.operatorType
 
             @<tr>
                 <td>
@@ -113,21 +127,28 @@ End Code
                     @Html.ActionLink("Edit", "EditType", New With {.id = item.Id})
                 </td>
             </tr>
-        Next
+            Next
 
-    </Table>
+        </Table>
+        </div>
 
+    <div style="clear:both"></div>
+    <br />
+    <br />
+    <br />
 
-    <!--Properties List-->
-    <Table Class="table">
-        <tr>
-            <th>
-                Name
-            </th>
-            <th></th>
-        </tr>
+    <div style="float:left; width:30%; position:relative">
+        <!--Properties List-->
+        <h3>Properties</h3>
+        <Table Class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>@Html.ActionLink("Create", "CreateProperty")</th>
+            </tr>
 
-        @For Each item In Model.properties
+            @For Each item In Model.properties
 
             @<tr>
                 <td>
@@ -135,61 +156,66 @@ End Code
                 </td>
                 <td>
 
-                    @Html.ActionLink("Edit", "Edit", New With {.id = item.ID})
+                    @Html.ActionLink("Edit", "EditProperty", New With {.id = item.ID})
                 </td>
             </tr>
-        Next
+            Next
 
-    </Table>
+        </Table>
+
+        </div>
 
 
-    <!--Tired Commission List-->
-    <Table Class="table">
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Min
-            </th>
-            <th>
-                Max
-            </th>
-            <th>
-                Commission Per Customer
-            </th>
-            <th></th>
-        </tr>
+    <div style="float:right; width:30%">
+        <!--Tired Commission List-->
+        <h3>Tiered Commissions</h3>
+        <Table Class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Min
+                </th>
+                <th>
+                    Max
+                </th>
+                <th>
+                    Commission Per Customer
+                </th>
+                <th></th>
+            </tr>
 
-        @For Each item In Model.tieredCommissions
+            @For Each item In Model.tieredCommissions
 
             @<tr>
                 <td>
                     @Html.DisplayFor(Function(modelItem) item.Name)
                 </td>
-                 <td>
-                     @Html.DisplayFor(Function(modelItem) item.Description)
-                 </td>
-                 <td>
-                     @Html.DisplayFor(Function(modelItem) item.Minimum)
-                 </td>
-                 <td>
-                     @Html.DisplayFor(Function(modelItem) item.Maximum)
-                 </td>
-                 <td>
-                     @Html.DisplayFor(Function(modelItem) item.Value)
-                 </td>
-                 <td>
+                <td>
+                    @Html.DisplayFor(Function(modelItem) item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(Function(modelItem) item.Minimum)
+                </td>
+                <td>
+                    @Html.DisplayFor(Function(modelItem) item.Maximum)
+                </td>
+                <td>
+                    @Html.DisplayFor(Function(modelItem) item.Value)
+                </td>
+                <td>
 
                     @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
                 </td>
             </tr>
-        Next
+            Next
 
-    </Table>
+        </Table>
+        </div>
 
 
 

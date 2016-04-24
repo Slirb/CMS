@@ -16,7 +16,7 @@ Public Class CharterSystem
     Private CharterContactable As DbSet(Of Contactable)
     Private CharterContacts As DbSet(Of CharterContact)
 
-
+    'Changes
     Private CharterTrips As DbSet(Of CharterTrips)
     Private CharterTieredCommissions As DbSet(Of CharterTieredCommissions)
     Private CharterProperties As DbSet(Of CharterProperties)
@@ -81,6 +81,8 @@ Public Class CharterSystem
         End Set
 
     End Property
+
+    'End Changes
 
 
 

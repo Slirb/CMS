@@ -7,19 +7,20 @@ Public Class CharterProperties
     Private propertyCode As Integer
     Private propertyName As String
     Private propertyShortName As String
-    Private propertyCreatedDate As Date?
+    Private propertyCreatedDate As DateTime
     Private propertyCreatedByUser As String
-    Private propertyLastUpdatedDate As Date?
+    Private propertyLastUpdatedDate As DateTime?
     Private propertyLasteUpdatedByUser As String
 
-
-
+    Public Property DepartmentName As String
+    Public Property ContactNumber As String
+    Public Property FaxNumber As String
 
     Public Property ID() As Integer
         Get
             Return propertyID
         End Get
-        Private Set(ByVal value As Integer)
+        Set(ByVal value As Integer)
             propertyID = value
         End Set
     End Property
@@ -58,11 +59,11 @@ Public Class CharterProperties
     End Property
 
 
-    Public Property CreatedDate() As Date
+    Public Property CreatedDate() As DateTime?
         Get
             Return propertyCreatedDate
         End Get
-        Private Set(ByVal value As Date)
+        Set(ByVal value As DateTime?)
             propertyCreatedDate = value
         End Set
     End Property
@@ -72,17 +73,17 @@ Public Class CharterProperties
         Get
             Return propertyCreatedByUser
         End Get
-        Private Set(ByVal value As String)
+        Set(ByVal value As String)
             propertyCreatedByUser = value
         End Set
     End Property
 
 
-    Public Property UpdatedDate() As Date
+    Public Property UpdatedDate() As DateTime?
         Get
             Return propertyLastUpdatedDate
         End Get
-        Private Set(ByVal value As Date)
+        Set(ByVal value As DateTime?)
             propertyLastUpdatedDate = value
         End Set
     End Property
@@ -91,7 +92,7 @@ Public Class CharterProperties
         Get
             Return propertyLasteUpdatedByUser
         End Get
-        Private Set(ByVal value As String)
+        Set(ByVal value As String)
             propertyLasteUpdatedByUser = value
         End Set
     End Property
@@ -106,6 +107,10 @@ Public Class CharterProperties
         Me.propertyCreatedByUser = Nothing
         Me.propertyLastUpdatedDate = DateTime.Now()
         Me.propertyLasteUpdatedByUser = Nothing
+        Me.ContactNumber = Nothing
+        Me.DepartmentName = Nothing
+        Me.FaxNumber = Nothing
+
 
     End Sub
 

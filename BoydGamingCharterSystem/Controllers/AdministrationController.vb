@@ -127,6 +127,7 @@ Namespace Controllers
             Return RedirectToAction("Create", "CharterOperatorStopCodes")
         End Function
 
+
         'Enable Operator Type to be edited
         Function EditType(ByVal id As Integer) As ActionResult
             Return RedirectToAction("Edit", "CharterOperatorTypes", New With {.id = id})
@@ -136,6 +137,18 @@ Namespace Controllers
         'Enable creation of an Operator Type
         Function CreateType() As ActionResult
             Return RedirectToAction("Create", "CharterOperatorTypes")
+        End Function
+
+
+        'Enable Property to be edited
+        Function EditProperty(ByVal id As Integer) As ActionResult
+            Return RedirectToAction("Edit", "CharterProperties", New With {.id = id})
+        End Function
+
+
+        'Enable creation of a Property
+        Function CreateProperty() As ActionResult
+            Return RedirectToAction("Create", "CharterProperties")
         End Function
 
 
