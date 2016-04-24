@@ -25,7 +25,7 @@ Namespace Controllers
             Dim properties = db.properties.ToList()
             Dim tieredCommissions = db.commissions.ToList()
 
-            Dim viewMod As New Administration
+            Dim viewMod As New AdministrationModel
             viewMod.operatorInterest = interests
             viewMod.operatorMode = modes
             viewMod.operatorStopCode = codes
@@ -151,6 +151,16 @@ Namespace Controllers
             Return RedirectToAction("Create", "CharterProperties")
         End Function
 
+        'Enable Tiered Commissions to be edited
+        Function EditCommission(ByVal id As Integer) As ActionResult
+            Return RedirectToAction("Edit", "CharterTieredCommissions", New With {.id = id})
+        End Function
+
+
+        'Enable creation of a TieredCommission
+        Function CreateCommission() As ActionResult
+            Return RedirectToAction("Create", "CharterTieredCommissions")
+        End Function
 
     End Class
 End Namespace

@@ -25,6 +25,7 @@ Public Class CharterSystem
     Private CharterOperatorModes As DbSet(Of CharterOperatorMode)
     Private CharterOperatorStopCodes As DbSet(Of CharterOperatorStopCode)
     Private CharterOperatorTypes As DbSet(Of CharterOperatorType)
+    Private TieredCommissionValues As DbSet(Of TieredCommissionValues)
 
     ''Added Operator Interest
     Public Property operatorInterests As DbSet(Of CharterOperatorInterest)
@@ -82,27 +83,7 @@ Public Class CharterSystem
 
     End Property
 
-    'End Changes
 
-
-
-    Public Property contactable As DbSet(Of Contactable)
-        Get
-            Return CharterContactable
-        End Get
-        Set(value As DbSet(Of Contactable))
-            CharterContactable = value
-        End Set
-    End Property
-
-    Public Property contacts As DbSet(Of CharterContact)
-        Get
-            Return CharterContacts
-        End Get
-        Set(value As DbSet(Of CharterContact))
-            CharterContacts = value
-        End Set
-    End Property
 
     ''Added Properties
     Public Property properties As DbSet(Of CharterProperties)
@@ -138,9 +119,36 @@ Public Class CharterSystem
 
     End Property
 
+    ''Added Tiered Commission values
+    Public Property commissionValues As DbSet(Of TieredCommissionValues)
+        Get
+            Return TieredCommissionValues
+        End Get
+        Set(value As DbSet(Of TieredCommissionValues))
+            TieredCommissionValues = value
+        End Set
 
+    End Property
     ''END CHANGES-----------------------------------
 
+
+    Public Property contactable As DbSet(Of Contactable)
+        Get
+            Return CharterContactable
+        End Get
+        Set(value As DbSet(Of Contactable))
+            CharterContactable = value
+        End Set
+    End Property
+
+    Public Property contacts As DbSet(Of CharterContact)
+        Get
+            Return CharterContacts
+        End Get
+        Set(value As DbSet(Of CharterContact))
+            CharterContacts = value
+        End Set
+    End Property
 
     Public Property carriers As DbSet(Of CharterCarrier)
         Get

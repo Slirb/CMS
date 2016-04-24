@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.Administration
+﻿@ModelType BoydGamingCharterSystem.AdministrationModel
 
 @Code
     ViewData("Title") = "Index"
@@ -173,20 +173,8 @@ End Code
             <tr>
                 <th>
                     Name
-                </th>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Min
-                </th>
-                <th>
-                    Max
-                </th>
-                <th>
-                    Commission Per Customer
-                </th>
-                <th></th>
+                </th>               
+                <th>@Html.ActionLink("Create", "CreateCommission")</th>
             </tr>
 
             @For Each item In Model.tieredCommissions
@@ -194,22 +182,9 @@ End Code
             @<tr>
                 <td>
                     @Html.DisplayFor(Function(modelItem) item.Name)
-                </td>
+                </td>                
                 <td>
-                    @Html.DisplayFor(Function(modelItem) item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(Function(modelItem) item.Minimum)
-                </td>
-                <td>
-                    @Html.DisplayFor(Function(modelItem) item.Maximum)
-                </td>
-                <td>
-                    @Html.DisplayFor(Function(modelItem) item.Value)
-                </td>
-                <td>
-
-                    @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
+                    @Html.ActionLink("Edit", "EditCommission", New With {.id = item.Id})
                 </td>
             </tr>
             Next
