@@ -49,7 +49,7 @@ End Code
             @Html.HiddenFor(Function(model) model.trip.TripStatus)
             @Html.HiddenFor(Function(model) model.trip.Confirmation)
             @Html.HiddenFor(Function(model) model.trip.ManifestCount)
-            @Html.HiddenFor(Function(model) model.trip.TripNotes))
+            @Html.HiddenFor(Function(model) model.trip.TripNotes)
             
              <div>
                  <!--Need to add agreement name and pull from table-->
