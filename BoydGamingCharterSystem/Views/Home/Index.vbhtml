@@ -1,6 +1,6 @@
 ﻿@Code
 
-    ViewData("Title") = "Home"
+    ViewData("Title") = ""
 End Code
 
 <div class="homeContent">

@@ -20,12 +20,11 @@
 
         <header class="mainHeader">
             <div class="container">
-                <div class="logo">
-
-                    <img src="~/Content/Logo/Charter_Bus.png" />
-
-                </div>
-                <nav class="mainNav">
+                        <div class="logo">
+                            <img src="~/Content/Logo/Charter_Bus.png" />
+                        </div>
+    
+                            <nav class="mainNav">
                     <ul>
                     
                         <!--Changed folder names to unify naming scheme-->

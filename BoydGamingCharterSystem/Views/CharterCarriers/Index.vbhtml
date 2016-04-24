@@ -18,35 +18,35 @@ End Code
     <h1>@ViewBag.Title</h1>
 
     <p>
-        @Html.ActionLink("Create New Carrier", "Create")
+        <a href="@Url.Action("Create", "CharterCarriers", New CharterCarrier())" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> Create New Carrier</a>
     </p>
-    <table class="table">
+    <table class="table table-striped table-hover table-condensed">
         <tr>
-            <th>
+            <th style="text-align:center">
                 @Html.DisplayNameFor(Function(model) model.Company.Name)
             </th>
-            <th>
+            <th style="text-align:center">
                 Contact Name
             </th>
-            <th>
+            <th style="text-align:center">
                 Contact Phone
             </th>
-            <th>
+            <th style="text-align:center">
                 City
             </th>
-            <th>
+            <th style="text-align:center">
                 Has Ins
             </th>
-            <th>
+            <th style="text-align:center">
                 Ins No
             </th>
-            <th>
+            <th style="text-align:center">
                 License
             </th>
-            <th>
+            <th style="text-align:center">
                 License No
             </th>
-            <th>
+            <th style="text-align:center">
                 Action
             </th>
         </tr>
@@ -64,31 +64,31 @@ End Code
             <td>
                 @Html.DisplayFor(Function(modelItem) item.Company.Name)
             </td>
-            <td>
+            <td style="text-align:center">
                 @item.Contacts.Item(0).FirstName @item.Contacts.Item(0).LastName
             </td>
-            <td>
+            <td style="text-align:center">
                 @Html.DisplayFor(Function(modelItem) item.Contacts.Item(0).PrimaryPhone)
             </td>
-            <td>
+            <td style="text-align:center">
                 @Html.DisplayFor(Function(modelItem) item.Company.City)
             </td>
-            <td>
+            <td  style="text-align:center">
                 @Html.CheckBox("Carrier" & i & "HasInsurance", item.HasInsurance, New With {.disabled = True})
             </td>
-            <td>
+            <td style="text-align:center">
                 @Html.DisplayFor(Function(modelItem) item.InsuranceNumber)
             </td>
-            <td>
+            <td style="text-align:center">
                 @Html.CheckBox("Carrier" & i & "HasInsurance", item.HasLicense, New With {.disabled = True})
             </td>
-             <td>
+             <td style="text-align:center">
                  @Html.DisplayFor(Function(modelItem) item.LicenseNumber)
              </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", New With {.id = item.Id}) |
-                @Html.ActionLink("Details", "Details", New With {.id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", New With {.id = item.Id})
+            <td  style="text-align:center">
+                <a href="@Url.Action("Edit", "CharterCarriers", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                <a href="@Url.Action("Details", "CharterCarriers", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-th-list"></span> Details</a>
+                <a href="@Url.Action("Delete", "CharterCarriers", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-minus"></span> Delete</a>
             </td>
         </tr>
     Next
