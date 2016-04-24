@@ -3,17 +3,29 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 Public Class CharterAgreement
 
-    <Key>
+
     Private charterAgreementId As Integer
 
-    <ForeignKey("CharterCarrier")>
-    Private charterAgreementCarrier As CharterCarrier
-
-    <ForeignKey("CharterOperator")>
-    Private charterAgreementOperator As CharterOperator
-    Private charterAgreementCreateDate As Date
 
 
+
+    Private charterAgreementCreatedDateTime As DateTime
+
+
+    Public Property CarrierId() As Integer
+    <ForeignKey("CarrierId")>
+    Public Property CharterCarrier() As CharterCarrier
+
+    Public Property OperatorId() As Integer
+    <ForeignKey("OperatorId")>
+    Public Property CharterOperator() As CharterOperator
+
+    <ForeignKey("charterAgreementId")>
+    Public Property CharterTrips As ICollection(Of CharterTrips)
+    'Might just make a list of trips instead of going through the schedule to get to trips
+    'Public Property Schedule() As List(Of CharterSchedule)
+
+    <Key>
     Public Property Id() As Integer
         Get
             Return charterAgreementId
@@ -23,40 +35,28 @@ Public Class CharterAgreement
         End Set
     End Property
 
-    Public Overridable Property CharterCarrier() As CharterCarrier
-        Get
-            Return charterAgreementCarrier
-        End Get
-        Set(value As CharterCarrier)
-            charterAgreementCarrier = value
-        End Set
 
-    End Property
-
-    Public Overridable Property CharterOperator() As CharterOperator
+    Public Property CreateDateTime() As DateTime
         Get
-            Return charterAgreementOperator
+            Return charterAgreementCreatedDateTime
         End Get
-        Set(value As CharterOperator)
-            charterAgreementOperator = value
+        Set(value As DateTime)
+            charterAgreementCreatedDateTime = value
         End Set
     End Property
 
+    Public Sub New()
+        Me.CreateDateTime = DateTime.Now
+        'Me.Schedule = New List(Of CharterSchedule)
 
-    Public Property CreateDate() As Date
-        Get
-            Return charterAgreementCreateDate
-        End Get
-        Set(value As Date)
-            charterAgreementCreateDate = value
-        End Set
-    End Property
+    End Sub
 
     Public Sub New(id As Integer, charterCarrier As CharterCarrier, charterOperator As CharterOperator)
+
+        Me.New()
         Me.Id = id
         Me.CharterCarrier = charterCarrier
         Me.CharterOperator = charterOperator
-        Me.CreateDate = Date.Now
 
     End Sub
 
