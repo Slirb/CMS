@@ -437,20 +437,10 @@ Namespace Controllers
             hours.Add(New SelectListItem With {.Text = "07", .Value = "07"})
             hours.Add(New SelectListItem With {.Text = "08", .Value = "08"})
             hours.Add(New SelectListItem With {.Text = "09", .Value = "09"})
-            hours.Add(New SelectListItem With {.Text = "10", .Value = "10"})
-            hours.Add(New SelectListItem With {.Text = "11", .Value = "11"})
-            hours.Add(New SelectListItem With {.Text = "12", .Value = "12"})
-            hours.Add(New SelectListItem With {.Text = "13", .Value = "13"})
-            hours.Add(New SelectListItem With {.Text = "14", .Value = "14"})
-            hours.Add(New SelectListItem With {.Text = "15", .Value = "15"})
-            hours.Add(New SelectListItem With {.Text = "16", .Value = "16"})
-            hours.Add(New SelectListItem With {.Text = "17", .Value = "17"})
-            hours.Add(New SelectListItem With {.Text = "18", .Value = "18"})
-            hours.Add(New SelectListItem With {.Text = "19", .Value = "19"})
-            hours.Add(New SelectListItem With {.Text = "20", .Value = "20"})
-            hours.Add(New SelectListItem With {.Text = "21", .Value = "21"})
-            hours.Add(New SelectListItem With {.Text = "22", .Value = "22"})
-            hours.Add(New SelectListItem With {.Text = "23", .Value = "23"})
+
+            For index As Integer = 10 To 23
+                hours.Add(New SelectListItem With {.Text = index.ToString, .Value = index.ToString})
+            Next
 
             'Set the selected value for each hour dropdownbox
             ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.Hour.ToString("HH"))
@@ -533,20 +523,11 @@ Namespace Controllers
             hours.Add(New SelectListItem With {.Text = "07", .Value = "07"})
             hours.Add(New SelectListItem With {.Text = "08", .Value = "08"})
             hours.Add(New SelectListItem With {.Text = "09", .Value = "09"})
-            hours.Add(New SelectListItem With {.Text = "10", .Value = "10"})
-            hours.Add(New SelectListItem With {.Text = "11", .Value = "11"})
-            hours.Add(New SelectListItem With {.Text = "12", .Value = "12"})
-            hours.Add(New SelectListItem With {.Text = "13", .Value = "13"})
-            hours.Add(New SelectListItem With {.Text = "14", .Value = "14"})
-            hours.Add(New SelectListItem With {.Text = "15", .Value = "15"})
-            hours.Add(New SelectListItem With {.Text = "16", .Value = "16"})
-            hours.Add(New SelectListItem With {.Text = "17", .Value = "17"})
-            hours.Add(New SelectListItem With {.Text = "18", .Value = "18"})
-            hours.Add(New SelectListItem With {.Text = "19", .Value = "19"})
-            hours.Add(New SelectListItem With {.Text = "20", .Value = "20"})
-            hours.Add(New SelectListItem With {.Text = "21", .Value = "21"})
-            hours.Add(New SelectListItem With {.Text = "22", .Value = "22"})
-            hours.Add(New SelectListItem With {.Text = "23", .Value = "23"})
+
+            For index As Integer = 10 To 23
+                hours.Add(New SelectListItem With {.Text = index.ToString, .Value = index.ToString})
+            Next
+
 
             'Set the selected value for each hour dropdownbox
             ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Arrival.ToString("HH"))
@@ -824,7 +805,8 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterTrips As CharterTrips = db.trips.Find(id)
+            Dim charterTrips As CharterTrips = (From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company.State).Include(Function(c) c.CharterAgreements.CharterCarrier.Company.State).ToList()
+                                                Select t Where t.Id = id).FirstOrDefault()
             If IsNothing(charterTrips) Then
                 Return HttpNotFound()
             End If
