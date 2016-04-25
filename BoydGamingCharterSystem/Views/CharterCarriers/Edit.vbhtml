@@ -79,7 +79,7 @@ End Code
 
          <div Class="form-group">
              <div Class="col-md-offset-2 col-md-10">
-                 <input type="submit" value="Edit" Class="btn btn-default" />
+                 <input type="submit" value="Save Changes" Class="btn btn-success" />
              </div>
          </div>
 
