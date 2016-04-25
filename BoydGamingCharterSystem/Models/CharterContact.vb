@@ -2,6 +2,7 @@
 Imports System.ComponentModel.DataAnnotations.Schema
 
 Imports BoydGamingCharterSystem
+<Table("Contact")>
 Public Class CharterContact
     Public Property Id As Integer
     <Required(ErrorMessage:="First name is required")>
@@ -78,11 +79,10 @@ Public Class CharterContact
         Me.CreatedDateTime = DateTime.Now()
     End Sub
 
-
-
-
 End Class
 
+
+<Table("Contactable")>
 Public Class Contactable
     Public Property ContactableId() As Integer
     Public Overridable Property Contacts() As List(Of CharterContact)

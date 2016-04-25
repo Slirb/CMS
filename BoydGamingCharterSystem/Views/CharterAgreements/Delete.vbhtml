@@ -1,7 +1,6 @@
 ﻿@ModelType BoydGamingCharterSystem.CharterAgreement
 @Code
     ViewData("Title") = "Delete"
-    Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
 <h2>Delete</h2>
@@ -12,11 +11,27 @@ End Code
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(Function(model) model.CreateDate)
+            @Html.DisplayNameFor(Function(model) model.CharterCarrier.LicenseNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.CreateDate)
+            @Html.DisplayFor(Function(model) model.CharterCarrier.LicenseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Function(model) model.CharterOperator.VendorNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Function(model) model.CharterOperator.VendorNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(Function(model) model.CreateDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Function(model) model.CreateDateTime)
         </dd>
 
     </dl>

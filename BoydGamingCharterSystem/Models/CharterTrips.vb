@@ -10,20 +10,29 @@ Public Class CharterTrips
     Private tripsStatus As String
     Private tripsConfirmationNumber As String
 
-    Public Property charterAgreementId() As Integer
-    <ForeignKey("charterAgreementId")>
+    'Public ReadOnly Property charterAgreementId() As Integer
+    '    Get
+    '        Return Me.CharterAgreements.Id()
+    '    End Get
+    'End Property
+
+
+
     Public Property CharterAgreements() As CharterAgreement
 
 
-    Public Property CarrierId As Integer
+    Public Property CarrierId As Integer?
+    'Public Property CharterCarrier As CharterCarrier
     Public Property CarrierName As String
-    Public Property OperatorId As Integer
+
+    Public Property OperatorId As Integer?
     Public Property OperatorName As String
 
 
 
-    Public Property Arrival As DateTime?
-    Public Property Departure As DateTime?
+    Public Property Arrival As Date?
+    Public Property Departure As Date?
+
 
 
     <ForeignKey("tripId")>
@@ -32,12 +41,14 @@ Public Class CharterTrips
     <Key>
     Public Property Id() As Integer
         Get
+
             Return tripId
         End Get
         Set(ByVal value As Integer)
             tripId = value
         End Set
     End Property
+
 
 
     Public Property TripDestination() As String
@@ -82,6 +93,75 @@ Public Class CharterTrips
 
     End Property
 
+    <NotMapped>
+    <UIHint("DateTime")>
+    Public Property ArrivalDate As DateTime
+        Get
+            Return Me.Arrival
+        End Get
+        Set(value As DateTime)
+            Me.Arrival = value
+        End Set
+    End Property
+    <NotMapped>
+    Public Property ArrivalHour As Integer
+        Get
+            Return Me.Arrival.Value.Hour
+        End Get
+        Set(value As Integer)
+            Dim currentDateTime As DateTime
+            currentDateTime = Me.Arrival
+            currentDateTime = New DateTime(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day, value, currentDateTime.Minute, currentDateTime.Second)
+            Me.Arrival = currentDateTime
+        End Set
+    End Property
+    <NotMapped>
+    Public Property ArrivalMinute As Integer
+        Get
+            Return Me.Arrival.Value.Minute
+        End Get
+        Set(value As Integer)
+            Dim currentDateTime As DateTime
+            currentDateTime = Me.Arrival
+            currentDateTime = New DateTime(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day, currentDateTime.Hour, value, currentDateTime.Second)
+            Me.Arrival = currentDateTime
+        End Set
+    End Property
+
+    <NotMapped>
+    <UIHint("DateTime")>
+    Public Property DepartureDate As DateTime
+        Get
+            Return Me.Departure
+        End Get
+        Set(value As DateTime)
+            Me.Departure = value
+        End Set
+    End Property
+    <NotMapped>
+    Public Property DepartureHour As Integer
+        Get
+            Return Me.Departure.Value.Hour
+        End Get
+        Set(value As Integer)
+            Dim currentDateTime As DateTime
+            currentDateTime = Me.Departure
+            currentDateTime = New DateTime(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day, value, currentDateTime.Minute, currentDateTime.Second)
+            Me.Departure = currentDateTime
+        End Set
+    End Property
+    <NotMapped>
+    Public Property DepartureMinute As Integer
+        Get
+            Return Me.Departure.Value.Minute
+        End Get
+        Set(value As Integer)
+            Dim currentDateTime As DateTime
+            currentDateTime = Me.Departure
+            currentDateTime = New DateTime(currentDateTime.Year, currentDateTime.Month, currentDateTime.Day, currentDateTime.Hour, value, currentDateTime.Second)
+            Me.Departure = currentDateTime
+        End Set
+    End Property
 
     Public Sub New()
         Me.Id = Nothing
@@ -90,11 +170,11 @@ Public Class CharterTrips
         Me.TripCity = Nothing
         Me.TripStatus = Nothing
         Me.Confirmation = Nothing
-        Me.charterAgreementId = Nothing
+
         Me.CharterAgreements = Nothing
         Me.OperatorId = Nothing
-        Me.Arrival = Nothing
-        Me.Departure = Nothing
+        Me.Arrival = DateTime.MinValue
+        Me.Departure = DateTime.MinValue
         Me.OperatorName = Nothing
         Me.CarrierName = Nothing
         'Me.CharterManifests = Nothing
@@ -106,14 +186,14 @@ Public Class CharterTrips
     ''Need to finish this
     Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As DateTime, departDate As DateTime)
         Me.Id = id
-        Me.CarrierId = charterAgreement.CarrierId
+        Me.CarrierId = charterAgreement.CharterCarrier.Id
         Me.TripDestination = dest
         Me.TripCity = city
         Me.TripStatus = status
         Confirmation = confNumber
         Me.CharterAgreements = charterAgreement
-        Me.charterAgreementId = CharterAgreements.Id
-        Me.OperatorId = charterAgreement.OperatorId
+
+        Me.OperatorId = charterAgreement.CharterOperator.Id
         Me.Arrival = arrivalDate
         Me.Departure = departDate
         Me.CarrierName = charterAgreement.CharterCarrier.Company.Name

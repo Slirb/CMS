@@ -165,6 +165,7 @@
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\AdministrationController.vb" />
+    <Compile Include="Controllers\CharterAgreementsController.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
     <Compile Include="Controllers\CharterCommentsController.vb" />
     <Compile Include="Controllers\CharterCompanyController.vb" />
@@ -306,6 +307,12 @@
     <Content Include="Views\CharterOperators\Details.vbhtml" />
     <Content Include="Views\CharterOperators\Edit.vbhtml" />
     <Content Include="Views\CharterOperators\Index.vbhtml" />
+    <Content Include="Views\CharterAgreements\Create.vbhtml" />
+    <Content Include="Views\CharterAgreements\Delete.vbhtml" />
+    <Content Include="Views\CharterAgreements\Details.vbhtml" />
+    <Content Include="Views\CharterAgreements\Edit.vbhtml" />
+    <Content Include="Views\CharterAgreements\Index.vbhtml" />
+    <Content Include="Views\Shared\CharterTrips\CharterTripCreateRow.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -341,7 +348,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CharterAgreements\" />
     <Folder Include="Views\CharterCarriers\EditorTemplates\" />
     <Folder Include="Views\CharterCompany\" />
     <Folder Include="Views\CharterContacts\" />

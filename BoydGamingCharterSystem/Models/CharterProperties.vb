@@ -7,9 +7,9 @@ Public Class CharterProperties
     Private propertyCode As Integer
     Private propertyName As String
     Private propertyShortName As String
-    Private propertyCreatedDate As Date
+    Private propertyCreatedDate As Date?
     Private propertyCreatedByUser As String
-    Private propertyLastUpdatedDate As Date
+    Private propertyLastUpdatedDate As Date?
     Private propertyLasteUpdatedByUser As String
 
 
@@ -102,9 +102,9 @@ Public Class CharterProperties
         Me.propertyCode = Nothing
         Me.propertyName = Nothing
         Me.propertyShortName = Nothing
-        Me.propertyCreatedDate = Nothing
+        Me.propertyCreatedDate = DateTime.Now()
         Me.propertyCreatedByUser = Nothing
-        Me.propertyLastUpdatedDate = Nothing
+        Me.propertyLastUpdatedDate = DateTime.Now()
         Me.propertyLasteUpdatedByUser = Nothing
 
     End Sub

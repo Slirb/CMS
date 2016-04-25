@@ -448,8 +448,8 @@ Namespace Controllers
             hours.Add(New SelectListItem With {.Text = "23", .Value = "23"})
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.ToString("HH"))
-            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Departure.Value.ToString("HH"))
+            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.Hour.ToString("HH"))
+            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Departure.Value.Hour.ToString("HH"))
 
 
             Dim minutes = New List(Of SelectListItem)
@@ -469,8 +469,8 @@ Namespace Controllers
             Next
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.ToString("mm"))
-            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Departure.Value.ToString("mm"))
+            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.Minute.ToString("mm"))
+            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Departure.Value.Minute.ToString("mm"))
 
             'Manifest for the trip
             Dim manifests As List(Of CharterManifest) = (From x In db.manifests
@@ -496,6 +496,7 @@ Namespace Controllers
             charterTrip.Arrival = ArrivalDay + " " + ArrivalHour + ":" + ArrivalMinute + ":00"
             charterTrip.Departure = DepartureDay + " " + DepartureHour + ":" + DepartureMinute + ":00"
 
+
             If ModelState.IsValid Then
 
                 'Check for confirmation number and generate if needed
@@ -510,6 +511,7 @@ Namespace Controllers
                 End If
 
                 db.Entry(charterTrip).State = EntityState.Modified
+
                 db.SaveChanges()
             End If
 
@@ -542,8 +544,8 @@ Namespace Controllers
             hours.Add(New SelectListItem With {.Text = "23", .Value = "23"})
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Arrival.Value.ToString("HH"))
-            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Departure.Value.ToString("HH"))
+            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Arrival.ToString("HH"))
+            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Departure.ToString("HH"))
 
 
             Dim minutes = New List(Of SelectListItem)
@@ -563,8 +565,8 @@ Namespace Controllers
             Next
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Arrival.Value.ToString("mm"))
-            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Departure.Value.ToString("mm"))
+            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Arrival.ToString("mm"))
+            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Departure.ToString("mm"))
 
 
             'Manifest for the trip
@@ -660,5 +662,12 @@ Namespace Controllers
             End If
             MyBase.Dispose(disposing)
         End Sub
+
+        Public Function BlankTripRow() As ViewResult
+            Dim row As CharterTrips = New CharterTrips()
+            row.Arrival = Date.Now()
+            row.Departure = Date.Now()
+            Return View("CharterTrips/CharterTripCreateRow", row)
+        End Function
     End Class
 End Namespace

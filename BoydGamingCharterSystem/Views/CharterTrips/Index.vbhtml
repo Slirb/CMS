@@ -133,7 +133,7 @@ End Using
         @<tr style="background-color:@name">
             <td>
                 <!--Need to add agreement name And pull from table-->
-                @Html.DisplayFor(Function(modelItem) item.charterAgreementId)
+                @Html.DisplayFor(Function(modelItem) item.CharterAgreements.Id)
             </td>
             <td>
                 @Html.DisplayFor(Function(modelItem) item.CarrierName)

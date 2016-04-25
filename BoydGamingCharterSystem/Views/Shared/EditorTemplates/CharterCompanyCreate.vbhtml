@@ -103,6 +103,13 @@ End Code
             @Html.ValidationMessageFor(Function(model) model.CompanyFax, "", New With {.class = "text-danger"})
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(Function(model) model.CompanyEmail, htmlAttributes:=New With {.class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.EditorFor(Function(model) model.CompanyEmail, New With {.htmlAttributes = New With {.class = "form-control"}})
+            @Html.ValidationMessageFor(Function(model) model.CompanyEmail, "", New With {.class = "text-danger"})
+        </div>
+    </div>
     
 </div>
 

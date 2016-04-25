@@ -7,7 +7,7 @@ Public Class CharterCarrier
     <Key>
     Public Property Id() As Integer
 
-    <ForeignKey("CarrierId")>
+    '<ForeignKey("CarrierId")>
     Public Property CharterAgreements As ICollection(Of CharterAgreement)
 
     Public Property Company As CharterCompany
@@ -28,7 +28,15 @@ Public Class CharterCarrier
 
     Public Property LastUpdated As Date?
 
-
+    <NotMapped>
+    Public Property Name As String
+        Get
+            Return Me.Company.Name
+        End Get
+        Set(value As String)
+            Me.Company.Name = value
+        End Set
+    End property
     <NotMapped>
     Public Property Contacts() As List(Of CharterContact)
         Get
