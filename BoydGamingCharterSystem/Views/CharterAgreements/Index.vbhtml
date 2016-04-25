@@ -1,14 +1,14 @@
 ﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterAgreement)
 @Code
-ViewData("Title") = "Index"
+    ViewData("Title") = "Agreements"
 End Code
 
-<h2>Index</h2>
+<h1>@ViewBag.Title</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create", "CharterAgreements", New CharterCarrier())" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> Create New Agreement</a>
 </p>
-<table class="table">
+<table class="table table-striped table-hover table-condensed">
     <tr>
         <th>
             @Html.DisplayNameFor(Function(model) model.Name)
@@ -39,9 +39,9 @@ End Code
         <td>
             @Html.DisplayFor(Function(modelItem) item.CreatedDateTime)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.Id }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.Id }) 
+         <td style="text-align:center">
+             <a href="@Url.Action("Edit", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+             <a href="@Url.Action("Details", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-th-list"></span> Details</a>
         </td>
     </tr>
 Next

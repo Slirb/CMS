@@ -74,7 +74,7 @@ End Code
                     Html.RenderPartial("CharterComments/CharterCommentRow", comment)
                 Next
              </div>
-             @Html.ActionLink("Add Another Comment", "BlankCommentRow", "CharterComments", Nothing, New With {.class = "addItem", .data_append = ".CharterCompanyComments"})
+             @Html.ActionLink("Add Another Comment", "BlankCommentRow", "CharterComments", Nothing, New With {.class = "btn btn-danger addItem", .data_append = ".CharterCompanyComments"})
          </div>
          <div class="form-group">
 
