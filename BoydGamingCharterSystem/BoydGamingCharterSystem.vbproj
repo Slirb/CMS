@@ -166,7 +166,6 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\Administration Controllers\AdministrationController.vb" />
     <Compile Include="Controllers\Administration Controllers\CharterTieredCommissionsController.vb" />
-    <Compile Include="Controllers\AdministrationController.vb" />
     <Compile Include="Controllers\CharterAgreementsController.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
     <Compile Include="Controllers\CharterCommentsController.vb" />
