@@ -530,8 +530,8 @@ Namespace Controllers
 
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Arrival.ToString("HH"))
-            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Departure.ToString("HH"))
+            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.ArrivalHour.ToString("HH"))
+            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.DepartureHour.ToString("HH"))
 
 
             Dim minutes = New List(Of SelectListItem)
@@ -551,8 +551,8 @@ Namespace Controllers
             Next
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Arrival.ToString("mm"))
-            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Departure.ToString("mm"))
+            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.ArrivalMinute.ToString("mm"))
+            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.DepartureMinute.ToString("mm"))
 
 
             'Manifest for the trip
