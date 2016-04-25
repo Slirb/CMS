@@ -145,21 +145,19 @@ End Using
                 @Html.DisplayFor(Function(modelItem) item.TripDestination)
             </td>
             <td>
-                <!--Need to add manifest # And pull from table-->
-                @Html.DisplayFor(Function(modelItem) item.TripStatus)
+                @Html.DisplayFor(Function(modelItem) item.ManifestCount)
             </td>
             <td>
                 @Html.DisplayFor(Function(modelItem) item.Confirmation)
             </td>
             
             <td>
-                @Html.DisplayFor(Function(modelItem) item.Arrival)
+                @Html.DisplayFor(Function(modelItem) item.DisplayArrival)
             </td>
             <td>
-                @Html.DisplayFor(Function(modelItem) item.Departure)
+                @Html.DisplayFor(Function(modelItem) item.DisplayDeparture)
             </td>
-            <td>
-                          
+            <td>                          
                 @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
             </td>
         </tr>

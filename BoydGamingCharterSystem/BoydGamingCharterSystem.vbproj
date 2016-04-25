@@ -164,24 +164,31 @@
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\FilterConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Controllers\Administration Controllers\AdministrationController.vb" />
+    <Compile Include="Controllers\Administration Controllers\CharterTieredCommissionsController.vb" />
     <Compile Include="Controllers\AdministrationController.vb" />
     <Compile Include="Controllers\CharterAgreementsController.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
     <Compile Include="Controllers\CharterCommentsController.vb" />
     <Compile Include="Controllers\CharterCompanyController.vb" />
     <Compile Include="Controllers\CharterContactsController.vb" />
+    <Compile Include="Controllers\Administration Controllers\CharterOperatorInterestsController.vb" />
+    <Compile Include="Controllers\Administration Controllers\CharterOperatorModesController.vb" />
     <Compile Include="Controllers\CharterOperatorsController.vb" />
-    <Compile Include="Controllers\CharterTieredCommissionsController.vb" />
+    <Compile Include="Controllers\Administration Controllers\CharterOperatorStopCodesController.vb" />
+    <Compile Include="Controllers\Administration Controllers\CharterOperatorTypesController.vb" />
+    <Compile Include="Controllers\Administration Controllers\CharterPropertiesController.vb" />
     <Compile Include="Controllers\CharterTripsController.vb" />
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="DAL\CharterSystemInitializer.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Administration\CharterOperatorInterest.vb" />
-    <Compile Include="Models\Administration\CharterOperatorMode.vb" />
-    <Compile Include="Models\Administration\CharterOperatorStopCode.vb" />
-    <Compile Include="Models\Administration\CharterOperatorType.vb" />
+    <Compile Include="Models\Administration Models\CharterOperatorInterest.vb" />
+    <Compile Include="Models\Administration Models\CharterOperatorMode.vb" />
+    <Compile Include="Models\Administration Models\CharterOperatorStopCode.vb" />
+    <Compile Include="Models\Administration Models\CharterOperatorType.vb" />
+    <Compile Include="Models\Administration Models\TieredCommissionValues.vb" />
     <Compile Include="Models\CharterAgreement.vb" />
     <Compile Include="Models\CharterCarrier.vb" />
     <Compile Include="Models\CharterComment.vb" />
@@ -191,7 +198,7 @@
     <Compile Include="Models\CharterOperator.vb" />
     <Compile Include="DAL\CharterSystem.vb" />
     <Compile Include="Models\CharterProperties.vb" />
-    <Compile Include="Models\Administration\CharterTieredCommissions.vb" />
+    <Compile Include="Models\Administration Models\CharterTieredCommissions.vb" />
     <Compile Include="Models\CharterTrips.vb" />
     <Compile Include="Models\HtmlHelpers.vb" />
     <Compile Include="Models\State.vb" />
@@ -210,7 +217,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\Administration.vb" />
+    <Compile Include="ViewModels\AdministrationModel.vb" />
+    <Compile Include="ViewModels\EditTieredCommissionsModel.vb" />
     <Compile Include="ViewModels\EditTripsModel.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -287,11 +295,6 @@
     <Content Include="Views\CharterTrips\Details.vbhtml" />
     <Content Include="Views\CharterCarriers\Index.vbhtml" />
     <Content Include="Views\CharterTrips\Edit.vbhtml" />
-    <Content Include="Views\CharterTieredCommissions\Create.vbhtml" />
-    <Content Include="Views\CharterTieredCommissions\Delete.vbhtml" />
-    <Content Include="Views\CharterTieredCommissions\Details.vbhtml" />
-    <Content Include="Views\CharterTieredCommissions\Index.vbhtml" />
-    <Content Include="Views\CharterTieredCommissions\Edit.vbhtml" />
     <Content Include="Views\CharterTrips\ConfirmationLetter.vbhtml" />
     <Content Include="Views\Administration\Index.vbhtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
@@ -306,6 +309,25 @@
     <Content Include="Views\CharterOperators\Delete.vbhtml" />
     <Content Include="Views\CharterOperators\Details.vbhtml" />
     <Content Include="Views\CharterOperators\Edit.vbhtml" />
+    <Content Include="Views\CharterTrips\AddPerson.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Edit.vbhtml" />
+    <Content Include="Views\CharterProperties\Create.vbhtml" />
+    <Content Include="Views\CharterProperties\Delete.vbhtml" />
+    <Content Include="Views\CharterProperties\Edit.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Create.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Delete.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Edit.vbhtml" />
     <Content Include="Views\CharterOperators\Index.vbhtml" />
     <Content Include="Views\CharterAgreements\Create.vbhtml" />
     <Content Include="Views\CharterAgreements\Delete.vbhtml" />

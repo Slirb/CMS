@@ -1,4 +1,4 @@
-﻿Public Class Administration
+﻿Public Class AdministrationModel
 
 
     Public Property tieredCommissions As List(Of CharterTieredCommissions)

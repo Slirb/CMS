@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterTieredCommissions
+﻿@ModelType BoydGamingCharterSystem.CharterOperatorStopCode
 @Code
     ViewData("Title") = "Delete"
     Layout = "~/Views/Shared/_Layout.vbhtml"
@@ -8,25 +8,16 @@ End Code
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>CharterTieredCommissions</h4>
+    <h4>CharterOperatorStopCode</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(Function(model) model.Name)
+            @Html.DisplayNameFor(Function(model) model.StopCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(Function(model) model.Name)
+            @Html.DisplayFor(Function(model) model.StopCode)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(Function(model) model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(Function(model) model.Description)
-        </dd>
-
 
     </dl>
     @Using (Html.BeginForm())

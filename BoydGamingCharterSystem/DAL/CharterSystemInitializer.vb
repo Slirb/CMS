@@ -179,8 +179,8 @@ Public Class CharterSystemInitializer
         'Tiered Commissions
         Dim commissions As New List(Of CharterTieredCommissions)
         With commissions
-            .Add(New CharterTieredCommissions(1, 2, "test 1", "example", 200, 250, 100))
-            .Add(New CharterTieredCommissions(2, 2, "test 1", "example", 250, 450, 200))
+            .Add(New CharterTieredCommissions(1, "test 1", "example"))
+            .Add(New CharterTieredCommissions(2, "test 1", "example"))
         End With
         commissions.ForEach(Sub(commission) context.commissions.Add(commission))
         context.SaveChanges()
@@ -245,6 +245,12 @@ Public Class CharterSystemInitializer
         End With
         manifests.ForEach(Sub(manifest) context.manifests.Add(manifest))
         context.SaveChanges()
+
+
+
+        'Updates the count for each trip
+        trips.ForEach(Sub(trip) trip.ManifestCount = (From t In context.manifests.ToList()
+                                                      Select t Where t.tripId = trip.Id).Count)
         'END CHANGES-----------------------
 
 
