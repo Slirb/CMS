@@ -41,6 +41,7 @@ End Code
             @:</div>
             @Html.LabelFor(Function(model) model.Email, htmlAttributes:=New With {.class = "control-label"})
             @Html.EditorFor(Function(model) model.Email, New With {.htmlAttributes = New With {.class = "form-control"}})
+
             @:<a href="#" Class="deleteRow">Remove</a>
             
 
