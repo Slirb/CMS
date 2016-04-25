@@ -40,7 +40,7 @@ End Code
             <hr />
             @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
             @Html.HiddenFor(Function(model) model.trip.Id)            
-            @Html.HiddenFor(Function(model) model.trip.charterAgreementId)
+            @Html.HiddenFor(Function(model) model.trip.CharterAgreements.Id)
             @Html.HiddenFor(Function(model) model.trip.CarrierId)
             @Html.HiddenFor(Function(model) model.trip.OperatorId)
             @Html.HiddenFor(Function(model) model.trip.CarrierName)
@@ -53,7 +53,7 @@ End Code
             
              <div>
                  <!--Need to add agreement name and pull from table-->
-                 @Html.DisplayFor(Function(model) model.trip.charterAgreementId)
+                 @Html.DisplayFor(Function(model) model.trip.CharterAgreements.Id)
              </div>
 
              <div class="form-group">

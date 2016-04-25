@@ -1,7 +1,7 @@
 ﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterTrips)
 
 @Code
-    ViewData("Title") = "Index"
+    ViewData("Title") = "Trips"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 
 
@@ -12,69 +12,89 @@ End Code
 
 <html>
 
-
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
 <body>
+    <h1>@ViewBag.Title</h1>
     
     <!--<p>@Html.ActionLink("Create New", "Create")</p>-->
 
 @Using Html.BeginForm("Index", "CharterTrips", FormMethod.Post)
 
     @<p>
-        @Html.Label("startLabel", "Start: ")
+    <div class="row">
+    <div Class="col-sm-3">
+        <dl>
+            <dd>
+                @Html.Label("startLabel", "Start: ", New With {.class = "label-trips"})
         @Html.TextBox("StartDate", Date.Now.ToString("MM/dd/yyyy"), New With {.class = "date"})
-    </p>
-    @<p>
-        @Html.Label("endLabel", "End: ")
+            </dd>
+
+            <dd>
+                @Html.Label("endLabel", "End: ", New With {.class = "label-trips"})
         @Html.TextBox("EndDate", "", New With {.class = "date"})
-    </p>
+            </dd>
+        </dl>
 
-    @<p>
-    @Html.Label("searchLabel", "Confirmation Number: ")
-    @Html.TextBox("searchString")
-    </p>
+    </div>
 
-    @<p>
+         <div Class="col-sm-2">
+             <div class="panel panel-info">
+                 <div class="panel-body">
          <dl>
-             
+                        <dd>
+                            <span class="label label-success">@Html.CheckBox("Active", True) Active   </span>
+                        </dd>
              <dd>
-                 @Html.Label("activeLabel", "Active: ", New With {.style = "background-color:darkseagreen"})
-                 @Html.CheckBox("Active", True)
+                            <span class="label label-warning">@Html.CheckBox("Applied", True) Applied  </span>
              </dd>
              <dd>
-                 @Html.Label("appliedLabel", "Applied: ", New With {.style = "background-color:yellow"})
-                 @Html.CheckBox("Applied", True)
+                            <span Class="label label-danger"> @Html.CheckBox("Cancelled", True) Canceled </span>
              </dd>
              <dd>
-                 @Html.Label("cancelledLabel", "Canceled: ", New With {.style = "background-color:grey"})
-                 @Html.CheckBox("Cancelled", True)
+                            <span Class="label label-default">@Html.CheckBox("Completed", True) Completed</span>
             </dd>
              <dd>
-                @Html.Label("completedLabel", "Completed: ", New With {.style = "background-color:lightblue"})
-                @Html.CheckBox("Completed", True)
+                            <span class="label label-info">@Html.CheckBox("Potential", True) Pending  </span>
+                        </dd>
+                    </dl>
+                </div>
+             </div>
+          </div>
+                     <div Class="col-sm-4">
+                         <dl>
+                             <dd>
+                                 @Html.Label("searchLabel", "Confirmation Number: ", New With {.class = "label-trips"})<br />
+                                 @Html.TextBox("searchString", "", New With {.class = "text-input-trips"})
              </dd>
              <dd>
-                @Html.Label("potentialLabel", "Potential: ", New With {.style = "background-color:mediumpurple"})
-                @Html.CheckBox("Potential", True)
+                                 @Html.Label("operatorLabel", "Operator: ", New With {.class = "label-trips"})<br />
+                                 @Html.DropDownList("SelectedOperator", New SelectList(DirectCast(ViewData("Operators"), IEnumerable), "Value", "Text", ViewData("SelectedOperator")), "All")
             </dd>
-             
              <dd>
-                 @Html.Label("carrierLabel", "Carrier: ")                  
+                                 @Html.Label("carrierLabel", "Carrier: ", New With {.class = "label-trips"})<br />
                  @Html.DropDownList("SelectedCarrier", New SelectList(DirectCast(ViewData("Carriers"), IEnumerable), "Value", "Text", ViewData("SelectedCarrier")), "All")                              
              </dd>
+                         </dl>
+             </div>
+
+             <div Class="col-sm-3">
+                 <dl>
              <dd>
-                 @Html.Label("operatorLabel", "Operator: ")
-                 @Html.DropDownList("SelectedOperator", New SelectList(DirectCast(ViewData("Operators"), IEnumerable), "Value", "Text", ViewData("SelectedOperator")), "All")                                        
+                         <button type="submit" Class="btn btn-success btn-primary"> <span Class="glyphicon glyphicon-search"></span> Search Trips</button>
              </dd>           
 </dl>
-    <input type = "submit" value="Search"  /></p>
+             </div>
+             </div>
+
+
+</p>
 
 End Using
 
-   <Table Class="table">
+<Table Class="table table-condensed" style="background-color:lemonchiffon">
         <tr>
             <th>
                 Agreement ID
@@ -111,19 +131,19 @@ End Using
         'Select proper background color for each row
         Select Case stat
             Case "Applied"
-                name = "yellow"
+                        name = "sandybrown"
 
             Case "Active"
-                name = "darkseagreen"
+                        name = "mediumseagreen"
 
             Case "Cancelled"
-                name = "grey"
+                        name = "indianred"
 
             Case "Completed"
-                name = "lightblue"
+                        name = "grey"
 
             Case "Potential"
-                name = "mediumpurple"
+                        name = "lightskyblue"
 
             Case Else
                 name = ""
@@ -157,13 +177,13 @@ End Using
             <td>
                 @Html.DisplayFor(Function(modelItem) item.DisplayDeparture)
             </td>
-            <td>                          
-                @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
+            <td>
+            <a href="@Url.Action("Edit", "CharterTrips", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> EDIT</a>
             </td>
         </tr>
     Next
 
-    </table>
+</Table>
 </body>
 
 </html>

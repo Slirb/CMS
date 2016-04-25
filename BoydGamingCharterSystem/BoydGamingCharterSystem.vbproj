@@ -369,6 +369,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Logo\" />
+    <Folder Include="Views\CharterAgreements\" />
     <Folder Include="Views\CharterCarriers\EditorTemplates\" />
     <Folder Include="Views\CharterCompany\" />
     <Folder Include="Views\CharterContacts\" />
