@@ -11,6 +11,7 @@ Public Class CharterOperator
 
     Public Property Company As CharterCompany
 
+    '<Required(ErrorMessage:="A vendor number is required")>
     <Display(Name:="Vendor Number")>
     Public Property VendorNumber As String
 

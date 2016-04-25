@@ -20,17 +20,18 @@
 
         <header class="mainHeader">
             <div class="container">
-                <div class="logo">
-                    <img src="http://placehold.it/200x100" />
-                </div>
-                <nav class="mainNav">
+                        <div class="logo">
+                            <img src="~/Content/Logo/Charter_Bus.png" />
+                        </div>
+    
+                            <nav class="mainNav">
                     <ul>
                     
                         <!--Changed folder names to unify naming scheme-->
 
                         
                         <li>@Html.ActionLink("Trips", "Index", "CharterTrips")</li>
-                        <li>@Html.ActionLink("Charter Agreements", "Index", "CharterAgreements")</li>
+                        <li>@Html.ActionLink("Agreements", "Index", "CharterAgreements")</li>
                         <li>@Html.ActionLink("Operators", "Index", "CharterOperators")</li>
                         <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
                         <li>@Html.ActionLink("Reports", "Index", "CharterReports")</li>

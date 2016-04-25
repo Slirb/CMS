@@ -3,6 +3,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 
 Public Class CharterTrips
+    Implements IValidatableObject
 
     Private tripId As Integer
     Private tripsDestination As String
@@ -37,6 +38,25 @@ Public Class CharterTrips
 
     <ForeignKey("tripId")>
     Public Property CharterManifests() As ICollection(Of CharterManifest)
+
+
+    'Formats the arrival time for display
+    Public ReadOnly Property DisplayArrival() As String
+        Get
+            Return Arrival.Value.ToString("MM/dd/yyyy hh:mm tt")
+        End Get
+    End Property
+
+    Public Property ManifestCount As Integer
+    Public Property TripNotes As String
+
+    'Formats the departure time for display
+    Public ReadOnly Property DisplayDeparture() As String
+        Get
+            Return Departure.Value.ToString("MM/dd/yyyy hh:mm tt")
+        End Get
+    End Property
+
 
 
     'Formats the arrival time for display
@@ -222,5 +242,14 @@ Public Class CharterTrips
 
     End Sub
 
+    Public Iterator Function Validate(validationContext As ValidationContext) As IEnumerable(Of ValidationResult) Implements IValidatableObject.Validate
 
+        Dim properties As List(Of String) = New List(Of String)
+        properties.Add("Departure")
+
+        If Me.Departure < Me.Arrival Then
+            Yield New ValidationResult("Test", properties)
+        End If
+
+    End Function
 End Class

@@ -3,6 +3,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 Imports BoydGamingCharterSystem
 <Table("Carrier")>
 Public Class CharterCarrier
+    Implements IValidatableObject
 
     <Key>
     Public Property Id() As Integer
@@ -72,6 +73,29 @@ Public Class CharterCarrier
 
     End Sub
 
+    Public Iterator Function Validate(validationContext As ValidationContext) As IEnumerable(Of ValidationResult) Implements IValidatableObject.Validate
 
+        Dim licenseNum As List(Of String) = New List(Of String)
+        licenseNum.Add("LicenseNumber")
+
+        If Me.HasLicense And String.IsNullOrEmpty(Me.LicenseNumber) Then
+            Yield New ValidationResult("License number is required", licenseNum)
+        End If
+
+        Dim insuranceNum As List(Of String) = New List(Of String)
+        insuranceNum.Add("InsuranceNumber")
+
+        If Me.HasInsurance And String.IsNullOrEmpty(Me.InsuranceNumber) Then
+            Yield New ValidationResult("Insurance number is required", insuranceNum)
+        End If
+
+        Dim insuranceExp As List(Of String) = New List(Of String)
+        insuranceExp.Add("InsuranceExpiration")
+
+        If Me.HasInsurance And Me.InsuranceExpiration Is Nothing Then
+            Yield New ValidationResult("Insurance expiration date is required", insuranceExp)
+        End If
+
+    End Function
 
 End Class

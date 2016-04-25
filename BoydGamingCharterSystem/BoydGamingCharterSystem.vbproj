@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.vb" />
     <Compile Include="Controllers\Administration Controllers\AdministrationController.vb" />
     <Compile Include="Controllers\Administration Controllers\CharterTieredCommissionsController.vb" />
+    <Compile Include="Controllers\CharterAgreementsController.vb" />
     <Compile Include="Controllers\CharterCarriersController.vb" />
     <Compile Include="Controllers\CharterCommentsController.vb" />
     <Compile Include="Controllers\CharterCompanyController.vb" />
@@ -307,6 +308,25 @@
     <Content Include="Views\CharterOperators\Delete.vbhtml" />
     <Content Include="Views\CharterOperators\Details.vbhtml" />
     <Content Include="Views\CharterOperators\Edit.vbhtml" />
+    <Content Include="Views\CharterTrips\AddPerson.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorModes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorStopCodes\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Create.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Delete.vbhtml" />
+    <Content Include="Views\CharterOperatorTypes\Edit.vbhtml" />
+    <Content Include="Views\CharterProperties\Create.vbhtml" />
+    <Content Include="Views\CharterProperties\Delete.vbhtml" />
+    <Content Include="Views\CharterProperties\Edit.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Create.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Delete.vbhtml" />
+    <Content Include="Views\CharterTieredCommissions\Edit.vbhtml" />
     <Content Include="Views\CharterOperators\Index.vbhtml" />
     <Content Include="Views\CharterAgreements\Create.vbhtml" />
     <Content Include="Views\CharterAgreements\Delete.vbhtml" />
@@ -368,6 +388,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Logo\" />
+    <Folder Include="Views\CharterAgreements\" />
     <Folder Include="Views\CharterCarriers\EditorTemplates\" />
     <Folder Include="Views\CharterCompany\" />
     <Folder Include="Views\CharterContacts\" />
