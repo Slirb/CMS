@@ -87,7 +87,7 @@ End Code
              <div class="form-group">
                  @Html.LabelFor(Function(model) model.trip.Arrival, htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
-                     @Html.TextBox("ArrivalDay", Model.trip.Arrival.Value.ToString("MM/dd/yyyy"), New With {.class = "date"})
+                     @Html.TextBox("ArrivalDay", Model.trip.ArrivalDate.ToString("MM/dd/yyyy"), New With {.class = "date"})
                      @Html.Label("ArrivealHourLabel", "Hour: ")
                      @Html.DropDownList("ArrivalHour", DirectCast(ViewBag.ArriveHours, SelectList))
                      @Html.Label("ArrivalMinuteLabel", "Minute: ")
@@ -99,7 +99,7 @@ End Code
              <div Class="form-group">
                  @Html.LabelFor(Function(model) model.trip.Departure, htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div Class="col-md-10">
-                     @Html.TextBox("DepartureDay", Model.trip.Arrival.Value.ToString("MM/dd/yyyy"), New With {.class = "date"})
+                     @Html.TextBox("DepartureDay", Model.trip.DepartureDate.ToString("MM/dd/yyyy"), New With {.class = "date"})
                      @Html.Label("DepartureHourLabel", "Hour: ")
                      @Html.DropDownList("DepartureHour", DirectCast(ViewBag.DepartHours, SelectList))
                      @Html.Label("DepartureMinuteLabel", "Minute: ")

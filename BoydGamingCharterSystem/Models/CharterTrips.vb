@@ -47,25 +47,6 @@ Public Class CharterTrips
         End Get
     End Property
 
-    Public Property ManifestCount As Integer
-    Public Property TripNotes As String
-
-    'Formats the departure time for display
-    Public ReadOnly Property DisplayDeparture() As String
-        Get
-            Return Departure.Value.ToString("MM/dd/yyyy hh:mm tt")
-        End Get
-    End Property
-
-
-
-    'Formats the arrival time for display
-    Public ReadOnly Property DisplayArrival() As String
-        Get
-            Return Arrival.Value.ToString("MM/dd/yyyy hh:mm tt")
-        End Get
-    End Property
-
 
     'Formats the departure time for display
     Public ReadOnly Property DisplayDeparture() As String

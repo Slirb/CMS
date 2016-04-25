@@ -424,7 +424,6 @@ Namespace Controllers
             End If
 
 
-
             'Populate Hours DropdownBoxes
             Dim hours = New List(Of SelectListItem)
             hours.Add(New SelectListItem With {.Text = "00", .Value = "00"})
@@ -443,8 +442,8 @@ Namespace Controllers
             Next
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.Hour.ToString("HH"))
-            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Departure.Value.Hour.ToString("HH"))
+            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.ArrivalDate.ToString("HH"))
+            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.DepartureDate.ToString("HH"))
 
 
             Dim minutes = New List(Of SelectListItem)
@@ -463,9 +462,9 @@ Namespace Controllers
                 minutes.Add(New SelectListItem With {.Text = index.ToString, .Value = index.ToString})
             Next
 
-            'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.Minute.ToString("mm"))
-            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Departure.Value.Minute.ToString("mm"))
+            'Set the selected value for each minute dropdownbox
+            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.ArrivalDate.ToString("mm"))
+            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.DepartureDate.ToString("mm"))
 
             'Manifest for the trip
             Dim manifests As List(Of CharterManifest) = (From x In db.manifests
@@ -550,7 +549,7 @@ Namespace Controllers
                 minutes.Add(New SelectListItem With {.Text = index.ToString, .Value = index.ToString})
             Next
 
-            'Set the selected value for each hour dropdownbox
+            'Set the selected value for each minute dropdownbox
             ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.ArrivalMinute.ToString("mm"))
             ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.DepartureMinute.ToString("mm"))
 
