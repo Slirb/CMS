@@ -1,6 +1,7 @@
 ﻿@ModelType BoydGamingCharterSystem.EditTripsModel
 
 @Code
+    ViewData("Title") = "Trips Edit"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
@@ -36,7 +37,7 @@ End Code
 
 
         @<div class="form-horizontal">
-            <h4>CharterTrips</h4>
+            <h4>Charter Trip Edit</h4>
             <hr />
             @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
             @Html.HiddenFor(Function(model) model.trip.Id)            
