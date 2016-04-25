@@ -52,7 +52,7 @@ End Code
         <div class="form-group">
             @Html.LabelFor(Function(model) model.StopCode, htmlAttributes:= New With { .class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(Function(model) model.StopCode, DirectCast(ViewBag.StopCodes, SelectList), "---Select A Stop Code---")
+                @Html.DropDownListFor(Function(model) model.StopCode, DirectCast(ViewBag.OpStopCodes, SelectList), "---Select A Stop Code---")
                 @Html.ValidationMessageFor(Function(model) model.StopCode, "", New With { .class = "text-danger" })
             </div>
         </div>

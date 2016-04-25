@@ -79,18 +79,18 @@ Public Class CharterSystemInitializer
 
         Dim companies As New List(Of CharterCompany)
         With companies
-            .Add(New CharterCompany("Greyhound", "Test", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Metra", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Bob's Buses", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Paradise Line", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Spirit Tracks", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Vegas Carriers", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Tim's Travel Services", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Rich Springs Travel Companion", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("First Travel Center", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("First Stop on the Journey Travel Agency", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Vegas Travellers", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
-            .Add(New CharterCompany("Windy City Travel", Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing))
+            .Add(New CharterCompany("Greyhound", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Metra", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Bob's Buses", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Paradise Line", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Spirit Tracks", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Vegas Carriers", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Tim's Travel Services", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Rich Springs Travel Companion", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("First Travel Center", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("First Stop on the Journey Travel Agency", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Vegas Travellers", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Windy City Travel", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
 
         End With
         companies.ForEach(Sub(comp) context.companies.Add(comp))
@@ -103,6 +103,7 @@ Public Class CharterSystemInitializer
             .Last().Company = companies.Item(0)
             .Last().HasInsurance = True
             .Last().InsuranceNumber = "15879631"
+            .Last().InsuranceExpiration = Date.Now
             .Add(New CharterCarrier())
             .Last().Company = companies.Item(1)
             .Add(New CharterCarrier())
@@ -179,8 +180,8 @@ Public Class CharterSystemInitializer
         'Tiered Commissions
         Dim commissions As New List(Of CharterTieredCommissions)
         With commissions
-            .Add(New CharterTieredCommissions(1, 2, "test 1", "example", 200, 250, 100))
-            .Add(New CharterTieredCommissions(2, 2, "test 1", "example", 250, 450, 200))
+            .Add(New CharterTieredCommissions(1, "test 1", "example"))
+            .Add(New CharterTieredCommissions(2, "test 1", "example"))
         End With
         commissions.ForEach(Sub(commission) context.commissions.Add(commission))
         context.SaveChanges()
@@ -245,6 +246,12 @@ Public Class CharterSystemInitializer
         End With
         manifests.ForEach(Sub(manifest) context.manifests.Add(manifest))
         context.SaveChanges()
+
+
+
+        'Updates the count for each trip
+        trips.ForEach(Sub(trip) trip.ManifestCount = (From t In context.manifests.ToList()
+                                                      Select t Where t.tripId = trip.Id).Count)
         'END CHANGES-----------------------
 
 

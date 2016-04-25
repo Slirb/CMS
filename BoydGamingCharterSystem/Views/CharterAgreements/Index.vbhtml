@@ -1,7 +1,6 @@
 ﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterAgreement)
 @Code
 ViewData("Title") = "Index"
-Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
 <h2>Index</h2>
@@ -12,7 +11,16 @@ End Code
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(Function(model) model.CreateDate)
+            @Html.DisplayNameFor(Function(model) model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Function(model) model.CharterCarrier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Function(model) model.CharterOperator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(Function(model) model.CreatedDateTime)
         </th>
         <th></th>
     </tr>
@@ -20,12 +28,20 @@ End Code
 @For Each item In Model
     @<tr>
         <td>
-            @Html.DisplayFor(Function(modelItem) item.CreateDate)
+            @Html.DisplayFor(Function(modelItem) item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.CarrierName)
+        </td>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.OperatorName)
+        </td>
+        <td>
+            @Html.DisplayFor(Function(modelItem) item.CreatedDateTime)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", New With {.id = item.Id }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", New With {.id = item.Id })
+            @Html.ActionLink("Details", "Details", New With {.id = item.Id }) 
         </td>
     </tr>
 Next

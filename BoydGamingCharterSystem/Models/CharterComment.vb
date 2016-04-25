@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
-
+<Table("Comment")>
 Public Class CharterComment
 
 
@@ -26,7 +26,7 @@ Public Class CharterComment
 
 End Class
 
-
+<Table("Commentable")>
 Public Class Commentable
 
     Public Property CommentableId() As Integer

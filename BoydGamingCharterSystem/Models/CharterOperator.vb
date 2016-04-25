@@ -11,6 +11,7 @@ Public Class CharterOperator
 
     Public Property Company As CharterCompany
 
+    '<Required(ErrorMessage:="A vendor number is required")>
     <Display(Name:="Vendor Number")>
     Public Property VendorNumber As String
 
@@ -24,10 +25,20 @@ Public Class CharterOperator
     Public Property StopCode As String
     Public Property Created As Date?
 
-    <ForeignKey("OperatorId")>
+    '<ForeignKey("OperatorId")>
     Public Property CharterAgreements As List(Of CharterAgreement)
 
     Public Property Commentable As Commentable
+    <NotMapped>
+    Public Property Name As String
+        Get
+            Return Me.Company.Name
+        End Get
+        Set(value As String)
+            Me.Company.Name = value
+        End Set
+    End Property
+
 
     <NotMapped>
     Public Property Comments() As List(Of CharterComment)

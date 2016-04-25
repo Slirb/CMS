@@ -3,11 +3,12 @@ Imports System.ComponentModel.DataAnnotations.Schema
 Imports BoydGamingCharterSystem
 <Table("Carrier")>
 Public Class CharterCarrier
+    Implements IValidatableObject
 
     <Key>
     Public Property Id() As Integer
 
-    <ForeignKey("CarrierId")>
+    '<ForeignKey("CarrierId")>
     Public Property CharterAgreements As ICollection(Of CharterAgreement)
 
     Public Property Company As CharterCompany
@@ -28,7 +29,15 @@ Public Class CharterCarrier
 
     Public Property LastUpdated As Date?
 
-
+    <NotMapped>
+    Public Property Name As String
+        Get
+            Return Me.Company.Name
+        End Get
+        Set(value As String)
+            Me.Company.Name = value
+        End Set
+    End property
     <NotMapped>
     Public Property Contacts() As List(Of CharterContact)
         Get
@@ -64,6 +73,29 @@ Public Class CharterCarrier
 
     End Sub
 
+    Public Iterator Function Validate(validationContext As ValidationContext) As IEnumerable(Of ValidationResult) Implements IValidatableObject.Validate
 
+        Dim licenseNum As List(Of String) = New List(Of String)
+        licenseNum.Add("LicenseNumber")
+
+        If Me.HasLicense And String.IsNullOrEmpty(Me.LicenseNumber) Then
+            Yield New ValidationResult("License number is required", licenseNum)
+        End If
+
+        Dim insuranceNum As List(Of String) = New List(Of String)
+        insuranceNum.Add("InsuranceNumber")
+
+        If Me.HasInsurance And String.IsNullOrEmpty(Me.InsuranceNumber) Then
+            Yield New ValidationResult("Insurance number is required", insuranceNum)
+        End If
+
+        Dim insuranceExp As List(Of String) = New List(Of String)
+        insuranceExp.Add("InsuranceExpiration")
+
+        If Me.HasInsurance And Me.InsuranceExpiration Is Nothing Then
+            Yield New ValidationResult("Insurance expiration date is required", insuranceExp)
+        End If
+
+    End Function
 
 End Class

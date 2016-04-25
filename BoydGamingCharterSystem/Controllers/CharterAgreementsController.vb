@@ -16,11 +16,8 @@ Namespace Controllers
 
         ' GET: CharterAgreements
         Function Index() As ActionResult
-            Return View(db.agreements.ToList())
-        End Function
-
-        Function Search() As ActionResult
-            Return View(db.carriers.ToList(), db.operators.ToList())
+            Dim agreements = db.agreements.Include(Function(c) c.CharterCarrier).Include(Function(c) c.CharterOperator).Include(Function(c) c.CharterCarrier.Company).Include(Function(c) c.CharterOperator.Company)
+            Return View(agreements.ToList())
         End Function
 
         ' GET: CharterAgreements/Details/5
@@ -37,7 +34,11 @@ Namespace Controllers
 
         ' GET: CharterAgreements/Create
         Function Create() As ActionResult
-            Return View()
+            Dim agreement As CharterAgreement = New CharterAgreement
+            ViewBag.CarrierId = New SelectList(db.carriers.Include(Function(c) c.Company), "Id", "Name")
+            ViewBag.OperatorId = New SelectList(db.operators.Include(Function(c) c.Company), "Id", "Name")
+            ViewBag.Properties = New SelectList(db.properties, "Id", "ShortName")
+            Return View(agreement)
         End Function
 
         ' POST: CharterAgreements/Create
@@ -45,24 +46,41 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Create(<Bind(Include:="Id,CreateDate")> ByVal charterAgreement As CharterAgreement) As ActionResult
+        Function Create(ByVal charterAgreement As CharterAgreement) As ActionResult
             If ModelState.IsValid Then
+
+                For Each trip In charterAgreement.CharterTrips
+                    trip.CharterAgreements = charterAgreement
+                    trip.TripStatus = "Potential"
+                Next
+
                 db.agreements.Add(charterAgreement)
+
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
+            ViewBag.CarrierId = New SelectList(db.carriers.Include(Function(c) c.Company), "Id", "Name")
+            ViewBag.OperatorId = New SelectList(db.operators.Include(Function(c) c.Company), "Id", "Name")
+            ViewBag.Properties = New SelectList(db.properties, "Id", "ShortName")
             Return View(charterAgreement)
         End Function
 
-        ' GET: CharterAgreements/Edit/5
+
+
+
         Function Edit(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterAgreement As CharterAgreement = db.agreements.Find(id)
+            Dim charterAgreement As CharterAgreement = (From agreement In db.agreements.Include(Function(c) c.CharterTrips)
+                                                        Select agreement Where agreement.Id = id).FirstOrDefault()
+
             If IsNothing(charterAgreement) Then
                 Return HttpNotFound()
             End If
+            ViewBag.CarrierId = New SelectList(db.carriers.Include(Function(c) c.Company), "Id", "Name")
+            ViewBag.OperatorId = New SelectList(db.operators.Include(Function(c) c.Company), "Id", "Name")
+            ViewBag.Properties = New SelectList(db.properties, "Id", "ShortName")
             Return View(charterAgreement)
         End Function
 
@@ -71,37 +89,57 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="Id,CreateDate")> ByVal charterAgreement As CharterAgreement) As ActionResult
+        Function Edit(ByVal charterAgreement As CharterAgreement) As ActionResult
             If ModelState.IsValid Then
+
+                'Update and Edit new and existing trips
+                For Each trip In charterAgreement.CharterTrips.Where(Function(c) c.Id = 0)
+                    Static Dim tripCounter As Integer = -1
+                    trip.Id = tripCounter
+                    tripCounter -= 1
+                Next
+
+                For Each trip In charterAgreement.CharterTrips
+                    trip.CharterAgreements = charterAgreement
+                    If trip.Id < 0 Then
+                        db.Entry(trip).State = EntityState.Added
+                    Else
+                        db.Entry(trip).State = EntityState.Modified
+                    End If
+                Next
+
                 db.Entry(charterAgreement).State = EntityState.Modified
                 db.SaveChanges()
                 Return RedirectToAction("Index")
             End If
+            ViewBag.CarrierId = New SelectList(db.carriers.Include(Function(c) c.Company), "Id", "Name")
+            ViewBag.OperatorId = New SelectList(db.operators.Include(Function(c) c.Company), "Id", "Name")
+            ViewBag.Properties = New SelectList(db.properties, "Id", "ShortName")
             Return View(charterAgreement)
         End Function
 
-        ' GET: CharterAgreements/Delete/5
-        Function Delete(ByVal id As Integer?) As ActionResult
-            If IsNothing(id) Then
-                Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
-            End If
-            Dim charterAgreement As CharterAgreement = db.agreements.Find(id)
-            If IsNothing(charterAgreement) Then
-                Return HttpNotFound()
-            End If
-            Return View(charterAgreement)
-        End Function
+        ''Get :   CharterAgreements/Delete/5
+        'Function Delete(ByVal id As Integer?) As ActionResult
+        '    If IsNothing(id) Then
+        '        Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
+        '    End If
+        '    Dim charterAgreement As CharterAgreement = db.agreements.Find(id)
+        '    If IsNothing(charterAgreement) Then
+        '        Return HttpNotFound()
+        '    End If
+        '    Return View(charterAgreement)
+        'End Function
 
-        ' POST: CharterAgreements/Delete/5
-        <HttpPost()>
-        <ActionName("Delete")>
-        <ValidateAntiForgeryToken()>
-        Function DeleteConfirmed(ByVal id As Integer) As ActionResult
-            Dim charterAgreement As CharterAgreement = db.agreements.Find(id)
-            db.agreements.Remove(charterAgreement)
-            db.SaveChanges()
-            Return RedirectToAction("Index")
-        End Function
+        '' POST: CharterAgreements/Delete/5
+        '<HttpPost()>
+        '<ActionName("Delete")>
+        '<ValidateAntiForgeryToken()>
+        'Function DeleteConfirmed(ByVal id As Integer) As ActionResult
+        '    Dim charterAgreement As CharterAgreement = db.agreements.Find(id)
+        '    db.agreements.Remove(charterAgreement)
+        '    db.SaveChanges()
+        '    Return RedirectToAction("Index")
+        'End Function
 
         Protected Overrides Sub Dispose(ByVal disposing As Boolean)
             If (disposing) Then

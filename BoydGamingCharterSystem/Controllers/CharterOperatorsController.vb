@@ -28,7 +28,8 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterOperator As CharterOperator = db.operators.Find(id)
+            Dim charterOperator As CharterOperator = (From co In db.operators.Include(Function(o) o.Commentable).Include(Function(o) o.Company).Include(Function(o) o.Company.Contactable)
+                                                      Select co Where co.Id = id).FirstOrDefault()
             If IsNothing(charterOperator) Then
                 Return HttpNotFound()
             End If

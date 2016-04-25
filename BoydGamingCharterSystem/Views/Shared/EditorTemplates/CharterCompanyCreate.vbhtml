@@ -68,6 +68,7 @@ End Code
             </div>
 
             @Html.ValidationMessageFor(Function(model) model.CompanyPrimaryPhone, "", New With {.class = "text-danger"})
+            @Html.ValidationMessageFor(Function(model) model.CompanyPrimaryPhoneExtension, "", New With {.class = "text-danger"})
         </div>
     </div>
     <div class="form-group">
@@ -78,6 +79,7 @@ End Code
             </div>
 
             @Html.ValidationMessageFor(Function(model) model.CompanyAlternatePhone, "", New With {.class = "text-danger"})
+            @Html.ValidationMessageFor(Function(model) model.CompanyAlternatePhoneExtension, "", New With {.class = "text-danger"})
         </div>
     </div>
     <div class="form-group">
@@ -88,6 +90,7 @@ End Code
             </div>
 
             @Html.ValidationMessageFor(Function(model) model.CompanyEmergencyPhone, "", New With {.class = "text-danger"})
+            @Html.ValidationMessageFor(Function(model) model.CompanyEmergencyPhoneExtension, "", New With {.class = "text-danger"})
         </div>
     </div>
 
@@ -101,6 +104,14 @@ End Code
             </div>
 
             @Html.ValidationMessageFor(Function(model) model.CompanyFax, "", New With {.class = "text-danger"})
+            @Html.ValidationMessageFor(Function(model) model.CompanyFaxExtension, "", New With {.class = "text-danger"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(Function(model) model.CompanyEmail, htmlAttributes:=New With {.class = "control-label col-md-2"})
+        <div class="col-md-10">
+            @Html.EditorFor(Function(model) model.CompanyEmail, New With {.htmlAttributes = New With {.class = "form-control"}})
+            @Html.ValidationMessageFor(Function(model) model.CompanyEmail, "", New With {.class = "text-danger"})
         </div>
     </div>
     

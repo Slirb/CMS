@@ -7,6 +7,7 @@ Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
 Imports BoydGamingCharterSystem
+Imports System.IO
 
 
 Namespace Controllers
@@ -24,6 +25,10 @@ Namespace Controllers
 
             Dim status As New List(Of String)
             Dim trips
+
+            If searchString = "" Then
+                searchString = Nothing
+            End If
 
             'Check potential checkbox
             If (potential = True) Then
@@ -432,24 +437,14 @@ Namespace Controllers
             hours.Add(New SelectListItem With {.Text = "07", .Value = "07"})
             hours.Add(New SelectListItem With {.Text = "08", .Value = "08"})
             hours.Add(New SelectListItem With {.Text = "09", .Value = "09"})
-            hours.Add(New SelectListItem With {.Text = "10", .Value = "10"})
-            hours.Add(New SelectListItem With {.Text = "11", .Value = "11"})
-            hours.Add(New SelectListItem With {.Text = "12", .Value = "12"})
-            hours.Add(New SelectListItem With {.Text = "13", .Value = "13"})
-            hours.Add(New SelectListItem With {.Text = "14", .Value = "14"})
-            hours.Add(New SelectListItem With {.Text = "15", .Value = "15"})
-            hours.Add(New SelectListItem With {.Text = "16", .Value = "16"})
-            hours.Add(New SelectListItem With {.Text = "17", .Value = "17"})
-            hours.Add(New SelectListItem With {.Text = "18", .Value = "18"})
-            hours.Add(New SelectListItem With {.Text = "19", .Value = "19"})
-            hours.Add(New SelectListItem With {.Text = "20", .Value = "20"})
-            hours.Add(New SelectListItem With {.Text = "21", .Value = "21"})
-            hours.Add(New SelectListItem With {.Text = "22", .Value = "22"})
-            hours.Add(New SelectListItem With {.Text = "23", .Value = "23"})
+
+            For index As Integer = 10 To 23
+                hours.Add(New SelectListItem With {.Text = index.ToString, .Value = index.ToString})
+            Next
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.ToString("HH"))
-            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Departure.Value.ToString("HH"))
+            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.Hour.ToString("HH"))
+            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrips.Departure.Value.Hour.ToString("HH"))
 
 
             Dim minutes = New List(Of SelectListItem)
@@ -469,8 +464,8 @@ Namespace Controllers
             Next
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.ToString("mm"))
-            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Departure.Value.ToString("mm"))
+            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Arrival.Value.Minute.ToString("mm"))
+            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrips.Departure.Value.Minute.ToString("mm"))
 
             'Manifest for the trip
             Dim manifests As List(Of CharterManifest) = (From x In db.manifests
@@ -490,11 +485,12 @@ Namespace Controllers
         'more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         <HttpPost()>
         <ValidateAntiForgeryToken()>
-        Function Edit(<Bind(Include:="Id,charterAgreementId,CarrierId,CarrierName,OperatorId,OperatorName,TripDestination,TripCity,TripStatus,Confirmation", Prefix:="trip")> ByVal charterTrip As CharterTrips,
+        Function Edit(<Bind(Include:="Id,charterAgreementId,CarrierId,CarrierName,OperatorId,OperatorName,TripDestination,TripCity,TripStatus,Confirmation,ManifestCount,TripNotes", Prefix:="trip")> ByVal charterTrip As CharterTrips,
                        ArrivalDay As String, ArrivalHour As String, ArrivalMinute As String, DepartureDay As String, DepartureHour As String, DepartureMinute As String) As ActionResult
 
             charterTrip.Arrival = ArrivalDay + " " + ArrivalHour + ":" + ArrivalMinute + ":00"
             charterTrip.Departure = DepartureDay + " " + DepartureHour + ":" + DepartureMinute + ":00"
+
 
             If ModelState.IsValid Then
 
@@ -510,6 +506,7 @@ Namespace Controllers
                 End If
 
                 db.Entry(charterTrip).State = EntityState.Modified
+
                 db.SaveChanges()
             End If
 
@@ -526,24 +523,15 @@ Namespace Controllers
             hours.Add(New SelectListItem With {.Text = "07", .Value = "07"})
             hours.Add(New SelectListItem With {.Text = "08", .Value = "08"})
             hours.Add(New SelectListItem With {.Text = "09", .Value = "09"})
-            hours.Add(New SelectListItem With {.Text = "10", .Value = "10"})
-            hours.Add(New SelectListItem With {.Text = "11", .Value = "11"})
-            hours.Add(New SelectListItem With {.Text = "12", .Value = "12"})
-            hours.Add(New SelectListItem With {.Text = "13", .Value = "13"})
-            hours.Add(New SelectListItem With {.Text = "14", .Value = "14"})
-            hours.Add(New SelectListItem With {.Text = "15", .Value = "15"})
-            hours.Add(New SelectListItem With {.Text = "16", .Value = "16"})
-            hours.Add(New SelectListItem With {.Text = "17", .Value = "17"})
-            hours.Add(New SelectListItem With {.Text = "18", .Value = "18"})
-            hours.Add(New SelectListItem With {.Text = "19", .Value = "19"})
-            hours.Add(New SelectListItem With {.Text = "20", .Value = "20"})
-            hours.Add(New SelectListItem With {.Text = "21", .Value = "21"})
-            hours.Add(New SelectListItem With {.Text = "22", .Value = "22"})
-            hours.Add(New SelectListItem With {.Text = "23", .Value = "23"})
+
+            For index As Integer = 10 To 23
+                hours.Add(New SelectListItem With {.Text = index.ToString, .Value = index.ToString})
+            Next
+
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Arrival.Value.ToString("HH"))
-            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.Departure.Value.ToString("HH"))
+            ViewBag.ArriveHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.ArrivalHour.ToString("HH"))
+            ViewBag.DepartHours = New SelectList(hours, "Value", "Text", selectedValue:=charterTrip.DepartureHour.ToString("HH"))
 
 
             Dim minutes = New List(Of SelectListItem)
@@ -563,8 +551,8 @@ Namespace Controllers
             Next
 
             'Set the selected value for each hour dropdownbox
-            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Arrival.Value.ToString("mm"))
-            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.Departure.Value.ToString("mm"))
+            ViewBag.ArriveMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.ArrivalMinute.ToString("mm"))
+            ViewBag.DepartMinutes = New SelectList(minutes, "Value", "Text", selectedValue:=charterTrip.DepartureMinute.ToString("mm"))
 
 
             'Manifest for the trip
@@ -579,6 +567,20 @@ Namespace Controllers
 
             Return View(viewMod)
         End Function
+
+        'Save notes for a trip
+        <HttpPost()>
+        Function SubmitNotes(ByVal id As Integer?, ByVal tripNotes As String) As ActionResult
+
+
+            Dim charterTrip As CharterTrips = db.trips.Find(id)
+            charterTrip.TripNotes = tripNotes
+            db.Entry(charterTrip).State = EntityState.Modified
+            db.SaveChanges()
+
+            Return RedirectToAction("Edit", New With {.id = charterTrip.Id})
+        End Function
+
 
         'Cancel a trip
         Function CancelTrip(ByVal id As Integer?) As ActionResult
@@ -611,8 +613,169 @@ Namespace Controllers
             db.manifests.Remove(charterManifest)
             db.SaveChanges()
 
+            charterTrip.ManifestCount = (From t In db.manifests.ToList
+                                         Select t Where t.tripId = tripId).Count
+
+            db.Entry(charterTrip).State = EntityState.Modified
+            db.SaveChanges()
+
             Return RedirectToAction("Edit", New With {.id = charterTrip.Id})
         End Function
+
+        'Add a single person to a manifest
+        <HttpPost()>
+        Function AddPerson(ByVal tripId As Integer, ByVal searchPerson As String) As ActionResult
+
+            If searchPerson = "" Then
+                Return RedirectToAction("Edit", New With {.id = tripId})
+            End If
+
+            Dim people As New List(Of CharterManifest)
+            Dim state As State = db.states.Find(2)
+            Dim charterTrip As CharterTrips = db.trips.Find(tripId)
+
+            With people
+                .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Orlando", state, "56533", charterTrip))
+            End With
+
+
+            For Each person In people
+                If person.cardNumber.Equals(Integer.Parse(searchPerson)) Then
+
+                    Dim tempManifest = From t In db.manifests.Where(Function(manifest) manifest.cardNumber.Equals(person.cardNumber)).ToList
+                                       Select t Where t.tripId = tripId
+
+                    If tempManifest.Count < 1 Then
+
+                        Dim name As CharterManifest =
+                            New CharterManifest(-1, person.cardNumber, person.firstName, person.lastName, person.middleInitial, person.dob, person.addressLineOne,
+                                                person.addressLineTwo, person.city, state, person.postalCode, charterTrip)
+
+                        db.manifests.Add(name)
+                        db.SaveChanges()
+
+                        charterTrip.ManifestCount = (From t In db.manifests.ToList
+                                                     Select t Where t.tripId = tripId).Count
+
+                        db.Entry(charterTrip).State = EntityState.Modified
+                        db.SaveChanges()
+                    End If
+
+
+                    Exit For
+                End If
+            Next
+
+            Return RedirectToAction("Edit", New With {.id = charterTrip.Id})
+
+        End Function
+
+
+        'Add a csv manifest to a trip
+        <HttpPost()>
+        Function ImportManifest(ByVal id As Integer, ByVal manifest As HttpPostedFileBase) As ActionResult
+
+            Dim fileName As String
+
+            Try
+                fileName = Path.GetFileName(manifest.FileName)
+            Catch ex As Exception
+                Return RedirectToAction("Edit", New With {.id = id})
+            End Try
+
+
+            Dim reader As StreamReader = New StreamReader(manifest.InputStream)
+            Dim test As String = reader.ReadToEnd
+            Dim importedNumbers As New List(Of Integer)()
+
+            Dim lines As String() = Regex.Split(test, Environment.NewLine)
+
+            For Each line In lines
+                Dim values = Regex.Split(line, ",")
+                If values(0) IsNot Nothing AndAlso values(0) <> "" Then
+                    importedNumbers.Add(Integer.Parse(values(0)))
+                End If
+
+            Next
+
+
+
+
+            Dim people As New List(Of CharterManifest)
+            Dim state As State = db.states.Find(2)
+            Dim charterTrip As CharterTrips = db.trips.Find(id)
+
+            With people
+                .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Houston", state, "46511", charterTrip))
+                .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Orlando", state, "56533", charterTrip))
+            End With
+
+
+            For Each person In people
+
+                For Each number In importedNumbers
+                    If person.cardNumber.Equals(number) Then
+
+                        Dim tempManifest = From t In db.manifests.Where(Function(mani) mani.cardNumber.Equals(person.cardNumber)).ToList
+                                           Select t Where t.tripId = id
+
+                        If tempManifest.Count < 1 Then
+
+                            Dim name As CharterManifest =
+                            New CharterManifest(-1, person.cardNumber, person.firstName, person.lastName, person.middleInitial, person.dob, person.addressLineOne,
+                                                person.addressLineTwo, person.city, state, person.postalCode, charterTrip)
+
+                            db.manifests.Add(name)
+                            db.SaveChanges()
+
+                            charterTrip.ManifestCount = (From t In db.manifests.ToList
+                                                         Select t Where t.tripId = id).Count
+
+                            db.Entry(charterTrip).State = EntityState.Modified
+                            db.SaveChanges()
+                        End If
+
+                        Exit For
+                    End If
+
+                Next
+
+            Next
+
+            Return RedirectToAction("Edit", New With {.id = charterTrip.Id})
+
+
+        End Function
+
 
         ' GET: CharterTrips/Delete/5
         Function Delete(ByVal id As Integer?) As ActionResult
@@ -642,7 +805,8 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterTrips As CharterTrips = db.trips.Find(id)
+            Dim charterTrips As CharterTrips = (From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company.State).Include(Function(c) c.CharterAgreements.CharterCarrier.Company.State).ToList()
+                                                Select t Where t.Id = id).FirstOrDefault()
             If IsNothing(charterTrips) Then
                 Return HttpNotFound()
             End If
@@ -660,5 +824,12 @@ Namespace Controllers
             End If
             MyBase.Dispose(disposing)
         End Sub
+
+        Public Function BlankTripRow() As ViewResult
+            Dim row As CharterTrips = New CharterTrips()
+            row.Arrival = Date.Now()
+            row.Departure = Date.Now()
+            Return View("CharterTrips/CharterTripCreateRow", row)
+        End Function
     End Class
 End Namespace

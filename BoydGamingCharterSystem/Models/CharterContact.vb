@@ -2,29 +2,50 @@
 Imports System.ComponentModel.DataAnnotations.Schema
 
 Imports BoydGamingCharterSystem
+<Table("Contact")>
 Public Class CharterContact
     Public Property Id As Integer
+
     <Required(ErrorMessage:="First name is required")>
     <Display(Name:="First Name")>
     Public Property FirstName As String
+
+    <Required(ErrorMessage:="Last name is required")>
     <Display(Name:="Last Name")>
     Public Property LastName As String
+
+    <RegularExpression("^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage:="Invalid phone number")>
     <Display(Name:="Phone Number")>
     Public Property PrimaryPhone As String
+
+    <Range(0, Integer.MaxValue, ErrorMessage:="Extensions must be numeric")>
     <Display(Name:="Phone Number Extension")>
     Public Property PrimaryPhoneExtension As String
+
+    <RegularExpression("^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage:="Invalid phone number")>
     <Display(Name:="Alternate Phone Number")>
     Public Property AlternatePhone As String
+
+    <Range(0, Integer.MaxValue, ErrorMessage:="Extensions must be numeric")>
     <Display(Name:="Alternate Phone Number Extension")>
     Public Property AlternatePhoneExtension As String
+
+    <RegularExpression("^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage:="Invalid phone number")>
     <Display(Name:="Emergency Phone Number")>
     Public Property EmergencyPhone As String
+
+    <Range(0, Integer.MaxValue, ErrorMessage:="Extensions must be numeric")>
     <Display(Name:="Emergency Phone Number Extension")>
     Public Property EmergencyPhoneExtension As String
+
+    <RegularExpression("^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage:="Invalid fax number")>
     <Display(Name:="Fax Number")>
     Public Property FaxNumber As String
+
+    <Range(0, Integer.MaxValue, ErrorMessage:="Extensions must be numeric")>
     <Display(Name:="Fax Number Extension")>
     Public Property FaxNumberExtension As String
+
     <Display(Name:="Email")>
     <DataType(DataType.EmailAddress)>
     <EmailAddress(ErrorMessage:="Invalid Email Address")>
@@ -78,11 +99,10 @@ Public Class CharterContact
         Me.CreatedDateTime = DateTime.Now()
     End Sub
 
-
-
-
 End Class
 
+
+<Table("Contactable")>
 Public Class Contactable
     Public Property ContactableId() As Integer
     Public Overridable Property Contacts() As List(Of CharterContact)
