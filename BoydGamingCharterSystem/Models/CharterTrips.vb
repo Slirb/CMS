@@ -3,6 +3,7 @@ Imports System.ComponentModel.DataAnnotations.Schema
 
 
 Public Class CharterTrips
+    Implements IValidatableObject
 
     Private tripId As Integer
     Private tripsDestination As String
@@ -35,6 +36,7 @@ Public Class CharterTrips
 
     Public Property ManifestCount As Integer
     Public Property TripNotes As String
+
 
     <ForeignKey("tripId")>
     Public Property CharterManifests() As ICollection(Of CharterManifest)
@@ -223,5 +225,14 @@ Public Class CharterTrips
 
     End Sub
 
+    Public Iterator Function Validate(validationContext As ValidationContext) As IEnumerable(Of ValidationResult) Implements IValidatableObject.Validate
 
+        Dim properties As List(Of String) = New List(Of String)
+        properties.Add("Departure")
+
+        If Me.Departure < Me.Arrival Then
+            Yield New ValidationResult("Test", properties)
+        End If
+
+    End Function
 End Class

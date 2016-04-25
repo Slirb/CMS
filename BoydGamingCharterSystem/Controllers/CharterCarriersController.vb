@@ -64,6 +64,11 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Create(CharterCarrier As CharterCarrier)
 
+            'Dim state As State = db.states.AsNoTracking.SingleOrDefault(Function(s) s.Id = 51)
+            'If State Is Nothing Then
+            'ModelState.AddModelError("StateId", "A valid state is required")
+            'End If
+
             If ModelState.IsValid Then
                 CharterCarrier.Created = DateTime.Now()
                 db.carriers.Add(CharterCarrier)
@@ -98,6 +103,12 @@ Namespace Controllers
         <HttpPost()>
         <ValidateAntiForgeryToken()>
         Function Edit(charterCarrier As CharterCarrier) As ActionResult
+
+            'Dim state As State = db.states.AsNoTracking.SingleOrDefault(Function(s) s.Id = 51)
+            'If state Is Nothing Then
+            'ModelState.AddModelError("State", "A valid state is required")
+            'End If
+
             If ModelState.IsValid Then
 
                 'Get existing carrier data and disconnect it from the database to prevent primary key collisions - this is for comparing
