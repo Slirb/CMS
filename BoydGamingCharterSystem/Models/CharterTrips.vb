@@ -6,7 +6,7 @@ Public Class CharterTrips
     Implements IValidatableObject
 
     Private tripId As Integer
-    Private tripsDestination As String
+
     Private tripsCity As String
     Private tripsStatus As String
     Private tripsConfirmationNumber As String
@@ -17,19 +17,46 @@ Public Class CharterTrips
     '    End Get
     'End Property
 
-
+    Private tripsDestination As String
 
     Public Property CharterAgreements() As CharterAgreement
 
+    <NotMapped>
+    Public ReadOnly Property TripDestination As String
+        Get
+            'Return "Tempt"
+            Return CharterAgreements.CharterProperty.Name
+        End Get
+    End Property
 
-    Public Property CarrierId As Integer?
-    'Public Property CharterCarrier As CharterCarrier
-    Public Property CarrierName As String
 
-    Public Property OperatorId As Integer?
-    Public Property OperatorName As String
+    <NotMapped>
+    Public ReadOnly Property OperatorId As Integer?
+        Get
+            Return CharterAgreements.CharterOperator.Id
+        End Get
+    End Property
 
+    <NotMapped>
+    Public ReadOnly Property CarrierId As Integer?
+        Get
+            Return CharterAgreements.CharterCarrier.Id
+        End Get
+    End Property
 
+    <NotMapped>
+    Public ReadOnly Property OperatorName As String
+        Get
+            Return CharterAgreements.CharterOperator.Name
+        End Get
+    End Property
+
+    <NotMapped>
+    Public ReadOnly Property CarrierName As String
+        Get
+            Return CharterAgreements.CharterCarrier.Name
+        End Get
+    End Property
 
     Public Property Arrival As DateTime?
     Public Property Departure As DateTime?
@@ -67,17 +94,6 @@ Public Class CharterTrips
         End Set
     End Property
 
-
-
-    Public Property TripDestination() As String
-        Get
-            Return tripsDestination
-        End Get
-        Set(value As String)
-            tripsDestination = value
-        End Set
-
-    End Property
 
 
     Public Property TripCity() As String
@@ -183,23 +199,15 @@ Public Class CharterTrips
 
     Public Sub New()
         Me.Id = Nothing
-        Me.CarrierId = Nothing
-        Me.TripDestination = Nothing
         Me.TripCity = Nothing
         Me.TripStatus = Nothing
         Me.Confirmation = Nothing
-
         Me.CharterAgreements = Nothing
-        Me.OperatorId = Nothing
         Me.Arrival = DateTime.MinValue
         Me.Departure = DateTime.MinValue
-        Me.OperatorName = Nothing
-        Me.CarrierName = Nothing
         Me.ManifestCount = Nothing
         Me.CharterManifests = Nothing
         Me.TripNotes = Nothing
-
-
     End Sub
 
 
@@ -207,18 +215,13 @@ Public Class CharterTrips
     Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As DateTime, departDate As DateTime)
         Me.New()
         Me.Id = id
-        Me.CarrierId = charterAgreement.CharterCarrier.Id
-        Me.TripDestination = dest
         Me.TripCity = city
         Me.TripStatus = status
         Confirmation = confNumber
         Me.CharterAgreements = charterAgreement
-
-        Me.OperatorId = charterAgreement.CharterOperator.Id
         Me.Arrival = arrivalDate
         Me.Departure = departDate
-        Me.CarrierName = charterAgreement.CharterCarrier.Company.Name
-        Me.OperatorName = charterAgreement.CharterOperator.Company.Name
+
 
 
     End Sub

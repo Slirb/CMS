@@ -21,7 +21,7 @@ End Code
     
     <!--<p>@Html.ActionLink("Create New", "Create")</p>-->
 
-@Using Html.BeginForm("Index", "CharterTrips", FormMethod.Post)
+@Using Html.BeginForm("Index", "CharterTrips", FormMethod.Get)
 
     @<p>
     <div class="row">
@@ -97,7 +97,7 @@ End Using
 <Table Class="table table-condensed" style="background-color:lemonchiffon">
         <tr>
             <th>
-                Agreement ID
+                Agreement Name
             </th>
             <th>
                 Carrier

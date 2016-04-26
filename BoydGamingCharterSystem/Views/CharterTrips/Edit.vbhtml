@@ -40,12 +40,6 @@ End Code
             <hr />
             @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
             @Html.HiddenFor(Function(model) model.trip.Id)            
-            @Html.HiddenFor(Function(model) model.trip.CharterAgreements.Id)
-            @Html.HiddenFor(Function(model) model.trip.CarrierId)
-            @Html.HiddenFor(Function(model) model.trip.OperatorId)
-            @Html.HiddenFor(Function(model) model.trip.CarrierName)
-            @Html.HiddenFor(Function(model) model.trip.OperatorName)
-            @Html.HiddenFor(Function(model) model.trip.TripDestination)
             @Html.HiddenFor(Function(model) model.trip.TripStatus)
             @Html.HiddenFor(Function(model) model.trip.Confirmation)
             @Html.HiddenFor(Function(model) model.trip.ManifestCount)
@@ -53,39 +47,41 @@ End Code
             
              <div>
                  <!--Need to add agreement name and pull from table-->
-                 @Html.DisplayFor(Function(model) model.trip.CharterAgreements.Id)
+                 @Html.Label("Agreement: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 @Html.DisplayFor(Function(model) model.trip.CharterAgreements.Name)
              </div>
 
              <div class="form-group">
-                 @Html.Label("Destination", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 @Html.Label("Destination: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
                      @Html.DisplayFor(Function(model) model.trip.TripDestination)
                  </div>
              </div>
 
              <div class="form-group">
-                 @Html.Label("Carrier Name", htmlAttributes:=New With {.class = "control-label col-md-2"})
-                 <div class="col-md-10">
-                     @Html.DisplayFor(Function(model) model.trip.CarrierName)
-                 </div>
-             </div>
-            
-             <div class="form-group">
-                 @Html.Label("Operator Name", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 @Html.Label("Operator: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
                      @Html.DisplayFor(Function(model) model.trip.OperatorName)
                  </div>
              </div>
+
+             <div class="form-group">
+                 @Html.Label("Carrier: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 <div class="col-md-10">
+                     @Html.DisplayFor(Function(model) model.trip.CarrierName)
+                 </div>
+             </div>        
+             
              
              <div class="form-group">
-                 @Html.Label("Departure City", htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 @Html.Label("City: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
                      @Html.DisplayFor(Function(model) model.trip.TripCity)
                  </div>
              </div>
 
              <div class="form-group">
-                 @Html.LabelFor(Function(model) model.trip.Arrival, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 @Html.Label("Arrival: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div class="col-md-10">
                      @Html.TextBox("ArrivalDay", Model.trip.ArrivalDate.ToString("MM/dd/yyyy"), New With {.class = "date"})
                      @Html.Label("ArrivealHourLabel", "Hour: ")
@@ -97,7 +93,7 @@ End Code
              </div>
 
              <div Class="form-group">
-                 @Html.LabelFor(Function(model) model.trip.Departure, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 @Html.Label("Departure: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div Class="col-md-10">
                      @Html.TextBox("DepartureDay", Model.trip.DepartureDate.ToString("MM/dd/yyyy"), New With {.class = "date"})
                      @Html.Label("DepartureHourLabel", "Hour: ")
@@ -117,7 +113,7 @@ End Code
 
 
              <div Class="form-group">
-                 @Html.LabelFor(Function(model) model.trip.TripCity, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                 @Html.Label("City of Origin: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
                  <div Class="col-md-10">
                      @Html.EditorFor(Function(model) model.trip.TripCity, New With {.htmlAttributes = New With {.class = "form-control"}})
                      @Html.ValidationMessageFor(Function(model) model.trip.TripCity, "", New With {.class = "text-danger"})
@@ -125,13 +121,13 @@ End Code
              </div>
 
             <div Class="form-group">
-                @Html.LabelFor(Function(model) model.trip.Confirmation, htmlAttributes:=New With {.class = "control-label col-md-2"})
+                @Html.Label("Conf Number: ", htmlAttributes:=New With {.class = "control-label col-md-2"})
                 <div Class="col-md-10">
                         @Html.DisplayFor(Function(model) model.trip.Confirmation)
                     <!--Displays a link if confirmation number exists-->
                     @if conf Is "True" Then
                         @Html.ActionLink("View Letter", "ConfirmationLetter", New With {.id = Model.trip.Id})
-                    End If
+End If
                 </div>
             </div>
 
@@ -153,14 +149,14 @@ End Code
     <ul>
         <li> <a href = "#tabs-1" > Manifest Details</a></li>
         <li> <a href = "#tabs-2" > Notes</a></li>
-        <li> <a href = "#tabs-3" > Comission</a></li>
+        <!--<li> <a href = "#tabs-3" > Comission</a></li>-->
     </ul>
 
     <div id = "tabs-1" >
 
         @Using Html.BeginForm("AddPerson", "CharterTrips")
             @Html.Hidden("tripId", Model.trip.Id)
-            @Html.Label("searchLabel", "Card Number: ")
+            @Html.Label("searchLabel", "Card No: ")
             @Html.TextBox("searchPerson", "")
             @<input id="subButton" type="submit" value="Add" title="" />
         End Using
@@ -251,12 +247,13 @@ End Code
         
     </div>
 
-    <div id = "tabs-3" >
+    <!--<div id = "tabs-3" >-->
         
-        @Html.ActionLink("Player Stats", "PlayerStats", New With {.tripId = Model.trip.Id})<br />
+        <!--Finish this after presentation
+            @Html.ActionLink("Player Stats", "PlayerStats", New With {.tripId = Model.trip.Id})<br />
         @Html.ActionLink("Analysis Report", "AnalysisReport", New With {.tripId = Model.trip.Id})<br/>
-        @Html.ActionLink("Commission Report", "Commission Report", New With {.tripId = Model.trip.Id})<br />
-    </div>
+        @Html.ActionLink("Commission Report", "Commission Report", New With {.tripId = Model.trip.Id})<br />-->
+    <!--</div>-->
 
     </div>
 
