@@ -146,11 +146,22 @@ Public Class CharterSystemInitializer
         operators.ForEach(Sub(oper) context.operators.Add(oper))
         context.SaveChanges()
 
+
+        'Properties
+        Dim properties As New List(Of CharterProperties)
+        With properties
+            .Add(New CharterProperties(1, "Type 1", "T1"))
+            .Add(New CharterProperties(1, "Type 2", "T2"))
+        End With
+        properties.ForEach(Sub(p) context.properties.Add(p))
+        context.SaveChanges()
+
+
         Dim agreements As New List(Of CharterAgreement)
         With agreements
-            .Add(New CharterAgreement(3, carriers.Item(0), operators.Item(2)))
-            .Add(New CharterAgreement(456, carriers.Item(4), operators.Item(5)))
-            .Add(New CharterAgreement(638, carriers.Item(2), operators.Item(4)))
+            .Add(New CharterAgreement(3, carriers.Item(0), operators.Item(2), properties.Item(0)))
+            .Add(New CharterAgreement(456, carriers.Item(4), operators.Item(5), properties.Item(1)))
+            .Add(New CharterAgreement(638, carriers.Item(2), operators.Item(4), properties.Item(0)))
 
         End With
         agreements.ForEach(Sub(agree) context.agreements.Add(agree))
@@ -246,6 +257,9 @@ Public Class CharterSystemInitializer
         End With
         manifests.ForEach(Sub(manifest) context.manifests.Add(manifest))
         context.SaveChanges()
+
+
+
 
 
 
