@@ -100,21 +100,27 @@ Namespace Controllers
 
                 'Get existing agreement's trips
                 Dim existingTrips As List(Of CharterTrips) = existingAgreement.CharterTrips
-                Dim savedTrips As List(Of CharterTrips) = existingTrips.Where(Function(p) charterAgreement.CharterTrips.Any(Function(c) c.Id = p.Id))
+                Dim savedTrips As List(Of CharterTrips) = existingTrips.Where(Function(p) charterAgreement.CharterTrips.Any(Function(c) c.Id = p.Id)).ToList()
 
-
+                '
                 'Update and Edit new and existing trips
                 For Each trip In charterAgreement.CharterTrips.Where(Function(c) c.Id = 0)
                     Static Dim tripCounter As Integer = -1
                     trip.Id = tripCounter
                     tripCounter -= 1
+                    trip.TripStatus = "Potential"
                 Next
 
                 'Preserve uneditable data in existing trips
-                'For Each trip In savedTrips
-                '    Dim saveTrip As CharterTrips = charterAgreement.CharterTrips.Find(Function(c) c.Id = trip.Id)
-
-                'Next
+                For Each trip In savedTrips
+                    Dim saveTrip As CharterTrips = charterAgreement.CharterTrips.Find(Function(c) c.Id = trip.Id)
+                    saveTrip.CharterManifests = trip.CharterManifests
+                    saveTrip.Confirmation = trip.Confirmation
+                    saveTrip.ManifestCount = trip.ManifestCount
+                    saveTrip.TripCity = trip.TripCity
+                    saveTrip.TripNotes = trip.TripNotes
+                    saveTrip.TripStatus = trip.TripStatus
+                Next
 
                 For Each trip In charterAgreement.CharterTrips
                     trip.CharterAgreements = charterAgreement
