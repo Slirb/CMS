@@ -115,9 +115,11 @@ Public Class CharterProperties
     End Sub
 
 
-    ''Need to finish this
-    ''Public Sub New(id As Integer, name As String)
-    ''Me.ID = id
-    ''Me.Name = name
-    ''End Sub
+    'Need to finish this
+    Public Sub New(id As Integer, name As String, shortName As String)
+        Me.New()
+        Me.ID = id
+        Me.Name = name
+        Me.ShortName = shortName
+    End Sub
 End Class
