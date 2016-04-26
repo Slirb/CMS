@@ -9,6 +9,7 @@ End Code
 
         @:<div class="form-group col-md-12">
             @Html.HiddenFor(Function(model) model.Id)
+
             @Html.LabelFor(Function(model) model.Content, htmlAttributes:=New With {.class = "control-label"})
             @Html.TextAreaFor(Function(model) model.Content, htmlAttributes:=New With {.class = "form-control col-md-12"})
             @Html.ValidationMessageFor(Function(model) model.Content, "", New With {.class = "text-danger"})

@@ -11,7 +11,7 @@ End Code
             Html.LabelFor(Function(model) model.Arrival, htmlAttributes:=New With {.class = "control-label"})
             @:<div class="form-inline">
                     @Html.Label("Date:", htmlAttributes:=New With {.class = "control-label"})
-       @Html.EditorFor(Function(model) model.ArrivalDate, New With {.htmlAttributes = New With {.class = "form-control"}})
+        @Html.EditorFor(Function(model) model.ArrivalDate, New With {.htmlAttributes = New With {.class = "form-control"}})
         @Html.Label("Hour:", htmlAttributes:=New With {.class = "control-label"})
         @Html.EditorFor(Function(model) model.ArrivalHour, New With {.htmlAttributes = New With {.class = "form-control"}})
         @Html.Label("Minute:", htmlAttributes:=New With {.class = "control-label"})

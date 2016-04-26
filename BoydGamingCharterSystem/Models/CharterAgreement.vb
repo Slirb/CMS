@@ -72,7 +72,7 @@ Public Class CharterAgreement
         'Me.CharterCarrier = New CharterCarrier()
         Me.CharterTrips = New List(Of CharterTrips)
 
-        'Me.Schedule = New List(Of CharterSchedule)
+
 
     End Sub
 

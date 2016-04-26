@@ -34,6 +34,7 @@ Namespace Controllers
 
         ' GET: CharterAgreements/Create
         Function Create() As ActionResult
+
             Dim agreement As CharterAgreement = New CharterAgreement
             ViewBag.CarrierId = New SelectList(db.carriers.Include(Function(c) c.Company), "Id", "Name")
             ViewBag.OperatorId = New SelectList(db.operators.Include(Function(c) c.Company), "Id", "Name")
