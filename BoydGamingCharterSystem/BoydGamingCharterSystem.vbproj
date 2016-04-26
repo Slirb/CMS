@@ -308,13 +308,9 @@
     <Content Include="Views\CharterOperators\Delete.vbhtml" />
     <Content Include="Views\CharterOperators\Details.vbhtml" />
     <Content Include="Views\CharterOperators\Edit.vbhtml" />
-    <Content Include="Views\CharterTrips\AddPerson.vbhtml" />
-    <Content Include="Views\CharterOperatorInterests\Edit.vbhtml" />
-    <Content Include="Views\CharterOperatorInterests\Create.vbhtml" />
     <Content Include="Views\CharterOperatorModes\Create.vbhtml" />
     <Content Include="Views\CharterOperatorModes\Edit.vbhtml" />
     <Content Include="Views\CharterOperatorModes\Delete.vbhtml" />
-    <Content Include="Views\CharterOperatorInterests\Delete.vbhtml" />
     <Content Include="Views\CharterOperatorStopCodes\Create.vbhtml" />
     <Content Include="Views\CharterOperatorStopCodes\Delete.vbhtml" />
     <Content Include="Views\CharterOperatorStopCodes\Edit.vbhtml" />
@@ -334,25 +330,9 @@
     <Content Include="Views\CharterAgreements\Edit.vbhtml" />
     <Content Include="Views\CharterAgreements\Index.vbhtml" />
     <Content Include="Views\Shared\CharterTrips\CharterTripCreateRow.vbhtml" />
-    <Content Include="Views\CharterTrips\AddPerson.vbhtml" />
     <Content Include="Views\CharterOperatorInterests\Edit.vbhtml" />
     <Content Include="Views\CharterOperatorInterests\Create.vbhtml" />
-    <Content Include="Views\CharterOperatorModes\Create.vbhtml" />
-    <Content Include="Views\CharterOperatorModes\Edit.vbhtml" />
-    <Content Include="Views\CharterOperatorModes\Delete.vbhtml" />
-    <Content Include="Views\CharterOperatorInterests\Delete.vbhtml" />
-    <Content Include="Views\CharterOperatorStopCodes\Create.vbhtml" />
-    <Content Include="Views\CharterOperatorStopCodes\Delete.vbhtml" />
-    <Content Include="Views\CharterOperatorStopCodes\Edit.vbhtml" />
-    <Content Include="Views\CharterOperatorTypes\Create.vbhtml" />
-    <Content Include="Views\CharterOperatorTypes\Delete.vbhtml" />
-    <Content Include="Views\CharterOperatorTypes\Edit.vbhtml" />
-    <Content Include="Views\CharterProperties\Create.vbhtml" />
-    <Content Include="Views\CharterProperties\Delete.vbhtml" />
-    <Content Include="Views\CharterProperties\Edit.vbhtml" />
-    <Content Include="Views\CharterTieredCommissions\Create.vbhtml" />
-    <Content Include="Views\CharterTieredCommissions\Delete.vbhtml" />
-    <Content Include="Views\CharterTieredCommissions\Edit.vbhtml" />
+    <Content Include="Views\CharterOperatorInterests\Delete.vbhtml" />    
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

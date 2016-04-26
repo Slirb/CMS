@@ -6,7 +6,7 @@ Public Class CharterTrips
     Implements IValidatableObject
 
     Private tripId As Integer
-    Private tripsDestination As String
+
     Private tripsCity As String
     Private tripsStatus As String
     Private tripsConfirmationNumber As String
@@ -17,9 +17,17 @@ Public Class CharterTrips
     '    End Get
     'End Property
 
-
+    Private tripsDestination As String
 
     Public Property CharterAgreements() As CharterAgreement
+
+    <NotMapped>
+    Public ReadOnly Property TripDestination As String
+        Get
+            'Return "Tempt"
+            Return CharterAgreements.CharterProperty.Name
+        End Get
+    End Property
 
     <NotMapped>
     Public ReadOnly Property CarrierId As Integer?
@@ -48,8 +56,6 @@ Public Class CharterTrips
             Return CharterAgreements.CharterOperator.Name
         End Get
     End Property
-
-
 
 
 
@@ -89,14 +95,6 @@ Public Class CharterTrips
         End Set
     End Property
 
-
-    <NotMapped>
-    Public ReadOnly Property TripDestination() As String
-        Get
-            Return CharterAgreements.CharterProperty.Name()
-
-        End Get
-    End Property
 
 
     Public Property TripCity() As String
@@ -202,22 +200,15 @@ Public Class CharterTrips
 
     Public Sub New()
         Me.Id = Nothing
-
-
         Me.TripCity = Nothing
         Me.TripStatus = Nothing
         Me.Confirmation = Nothing
-
         Me.CharterAgreements = Nothing
-
         Me.Arrival = DateTime.MinValue
         Me.Departure = DateTime.MinValue
-
         Me.ManifestCount = Nothing
         Me.CharterManifests = Nothing
         Me.TripNotes = Nothing
-
-
     End Sub
 
 
@@ -225,14 +216,10 @@ Public Class CharterTrips
     Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As DateTime, departDate As DateTime)
         Me.New()
         Me.Id = id
-
-
         Me.TripCity = city
         Me.TripStatus = status
         Confirmation = confNumber
         Me.CharterAgreements = charterAgreement
-
-
         Me.Arrival = arrivalDate
         Me.Departure = departDate
 
