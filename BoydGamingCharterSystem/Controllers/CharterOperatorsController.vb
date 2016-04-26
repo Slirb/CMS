@@ -119,11 +119,17 @@ Namespace Controllers
 
                 'Delete contacts
                 Dim existingContacts As List(Of CharterContact) = existingOperator.Contacts
-                Dim deletedCOntacts As List(Of CharterContact) = existingContacts.Where(Function(p) Not charterOperator.Contacts.Any(Function(p2) p2.Id = p.Id)).ToList()
-
-                For Each contact In deletedCOntacts
+                Dim deletedContacts As List(Of CharterContact) = existingContacts.Where(Function(p) Not charterOperator.Contacts.Any(Function(p2) p2.Id = p.Id)).ToList()
+                Dim savedContacts As List(Of CharterContact) = existingContacts.Where(Function(p) charterOperator.Contacts.Any(Function(c) c.Id = p.Id)).ToList()
+                For Each contact In deletedContacts
                     Dim deleteContact As CharterContact = db.contacts.Find(contact.Id)
                     db.contacts.Remove(deleteContact)
+                Next
+
+                'Preserve uneditable data for existing contacts
+                For Each contact In savedContacts
+                    Dim savedContact As CharterContact = charterOperator.Contacts.Find(Function(c) c.Id = contact.Id)
+                    savedContact.CreatedDateTime = contact.CreatedDateTime
                 Next
 
                 'update and edit existing comments
@@ -132,6 +138,8 @@ Namespace Controllers
                     comment.Id = commentCounter
                     commentCounter -= 1
                 Next
+
+
 
                 For Each comment In charterOperator.Comments
                     comment.Commentable = charterOperator.Commentable
@@ -146,10 +154,19 @@ Namespace Controllers
                 'delete comments
                 Dim existingComments As List(Of CharterComment) = existingOperator.Comments
                 Dim deletedComments As List(Of CharterComment) = existingComments.Where(Function(p) Not charterOperator.Comments.Any(Function(p2) p2.Id = p.Id)).ToList()
+                Dim savedComments As List(Of CharterComment) = existingComments.Where(Function(p) charterOperator.Comments.Any(Function(c) c.Id = p.Id)).ToList()
+
                 For Each comment In deletedComments
                     Dim deleteComment As CharterComment = db.comments.Find(comment.Id)
                     db.comments.Remove(deleteComment)
                 Next
+
+                'Preserve uneditable comment data
+                For Each comment In savedComments
+                    Dim saveComment As CharterComment = charterOperator.Comments.Find(Function(c) c.Id = comment.Id)
+                    saveComment.CreateDateTime = comment.CreateDateTime
+                Next
+
                 db.Entry(charterOperator).State = EntityState.Modified
                 db.Entry(charterOperator.Company).State = EntityState.Modified
                 db.SaveChanges()

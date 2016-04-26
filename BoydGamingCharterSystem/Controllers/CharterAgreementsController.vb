@@ -52,6 +52,7 @@ Namespace Controllers
 
                 For Each trip In charterAgreement.CharterTrips
                     trip.CharterAgreements = charterAgreement
+                    trip.TripCity = charterAgreement.City
                     trip.TripStatus = "Potential"
                 Next
 
@@ -92,6 +93,15 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Edit(ByVal charterAgreement As CharterAgreement) As ActionResult
             If ModelState.IsValid Then
+                'Get existing agreement from database
+                Dim existingAgreement As CharterAgreement = (From agreement In db.agreements.AsNoTracking().Include(Function(c) c.CharterOperator).AsNoTracking().Include(Function(c) c.CharterCarrier).AsNoTracking().Include(Function(c) c.CharterTrips).AsNoTracking()
+                                                             Select agreement Where agreement.Id = charterAgreement.Id).FirstOrDefault()
+
+
+                'Get existing agreement's trips
+                Dim existingTrips As List(Of CharterTrips) = existingAgreement.CharterTrips
+                Dim savedTrips As List(Of CharterTrips) = existingTrips.Where(Function(p) charterAgreement.CharterTrips.Any(Function(c) c.Id = p.Id))
+
 
                 'Update and Edit new and existing trips
                 For Each trip In charterAgreement.CharterTrips.Where(Function(c) c.Id = 0)
@@ -99,6 +109,12 @@ Namespace Controllers
                     trip.Id = tripCounter
                     tripCounter -= 1
                 Next
+
+                'Preserve uneditable data in existing trips
+                'For Each trip In savedTrips
+                '    Dim saveTrip As CharterTrips = charterAgreement.CharterTrips.Find(Function(c) c.Id = trip.Id)
+
+                'Next
 
                 For Each trip In charterAgreement.CharterTrips
                     trip.CharterAgreements = charterAgreement

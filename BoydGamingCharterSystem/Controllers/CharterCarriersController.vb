@@ -140,10 +140,15 @@ Namespace Controllers
 
                 Dim existingContacts As List(Of CharterContact) = existingCarrier.Contacts
                 Dim deletedContacts As List(Of CharterContact) = existingContacts.Where(Function(p) Not charterCarrier.Contacts.Any(Function(p2) p2.Id = p.Id)).ToList()
-
+                Dim savedContacts As List(Of CharterContact) = existingContacts.Where(Function(p) charterCarrier.Contacts.Any(Function(c) c.Id = p.Id)).ToList()
                 For Each contact In deletedContacts
                     Dim deleteContact As CharterContact = db.contacts.Find(contact.Id)
                     db.contacts.Remove(deleteContact)
+                Next
+                'Preserve data uneditable data here
+                For Each contact In savedContacts
+                    Dim saveContact As CharterContact = charterCarrier.Contacts.Find(Function(c) c.Id = contact.Id)
+                    saveContact.CreatedDateTime = contact.CreatedDateTime
                 Next
 
 
@@ -170,9 +175,16 @@ Namespace Controllers
                 'Delete comments
                 Dim existingComments As List(Of CharterComment) = existingCarrier.Comments
                 Dim deletedComments As List(Of CharterComment) = existingComments.Where(Function(p) Not charterCarrier.Comments.Any(Function(p2) p2.Id = p.Id)).ToList()
+                Dim savedComments As List(Of CharterComment) = existingComments.Where(Function(p) charterCarrier.Comments.Any(Function(c) c.Id = p.Id)).ToList()
+
                 For Each comment In deletedComments
                     Dim deleteComment As CharterComment = db.comments.Find(comment.Id)
                     db.comments.Remove(deleteComment)
+                Next
+                'Preserve data uneditable data here
+                For Each comment In savedComments
+                    Dim saveComment As CharterComment = charterCarrier.Comments.Find(Function(c) c.id = comment.Id)
+                    saveComment.CreateDateTime = comment.CreateDateTime
                 Next
 
                 db.Entry(charterCarrier).State = EntityState.Modified
