@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
-<h2>Edit</h2>
-
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
 
     @<div class="form-horizontal">
-        <h4>Charter Operator Edit</h4>
+        <h3>Charter Operator Edit</h3>
+         <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
+         <a href="@Url.Action("Index", "CharterOperators")" Class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span> Cancel Edit</a>
         <hr />
         
         @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
@@ -80,13 +80,9 @@ End Code
         </div>
 
         <div Class="form-group">
-            <div Class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Edit" Class="btn btn-default" />
-            </div>
+                <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
+                <a href="@Url.Action("Index", "CharterOperators")" Class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span> Cancel Edit</a>
         </div>
     </div>
 End Using
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

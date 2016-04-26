@@ -1,6 +1,7 @@
 ﻿@ModelType BoydGamingCharterSystem.CharterTrips
 
 @Code
+    ViewData("Title") = "Trip Details"
     Layout = Nothing
 End Code
 
@@ -13,7 +14,7 @@ End Code
 </head>
 <body>
     <div>
-        <h4>CharterTrips</h4>
+        <h3>Charter Trip Details</h3>
         <hr />
         <dl class="dl-horizontal">
             <dt>

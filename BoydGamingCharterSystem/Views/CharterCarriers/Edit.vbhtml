@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
-<h2>Edit</h2>
-
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
-    
+
     @<div class="form-horizontal">
-        <h4>Edit Charter Carrier</h4>
+        <h3>Edit Charter Carrier</h3>
+         <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
+         <a href="@Url.Action("Index", "CharterCarriers")" Class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span> Cancel Edit</a>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         @Html.HiddenFor(Function(model) model.Id)
@@ -74,18 +74,13 @@ End Code
                     Html.RenderPartial("CharterComments/CharterCommentRow", comment)
                 Next
              </div>
-             @Html.ActionLink("Add Another Comment", "BlankCommentRow", "CharterComments", Nothing, New With {.class = "addItem", .data_append = ".CharterCompanyComments"})
+             @Html.ActionLink("Add Another Comment", "BlankCommentRow", "CharterComments", Nothing, New With {.class = "btn btn-danger addItem", .data_append = ".CharterCompanyComments"})
          </div>
+         <div class="form-group">
 
-         <div Class="form-group">
-             <div Class="col-md-offset-2 col-md-10">
-                 <input type="submit" value="Save Changes" Class="btn btn-success" />
-             </div>
+             <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
+             <a href="@Url.Action("Index", "CharterCarriers")" Class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span> Cancel Edit</a>
+
          </div>
-
     </div>
 End Using
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
