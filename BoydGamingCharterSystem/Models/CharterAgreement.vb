@@ -33,12 +33,13 @@ Public Class CharterAgreement
     Public Property InvoiceToOperator As Boolean
     Public Property InvoiceToCarrier As Boolean
 
-
+    <Required>
     <Display(Name:="Carrier")>
     Public Property CharterCarrierId As Integer?
 
     Public Overridable Property CharterCarrier As CharterCarrier
 
+    <Required>
     <Display(Name:="Operator")>
     Public Property CharterOperatorId As Integer?
 

@@ -39,7 +39,7 @@ End Code
             @Html.LabelFor(Function(model) model.CharterCarrier, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.DropDownListFor(Function(model) model.CharterCarrierId, DirectCast(ViewBag.CarrierId, SelectList), "---Select A Carrier---", htmlAttributes:=New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(model) model.CharterCarrier, "", New With {.class = "text-danger"})
+                @Html.ValidationMessageFor(Function(model) model.CharterCarrierId, "", New With {.class = "text-danger"})
             </div>
         </div>
 
@@ -47,7 +47,7 @@ End Code
             @Html.LabelFor(Function(model) model.CharterOperator, htmlAttributes:=New With {.class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.DropDownListFor(Function(model) model.CharterOperatorId, DirectCast(ViewBag.OperatorId, SelectList), "---Select An Operator---", htmlAttributes:=New With {.class = "form-control"})
-                @Html.ValidationMessageFor(Function(model) model.CharterOperator, "", New With {.class = "text-danger"})
+                @Html.ValidationMessageFor(Function(model) model.CharterOperatorId, "", New With {.class = "text-danger"})
             </div>
         </div>
         
