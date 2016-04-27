@@ -71,7 +71,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And
                                                      t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
@@ -87,8 +87,8 @@ Namespace Controllers
 
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
-                                'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                'Select trips matching search criteriaW
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival >= StartDate And
                                                      t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
@@ -110,7 +110,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival < EndDate And
                                                      t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
@@ -127,7 +127,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.CarrierId = SelectedCarrier And t.OperatorId = SelectedOperator Order By t.Arrival
                             Else
@@ -151,7 +151,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And
                                                      t.CarrierId = SelectedCarrier Order By t.Arrival
@@ -168,7 +168,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival >= StartDate And
                                                      t.CarrierId = SelectedCarrier Order By t.Arrival
@@ -190,7 +190,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival < EndDate And
                                                      t.CarrierId = SelectedCarrier Order By t.Arrival
@@ -207,7 +207,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.CarrierId = SelectedCarrier Order By t.Arrival
                             Else
@@ -237,7 +237,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival >= StartDate And t.Arrival < EndDate And t.OperatorId = SelectedOperator Order By t.Arrival
                             Else
@@ -252,7 +252,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival >= StartDate And t.OperatorId = SelectedOperator Order By t.Arrival
                             Else
@@ -272,7 +272,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival < EndDate And t.OperatorId = SelectedOperator Order By t.Arrival
                             Else
@@ -287,7 +287,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.OperatorId = SelectedOperator Order By t.Arrival
                             Else
@@ -312,7 +312,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival >= StartDate And t.Arrival < EndDate Order By t.Arrival
                             Else
@@ -327,7 +327,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival >= StartDate Order By t.Arrival
                             Else
@@ -347,7 +347,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Where t.Arrival < EndDate Order By t.Arrival
                             Else
@@ -362,7 +362,7 @@ Namespace Controllers
                             'Check for confirmation number
                             If searchString IsNot Nothing Then
                                 'Select trips matching search criteria
-                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString))
+                                trips = From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Where(Function(trip) trip.Confirmation.Contains(searchString)).ToList()
                                         Join s In status On t.TripStatus Equals s
                                         Select t Order By t.Arrival
                             Else
