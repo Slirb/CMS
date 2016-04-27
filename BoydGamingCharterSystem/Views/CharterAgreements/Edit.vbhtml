@@ -98,11 +98,12 @@ End Code
         </div>
         <div class="form-group col-sm-12">
             @Html.Label("Schedule", htmlAttributes:=New With {.class = "control-label col-sm-2"})
-            <div Class="col-md-10"></div>
+            <div Class="col-md-10">
                 <div class="CharterTrips col-sm-11">
                 @For Each trip In Model.CharterTrips
                     Html.RenderPartial("CharterTrips/CharterTripCreateRow", trip)
                 Next
+                </div>
             </div>
             @Html.ActionLink("Add Another Date", "BlankTripRow", "CharterTrips", Nothing, New With {.class = "addItem", .data_append = ".CharterTrips"})
         </div>
