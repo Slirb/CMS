@@ -189,30 +189,14 @@ End If
 
         <Table Class="table">
             <tr>
-            <th>
-            Card No
-                </th>
-                <th>
-            Full Name
-                </th>
-                <th>
-            DOB
-                </th>
-                <th>
-            Addr1
-                </th>
-                <th>
-            Addr2
-                </th>
-                <th>
-            City
-                </th>
-                <th>
-            State
-                </th>
-                <th>
-            Zip
-                </th>
+            <th style = "text-align:center" > Card No</th>
+                <th style = "text-align:center" > Full Name</th>
+                <th style = "text-align:center" > DOB</th>
+                <th style = "text-align:center" > Addr1</th>
+                <th style = "text-align:center" > Addr2</th>
+                <th style = "text-align:center" > City</th>
+                <th style = "text-align:center" > State</th>
+                <th style = "text-align:center" > Zip</th>
                 <th></th>
             </tr>
 
@@ -220,28 +204,28 @@ End If
             @For Each item In Model.manifests
 
                 @<tr>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.cardNumber)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.FullName)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.ShortDate)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.addressLineOne)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.addressLineTwo)
                     </td>
-                    <td>
+                     <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.city)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.state)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.postalCode)
                     </td>
                     <td>                                                                                                                         

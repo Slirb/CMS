@@ -27,20 +27,20 @@ End Code
 
 @For Each item In Model
     @<tr>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(Function(modelItem) item.Name)
         </td>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(Function(modelItem) item.CarrierName)
         </td>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(Function(modelItem) item.OperatorName)
         </td>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(Function(modelItem) item.CreatedDateTime)
         </td>
         <td>
-            <a href="@Url.Action("Edit", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+             <a href="@Url.Action("Edit", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
             <a href="@Url.Action("Details", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Details</a>
         </td>
     </tr>
