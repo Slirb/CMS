@@ -150,10 +150,7 @@ End Code
         </dd>
     </dl>
 </div>
-
-
-
-<p>
-    @Html.ActionLink("Edit", "Edit", New With {.id = Model.Id}, New With {.class = "btn btn-success"}) &emsp;&emsp;&emsp;
-    @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
-</p>
+    <div>
+        <a href="@Url.Action("Edit", "CharterCarriers", New With {.id = Model.Id})" Class="btn btn-success btn-md"><span class="glyphicon glyphicon-plus"></span> Edit Carrier</a>&emsp;
+        <a href="@Url.Action("Index", "CharterCarriers")" Class="btn btn-danger btn-md"><span class="glyphicon glyphicon-minus"></span> Back to List</a>
+    </div>

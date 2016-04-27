@@ -4,15 +4,13 @@
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
-<h2>Edit</h2>
-
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
     
     @<div class="form-horizontal">
-        <h3>Edit Charter Carrier</h3>
-         <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
-         <a href="@Url.Action("Index", "CharterCarriers")" Class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span> Cancel Edit</a>
+        <h2>Edit Charter Carrier</h2>
+         <button type="submit" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-plus"></span> Save Changes</button>&emsp;
+         <a href="@Url.Action("Index", "CharterCarriers")" Class="btn btn-danger btn-md"><span class="glyphicon glyphicon-minus"></span> Back to List</a>
         <hr />
         @Html.ValidationSummary(True, "", New With { .class = "text-danger" })
         @Html.HiddenFor(Function(model) model.Id)
@@ -66,7 +64,7 @@ End Code
                     Html.RenderPartial("CharterContacts/CharterContactRow", contact)
                 Next
              </div>
-             @Html.ActionLink("Add Another Contact", "BlankContactRow", "CharterContacts", Nothing, New With {.class = "addItem", .data_append = ".CharterCompanyContacts"})
+             @Html.ActionLink("Add Another Contact", "BlankContactRow", "CharterContacts", Nothing, New With {.class = "btn btn-default active addItem", .data_append = ".CharterCompanyContacts"})
          </div>
          <div class="form-group">
              @Html.LabelFor(Function(model) model.Comments, htmlAttributes:=New With {.class = "control-label col-md-2"})
@@ -76,14 +74,12 @@ End Code
                     Html.RenderPartial("CharterComments/CharterCommentRow", comment)
                 Next
              </div>
-             @Html.ActionLink("Add Another Comment", "BlankCommentRow", "CharterComments", Nothing, New With {.class = "btn btn-danger addItem", .data_append = ".CharterCompanyComments"})
+             @Html.ActionLink("Add Another Comment", "BlankCommentRow", "CharterComments", Nothing, New With {.class = "btn btn-default active addItem", .data_append = ".CharterCompanyComments"})
          </div>
 
-         <div Class="form-group">
-             <div Class="col-md-offset-2 col-md-10">
-                 <input type="submit" value="Save Changes" Class="btn btn-success" />&emsp;&emsp;&emsp;
-                @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
-             </div>
+         <div>
+             <button type="submit" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-plus"></span> Save Changes</button>&emsp;
+             <a href="@Url.Action("Index", "CharterCarriers")" Class="btn btn-danger btn-md"><span class="glyphicon glyphicon-minus"></span> Back to List</a>
          </div>
     </div>
 End Using

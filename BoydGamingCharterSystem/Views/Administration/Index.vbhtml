@@ -1,7 +1,7 @@
 ﻿@ModelType BoydGamingCharterSystem.AdministrationModel
 
 @Code
-    ViewData("Title") = "Index"
+    ViewData("Title") = "Administration"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
@@ -16,7 +16,7 @@ End Code
     <title>Index</title>
 </head>
 <body>
-    
+    <h1>@ViewBag.Title</h1><br />
     
     <div style="float:left; width:30%">
         <!--Operator Interest List-->

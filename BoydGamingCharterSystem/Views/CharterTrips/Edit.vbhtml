@@ -134,22 +134,22 @@ End Code
                     <!--Displays a link if confirmation number exists-->
                     @if conf Is "True" Then
                         @Html.ActionLink("View Letter", "ConfirmationLetter", New With {.id = Model.trip.Id})
-End If
+                    End If
                 </div>
             </div>
           </div>
              <div style="clear:both"></div>
 
             <div Class="form-group">
-                <div Class="col-md-offset-2 col-md-10">
-                         <div style="float:left">
-                             <input type="submit" value="Save" Class="btn btn-success" />
-                             &nbsp;&nbsp;&nbsp;&nbsp;
-                             @Html.ActionLink("Close", "Index", Nothing, New With {.class = "btn btn-default"})
-                         </div>
-                         <div style="float:right">
-                             @Html.ActionLink("Cancel Trip", "CancelTrip", New With {.id = Model.trip.Id}, New With {.class = "btn btn-danger"})
-                         </div>
+                <div Class="col-md-offset-1 col-md-10">
+
+                    <div style="float: left">
+                        <button type="submit" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-plus"></span> Save Changes</button>&emsp;
+                        <a href="@Url.Action("Index", "CharterTrips")" Class="btn btn-default active btn-md"><span class="glyphicon glyphicon-minus"></span> Back to List</a>
+                    </div>
+                    <div style="float:right">
+                        <a href="@Url.Action("CancelTrip", "CharterTrips", New With {.id = Model.trip.Id})" Class="btn btn-danger btn-md"><span class="glyphicon glyphicon-minus"></span> Cancel Trip</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,23 +180,23 @@ End If
         <div style="float:left; width:40%">
         @Using Html.BeginForm("ImportManifest", "CharterTrips", FormMethod.Post, New With {.enctype = "multipart/form-data"})
             @Html.Hidden("id", Model.trip.Id)
-            @<input type="file" name="manifest" />@<br/> @<input id="subButton" type="submit" value="UploadFile" title="" class="btn btn-success btn-xs"/>
+            @<input type="file" name="manifest" />@<br/> @<input id="subButton" type="submit" value="Upload File" title="" class="btn btn-success btn-xs"/>
         End Using
         </div>
 
             <!--@Html.ActionLink("Allocate Offers", "AllocateOffers", New With {.tripId = Model.trip.Id})-->
 
 
-        <Table Class="table">
+        <Table class="table table-striped table-hover table-condensed">
             <tr>
             <th style = "text-align:center" > Card No</th>
-                <th style = "text-align:center" > Full Name</th>
-                <th style = "text-align:center" > DOB</th>
-                <th style = "text-align:center" > Addr1</th>
-                <th style = "text-align:center" > Addr2</th>
-                <th style = "text-align:center" > City</th>
-                <th style = "text-align:center" > State</th>
-                <th style = "text-align:center" > Zip</th>
+                <th style = "text-align: center" > Full Name</th>
+                <th style = "text-align: center" > DOB</th>
+                <th style = "text-align: center" > Addr1</th>
+                <th style = "text-align: center" > Addr2</th>
+                <th style = "text-align: center" > City</th>
+                <th style = "text-align: center" > State</th>
+                <th style = "text-align: center" > Zip</th>
                 <th></th>
             </tr>
 
@@ -204,32 +204,32 @@ End If
             @For Each item In Model.manifests
 
                 @<tr>
-                    <td style="text-align:center">
+                    <td style="text-align: center">
                         @Html.DisplayFor(Function(modelItem) item.cardNumber)
                     </td>
-                    <td style="text-align:center">
+                    <td style="text-align: center">
                         @Html.DisplayFor(Function(modelItem) item.FullName)
                     </td>
-                    <td style="text-align:center">
+                    <td style="text-align: center">
                         @Html.DisplayFor(Function(modelItem) item.ShortDate)
                     </td>
-                    <td style="text-align:center">
+                    <td style="text-align: center">
                         @Html.DisplayFor(Function(modelItem) item.addressLineOne)
                     </td>
-                    <td style="text-align:center">
+                    <td style="text-align: center">
                         @Html.DisplayFor(Function(modelItem) item.addressLineTwo)
                     </td>
-                     <td style="text-align:center">
+                     <td style="text-align: center">
                         @Html.DisplayFor(Function(modelItem) item.city)
                     </td>
-                    <td style="text-align:center">
+                    <td style="text-align: center">
                         @Html.DisplayFor(Function(modelItem) item.state)
                     </td>
-                    <td style="text-align:center">
+                    <td style="text-align: center">
                         @Html.DisplayFor(Function(modelItem) item.postalCode)
                     </td>
-                    <td>                                                                                                                         
-                    @Html.ActionLink("X", "DeletePerson", New With {.id = item.Id, .tripId = Model.trip.Id}, New With {.class = "btn btn-danger btn-xs"})
+                    <td style="text-align: center">                                                                                                                         
+                         <a href="@Url.Action("DeletePerson", "CharterTrips", New With {.id = item.Id, .tripId = Model.trip.Id})" Class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
                 </tr>
             Next

@@ -105,14 +105,12 @@ End Code
                 Next
                 </div>
             </div>
-            @Html.ActionLink("Add Another Date", "BlankTripRow", "CharterTrips", Nothing, New With {.class = "addItem", .data_append = ".CharterTrips"})
+            @Html.ActionLink("Add Another Date", "BlankTripRow", "CharterTrips", Nothing, New With {.class = "btn btn-default active addItem", .data_append = ".CharterTrips"})
         </div>
         <div Class="form-group">
-            <div Class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Edit" Class="btn btn-success btn-sm" />&emsp;&emsp;&emsp;&emsp;
-
-                @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
-
+            <div>
+                <button type="submit" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-plus"></span> Save Changes</button>&emsp;
+                <a href="@Url.Action("Index", "CharterAgreements")" Class="btn btn-danger btn-md"><span class="glyphicon glyphicon-minus"></span> Back to List</a>
             </div>
         </div>
     </div>  End Using
