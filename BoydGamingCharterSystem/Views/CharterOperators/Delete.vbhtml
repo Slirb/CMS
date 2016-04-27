@@ -1,13 +1,12 @@
 ﻿@ModelType BoydGamingCharterSystem.CharterOperator
 @Code
-    ViewData("Title") = "Delete"
+    ViewData("Title") = "Delete Operator"
 End Code
 
-<h2>Delete</h2>
+<h2>Delete Operator</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>CharterOperator</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -55,8 +54,8 @@ End Code
         @Html.AntiForgeryToken()
 
         @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+             <input type="submit" value="Delete" class="btn btn-danger" />&emsp;&emsp;&emsp;
+             @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
         </div>
     End Using
 </div>

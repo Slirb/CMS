@@ -1,13 +1,12 @@
 ﻿@ModelType BoydGamingCharterSystem.CharterCarrier
 @Code
-    ViewData("Title") = "Details"
+    ViewData("Title") = "Carrier Details"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
-<h2>Details</h2>
+<h2>Carrier Details</h2>
 
 <div>
-    <h4>Charter Carrier</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -155,6 +154,6 @@ End Code
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", New With {.id = Model.Id}) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", New With {.id = Model.Id}, New With {.class = "btn btn-success"}) &emsp;&emsp;&emsp;
+    @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
 </p>

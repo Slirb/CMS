@@ -4,6 +4,8 @@
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
+<h2>Edit</h2>
+
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
 
@@ -80,9 +82,10 @@ End Code
         </div>
 
         <div Class="form-group">
-                <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
-                <a href="@Url.Action("Index", "CharterOperators")" Class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span> Cancel Edit</a>
+            <div Class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Edit" Class="btn btn-success" />&emsp;&emsp;&emsp;
+                @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
+            </div>
         </div>
     </div>
 End Using
-

@@ -24,7 +24,6 @@ Public Class CharterTrips
     <NotMapped>
     Public ReadOnly Property TripDestination As String
         Get
-            'Return "Tempt"
             Return CharterAgreements.CharterProperty.Name
         End Get
     End Property
@@ -213,10 +212,10 @@ Public Class CharterTrips
 
 
     ''Need to finish this
-    Public Sub New(id As Integer, dest As String, city As String, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As DateTime, departDate As DateTime)
+    Public Sub New(id As Integer, status As String, confNumber As String, charterAgreement As CharterAgreement, arrivalDate As DateTime, departDate As DateTime)
         Me.New()
         Me.Id = id
-        Me.TripCity = city
+        Me.tripsCity = charterAgreement.City
         Me.TripStatus = status
         Confirmation = confNumber
         Me.CharterAgreements = charterAgreement

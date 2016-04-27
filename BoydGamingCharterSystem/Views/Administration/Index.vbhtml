@@ -26,7 +26,7 @@ End Code
                 <th>
                     Interest
                 </th>
-                <th>@Html.ActionLink("Create", "CreateInterest")</th>
+                <th><a href="@Url.Action("CreateInterest", "Administration")" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Create</a></th>
             </tr>
 
             @For Each item In Model.operatorInterest
@@ -36,8 +36,7 @@ End Code
                     @Html.DisplayFor(Function(modelItem) item.Interest)
                 </td>
                 <td>
-
-                    @Html.ActionLink("Edit", "EditInterest", New With {.id = item.Id})
+                    <a href="@Url.Action("EditInterest", "Administration", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>                   
                 </td>
             </tr>
             Next
@@ -53,7 +52,7 @@ End Code
                 <th>
                     Mode
                 </th>
-                <th>@Html.ActionLink("Create", "CreateMode")</th>
+                <th><a href="@Url.Action("CreateMode", "Administration")" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Create</a></th>
             </tr>
 
             @For Each item In Model.operatorMode
@@ -63,8 +62,7 @@ End Code
                 @Html.DisplayFor(Function(modelItem) item.Mode)
             </td>
             <td>
-
-                @Html.ActionLink("Edit", "EditMode", New With {.id = item.Id})
+                <a href="@Url.Action("EditMode", "Administration", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
             </td>
         </tr>
             Next
@@ -85,7 +83,7 @@ End Code
                 <th>
                     Stop Code
                 </th>
-                <th>@Html.ActionLink("Create", "CreateStopCode")</th>
+                <th><a href="@Url.Action("CreateStopCode", "Administration")" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Create</a></th>
             </tr>
 
             @For Each item In Model.operatorStopCode
@@ -95,8 +93,7 @@ End Code
                     @Html.DisplayFor(Function(modelItem) item.StopCode)
                 </td>
                 <td>
-
-                    @Html.ActionLink("Edit", "EditStopCode", New With {.id = item.Id})
+                    <a href="@Url.Action("EditStopCode", "Administration", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                 </td>
             </tr>
             Next
@@ -113,7 +110,7 @@ End Code
                 <th>
                     Type
                 </th>
-                <th>@Html.ActionLink("Create", "CreateType")</th>
+                <th><a href="@Url.Action("CreateType", "Administration")" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Create</a></th>
             </tr>
 
             @For Each item In Model.operatorType
@@ -123,8 +120,7 @@ End Code
                     @Html.DisplayFor(Function(modelItem) item.Type)
                 </td>
                 <td>
-
-                    @Html.ActionLink("Edit", "EditType", New With {.id = item.Id})
+                    <a href="@Url.Action("EditType", "Administration", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>                   
                 </td>
             </tr>
             Next
@@ -145,7 +141,7 @@ End Code
                 <th>
                     Name
                 </th>
-                <th>@Html.ActionLink("Create", "CreateProperty")</th>
+                <th><a href="@Url.Action("CreateProperty", "Administration")" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Create</a></th>
             </tr>
 
             @For Each item In Model.properties
@@ -155,8 +151,7 @@ End Code
                     @Html.DisplayFor(Function(modelItem) item.Name)
                 </td>
                 <td>
-
-                    @Html.ActionLink("Edit", "EditProperty", New With {.id = item.ID})
+                    <a href="@Url.Action("EditProperty", "Administration", New With {.id = item.ID})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>                   
                 </td>
             </tr>
             Next
@@ -174,7 +169,7 @@ End Code
                 <th>
                     Name
                 </th>               
-                <th>@Html.ActionLink("Create", "CreateCommission")</th>
+                <th><a href="@Url.Action("CreateCommission", "Administration")" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span> Create</a></th>
             </tr>
 
             @For Each item In Model.tieredCommissions
@@ -184,7 +179,7 @@ End Code
                     @Html.DisplayFor(Function(modelItem) item.Name)
                 </td>                
                 <td>
-                    @Html.ActionLink("Edit", "EditCommission", New With {.id = item.Id})
+                    <a href="@Url.Action("EditCommission", "Administration", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>                    
                 </td>
             </tr>
             Next

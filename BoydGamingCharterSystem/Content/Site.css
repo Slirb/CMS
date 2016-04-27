@@ -43,10 +43,6 @@ select {
 .mainNav ul li {
     display: inline-block;
 }
-.mainNav ul li+li:before {
-    content: " | ";
-
-}
 
 textarea { 
     width: 100%;

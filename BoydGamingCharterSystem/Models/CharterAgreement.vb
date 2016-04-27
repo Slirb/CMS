@@ -77,13 +77,15 @@ Public Class CharterAgreement
     End Sub
 
 
-    Public Sub New(id As Integer, charterCarrier As CharterCarrier, charterOperator As CharterOperator, charterproperty As CharterProperties)
+    Public Sub New(id As Integer, charterCarrier As CharterCarrier, charterOperator As CharterOperator, charterproperty As CharterProperties, name As String, city As String)
 
         Me.New()
         Me.Id = id
         Me.CharterCarrier = charterCarrier
         Me.CharterOperator = charterOperator
         Me.CharterProperty = charterproperty
+        Me.Name = name
+        Me.City = city
 
 
     End Sub

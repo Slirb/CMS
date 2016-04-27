@@ -1,12 +1,14 @@
 ﻿@ModelType BoydGamingCharterSystem.CharterCarrier
 @Code
-    ViewData("Title") = "Carriers Edit"
+    ViewData("Title") = "Edit Carrier"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
+<h2>Edit</h2>
+
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
-
+    
     @<div class="form-horizontal">
         <h3>Edit Charter Carrier</h3>
          <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
@@ -76,11 +78,12 @@ End Code
              </div>
              @Html.ActionLink("Add Another Comment", "BlankCommentRow", "CharterComments", Nothing, New With {.class = "btn btn-danger addItem", .data_append = ".CharterCompanyComments"})
          </div>
-         <div class="form-group">
 
-             <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
-             <a href="@Url.Action("Index", "CharterCarriers")" Class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-minus"></span> Cancel Edit</a>
-
+         <div Class="form-group">
+             <div Class="col-md-offset-2 col-md-10">
+                 <input type="submit" value="Save Changes" Class="btn btn-success" />&emsp;&emsp;&emsp;
+                @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
+             </div>
          </div>
     </div>
 End Using

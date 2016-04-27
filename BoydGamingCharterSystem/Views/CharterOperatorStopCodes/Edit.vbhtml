@@ -32,5 +32,5 @@ End Code
 End Using
 
 <div>
-    @Html.ActionLink("Back to Administration", "Index")             @Html.ActionLink("Delete Record", "Delete", New With {.id = Model.Id})
+    @Html.ActionLink("Back to Administration", "Index")             <!--@Html.ActionLink("Delete Record", "Delete", New With {.id = Model.Id})-->
 </div>

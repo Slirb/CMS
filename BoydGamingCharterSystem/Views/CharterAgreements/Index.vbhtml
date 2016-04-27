@@ -6,21 +6,21 @@ End Code
 <h1>@ViewBag.Title</h1>
 
 <p>
-    <a href="@Url.Action("Create", "CharterAgreements", New CharterCarrier())" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> Create New Agreement</a>
+    <a href="@Url.Action("Create", "CharterAgreements")" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> Create New Agreement</a>
 </p>
 <table class="table table-striped table-hover table-condensed">
     <tr>
         <th>
-            @Html.DisplayNameFor(Function(model) model.Name)
+            Agreement Name
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.CharterCarrier)
+            Carrier
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.CharterOperator)
+          Operator
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.CreatedDateTime)
+            Date Created
         </th>
         <th></th>
     </tr>
@@ -39,9 +39,9 @@ End Code
         <td>
             @Html.DisplayFor(Function(modelItem) item.CreatedDateTime)
         </td>
-         <td style="text-align:center">
-             <a href="@Url.Action("Edit", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-             <a href="@Url.Action("Details", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-th-list"></span> Details</a>
+        <td>
+            <a href="@Url.Action("Edit", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+            <a href="@Url.Action("Details", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Details</a>
         </td>
     </tr>
 Next
