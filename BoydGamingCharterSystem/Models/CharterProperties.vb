@@ -7,9 +7,9 @@ Public Class CharterProperties
     Private propertyCode As Integer
     Private propertyName As String
     Private propertyShortName As String
-    Private propertyCreatedDate As Date?
+    Private propertyCreatedDate As DateTime
     Private propertyCreatedByUser As String
-    Private propertyLastUpdatedDate As Date?
+    Private propertyLastUpdatedDate As DateTime?
     Private propertyLasteUpdatedByUser As String
 
     Public Property DepartmentName As String
@@ -115,9 +115,11 @@ Public Class CharterProperties
     End Sub
 
 
-    ''Need to finish this
-    ''Public Sub New(id As Integer, name As String)
-    ''Me.ID = id
-    ''Me.Name = name
-    ''End Sub
+    'Need to finish this
+    Public Sub New(id As Integer, name As String, shortName As String)
+        Me.New()
+        Me.ID = id
+        Me.Name = name
+        Me.ShortName = shortName
+    End Sub
 End Class

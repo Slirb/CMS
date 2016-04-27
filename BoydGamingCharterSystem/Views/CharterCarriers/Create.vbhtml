@@ -17,6 +17,7 @@ End Code
 
 
         <div id="CharterCompany" class="form-group">
+            @Html.HiddenFor(Function(model) model.Company.Id)
             @Html.EditorFor(Function(model) model.Company, "CharterCompanyCreate")
         </div>
         <div class="form-group">

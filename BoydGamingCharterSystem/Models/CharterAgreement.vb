@@ -72,17 +72,18 @@ Public Class CharterAgreement
         'Me.CharterCarrier = New CharterCarrier()
         Me.CharterTrips = New List(Of CharterTrips)
 
-        'Me.Schedule = New List(Of CharterSchedule)
+
 
     End Sub
 
 
-    Public Sub New(id As Integer, charterCarrier As CharterCarrier, charterOperator As CharterOperator)
+    Public Sub New(id As Integer, charterCarrier As CharterCarrier, charterOperator As CharterOperator, charterproperty As CharterProperties)
 
         Me.New()
         Me.Id = id
         Me.CharterCarrier = charterCarrier
         Me.CharterOperator = charterOperator
+        Me.CharterProperty = charterproperty
 
 
     End Sub

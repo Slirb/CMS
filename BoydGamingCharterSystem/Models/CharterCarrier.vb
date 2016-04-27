@@ -50,11 +50,11 @@ Public Class CharterCarrier
 
 
     <NotMapped>
-    Public Property Comments() As ICollection(Of CharterComment)
+    Public Property Comments() As List(Of CharterComment)
         Get
             Return Commentable.Comments
         End Get
-        Set(value As ICollection(Of CharterComment))
+        Set(value As List(Of CharterComment))
             Commentable.Comments = value
         End Set
     End Property

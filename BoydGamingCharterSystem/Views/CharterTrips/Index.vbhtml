@@ -21,43 +21,51 @@ End Code
     
     <!--<p>@Html.ActionLink("Create New", "Create")</p>-->
 
-@Using Html.BeginForm("Index", "CharterTrips", FormMethod.Post)
+@Using Html.BeginForm("Index", "CharterTrips", FormMethod.Get)
 
     @<p>
     <div class="row">
     <div Class="col-sm-3">
         <dl>
             <dd>
-                @Html.Label("startLabel", "Start: ", New With {.class = "label-trips"})<br />
-                @Html.TextBox("StartDate", Date.Now.ToString("MM/dd/yyyy"), New With {.class = "date"})
+                @Html.Label("startLabel", "Start: ", New With {.class = "label-trips"})
+        @Html.TextBox("StartDate", Date.Now.ToString("MM/dd/yyyy"), New With {.class = "date"})
             </dd>
 
             <dd>
-                @Html.Label("endLabel", "End: ", New With {.class = "label-trips"})<br />
-                @Html.TextBox("EndDate", "", New With {.class = "date"})
+                @Html.Label("endLabel", "End: ", New With {.class = "label-trips"})
+        @Html.TextBox("EndDate", "", New With {.class = "date"})
             </dd>
         </dl>
 
     </div>
 
-         <div Class="col-md-2">
-             <div class="panel panel-default">
+         <div Class="col-sm-2">
+             <div class="panel panel-info">
                  <div class="panel-body">
          <dl>
                         <dd>
-                            <span class="label label-success col-md-10" style="text-align:left">@Html.CheckBox("Active", True) Active   </span><br />
-                            <span class="label label-warning col-md-10" style="text-align:left">@Html.CheckBox("Applied", True) Applied  </span><br />
-                            <span Class="label label-danger col-md-10" style="text-align:left"> @Html.CheckBox("Cancelled", True) Canceled </span><br />
-                            <span Class="label label-default col-md-10" style="text-align:left">@Html.CheckBox("Completed", True) Completed</span><br />
-                            <span class="label label-info col-md-10" style="text-align:left">@Html.CheckBox("Potential", True) Pending  </span>
+                            <span class="label label-success">@Html.CheckBox("Active", True) Active   </span>
                         </dd>
+             <dd>
+                            <span class="label label-warning">@Html.CheckBox("Applied", True) Applied  </span>
+             </dd>
+             <dd>
+                            <span Class="label label-danger"> @Html.CheckBox("Cancelled", True) Canceled </span>
+             </dd>
+             <dd>
+                            <span Class="label label-default">@Html.CheckBox("Completed", True) Completed</span>
+             </dd>
+             <dd>
+                            <span class="label label-info">@Html.CheckBox("Potential", True) Pending  </span>
+            </dd>
                     </dl>
                 </div>
              </div>
           </div>
                      <div Class="col-sm-4">
                          <dl>
-                             <dd>
+             <dd>
                                  @Html.Label("searchLabel", "Confirmation Number: ", New With {.class = "label-trips"})<br />
                                  @Html.TextBox("searchString", "", New With {.class = "text-input-trips"})
              </dd>
@@ -88,28 +96,28 @@ End Using
 
 <Table Class="table table-condensed" style="background-color:lemonchiffon">
         <tr>
-            <th style="text-align:center">
-                Agreement ID
+            <th>
+                Agreement Name
             </th>
-            <th style="text-align:center">
+            <th>
                 Carrier
             </th>
-            <th style="text-align:center">
+            <th>
                 Operator
             </th>
-            <th style="text-align:center">
+            <th>
                 City
-            </thstyle="text-align:center">
-            <th style="text-align:center">
+            </th>
+            <th>
                 Manifest
             </th>
-            <th style="text-align:center">
+            <th>
                 Confirmation Number
             </th>
-            <th style="text-align:center">
+            <th>
                 Arrival
             </th>
-            <th style="text-align:center">
+            <th>
                 Departure
             </th>
             <th></th>
@@ -143,34 +151,34 @@ End Using
 
 
         @<tr style="background-color:@name">
-            <td style="text-align:center">
+            <td>
                 <!--Need to add agreement name And pull from table-->
-                @Html.DisplayFor(Function(modelItem) item.CharterAgreements.Id)
+                @Html.DisplayFor(Function(modelItem) item.CharterAgreements.Name)
             </td>
-            <td style="text-align:center">
+            <td>
                 @Html.DisplayFor(Function(modelItem) item.CarrierName)
             </td>
-            <td style="text-align:center">
+            <td>
                 @Html.DisplayFor(Function(modelItem) item.OperatorName)
             </td>
-            <td style="text-align:center">
+            <td>
                 @Html.DisplayFor(Function(modelItem) item.TripDestination)
             </td>
-            <td style="text-align:center">
+            <td>
                 @Html.DisplayFor(Function(modelItem) item.ManifestCount)
             </td>
-            <td style="text-align:center">
+            <td>
                 @Html.DisplayFor(Function(modelItem) item.Confirmation)
             </td>
             
-            <td style="text-align:center">
+            <td>
                 @Html.DisplayFor(Function(modelItem) item.DisplayArrival)
             </td>
-            <td style="text-align:center">
+            <td>
                 @Html.DisplayFor(Function(modelItem) item.DisplayDeparture)
             </td>
-            <td style="text-align:center">
-            <a href="@Url.Action("Edit", "CharterTrips", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> EDIT</a>
+            <td>
+                @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
             </td>
         </tr>
     Next

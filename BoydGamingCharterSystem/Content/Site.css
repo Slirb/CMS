@@ -53,6 +53,11 @@ textarea {
     max-width:100%;
 }
 
+textarea { 
+    width: 100%;
+    max-width:100%;
+}
+
 .text-input-trips {
     /* This is the input text boxes (RDH)*/
     /*width: 300px; */

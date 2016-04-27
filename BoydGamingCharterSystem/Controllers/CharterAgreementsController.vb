@@ -34,6 +34,7 @@ Namespace Controllers
 
         ' GET: CharterAgreements/Create
         Function Create() As ActionResult
+
             Dim agreement As CharterAgreement = New CharterAgreement
             ViewBag.CarrierId = New SelectList(db.carriers.Include(Function(c) c.Company), "Id", "Name")
             ViewBag.OperatorId = New SelectList(db.operators.Include(Function(c) c.Company), "Id", "Name")
@@ -51,6 +52,7 @@ Namespace Controllers
 
                 For Each trip In charterAgreement.CharterTrips
                     trip.CharterAgreements = charterAgreement
+                    trip.TripCity = charterAgreement.City
                     trip.TripStatus = "Potential"
                 Next
 
@@ -91,12 +93,33 @@ Namespace Controllers
         <ValidateAntiForgeryToken()>
         Function Edit(ByVal charterAgreement As CharterAgreement) As ActionResult
             If ModelState.IsValid Then
+                'Get existing agreement from database
+                Dim existingAgreement As CharterAgreement = (From agreement In db.agreements.AsNoTracking().Include(Function(c) c.CharterOperator).AsNoTracking().Include(Function(c) c.CharterCarrier).AsNoTracking().Include(Function(c) c.CharterTrips).AsNoTracking()
+                                                             Select agreement Where agreement.Id = charterAgreement.Id).FirstOrDefault()
 
+
+                'Get existing agreement's trips
+                Dim existingTrips As List(Of CharterTrips) = existingAgreement.CharterTrips
+                Dim savedTrips As List(Of CharterTrips) = existingTrips.Where(Function(p) charterAgreement.CharterTrips.Any(Function(c) c.Id = p.Id)).ToList()
+
+                '
                 'Update and Edit new and existing trips
                 For Each trip In charterAgreement.CharterTrips.Where(Function(c) c.Id = 0)
                     Static Dim tripCounter As Integer = -1
                     trip.Id = tripCounter
                     tripCounter -= 1
+                    trip.TripStatus = "Potential"
+                Next
+
+                'Preserve uneditable data in existing trips
+                For Each trip In savedTrips
+                    Dim saveTrip As CharterTrips = charterAgreement.CharterTrips.Find(Function(c) c.Id = trip.Id)
+                    saveTrip.CharterManifests = trip.CharterManifests
+                    saveTrip.Confirmation = trip.Confirmation
+                    saveTrip.ManifestCount = trip.ManifestCount
+                    saveTrip.TripCity = trip.TripCity
+                    saveTrip.TripNotes = trip.TripNotes
+                    saveTrip.TripStatus = trip.TripStatus
                 Next
 
                 For Each trip In charterAgreement.CharterTrips

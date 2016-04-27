@@ -7,7 +7,7 @@ End Code
 <h1>@ViewBag.Title</h1>
 
 <p>
-    <a href="@Url.Action("Create", "CharterOperators", New CharterCarrier())" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> Create New Operator</a>
+    <a href="/CharterOperators/Create" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> Create New Operator</a>
 </p>
 <table class="table table-striped table-hover table-condensed">
     <tr>

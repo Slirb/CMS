@@ -15,6 +15,7 @@ End Code
         @Html.HiddenFor(Function(model) model.Id)
         @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
         <div class="form-group">
+            @Html.HiddenFor(Function(model) model.Company.Id)
             @Html.EditorFor(Function(model) model.Company, "CharterCompanyCreate")
         </div>
         <div class="form-group">
