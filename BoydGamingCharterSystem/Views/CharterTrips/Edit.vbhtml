@@ -37,7 +37,7 @@ End Code
 
 
         @<div class="form-horizontal">
-            <h4>Charter Trip Edit</h4>
+            <h3>Charter Trip Edit</h3>
             <hr />
             @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
             @Html.HiddenFor(Function(model) model.trip.Id)            
@@ -132,15 +132,16 @@ End Code
                     <!--Displays a link if confirmation number exists-->
                     @if conf Is "True" Then
                         @Html.ActionLink("View Letter", "ConfirmationLetter", New With {.id = Model.trip.Id})
+
                     End If
                 </div>
             </div>
 
             <div Class="form-group">
                 <div Class="col-md-offset-2 col-md-10">
-                    <input type = "submit" value="Save" Class="btn btn-default" />
-                    @Html.ActionLink("Close", "Index")
-                    @Html.ActionLink("Cancel Trip", "CancelTrip", New With {.id = Model.trip.Id})
+                    <button type="submit" class="btn btn-success btn-sm"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
+                    <a href="@Url.Action("Index", "CharterTrips")" Class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-minus"></span> Close Edit</a>
+                    <a href="@Url.Action("CancelTrip", "CharterTrips", New With {.id = Model.trip.Id})" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-map-marker"></span> Cancel Trip</a>
                 </div>
             </div>
         </div>
@@ -163,19 +164,20 @@ End Code
             @Html.Hidden("tripId", Model.trip.Id)
             @Html.Label("searchLabel", "Card Number: ")
             @Html.TextBox("searchPerson", "")
-            @<input id="subButton" type="submit" value="Add" title="" />
+            @<input id="subButton" type="submit" value="Add To Manifest" title="" class="btn btn-success glyphicon glyphicon-plus" />
         End Using
 
         @Using Html.BeginForm("ImportManifest", "CharterTrips", FormMethod.Post, New With {.enctype = "multipart/form-data"})
             @Html.Hidden("id", Model.trip.Id)
             @<input type = "file" name="manifest" />
-            @<input id = "subButton" type="submit" value="UploadFile" title="" />
+            @<input id = "subButton" type="submit" value="Upload File" title="" class="btn btn-success glyphicon glyphicon-plus" />
         End Using
 
         @Html.ActionLink("Allocate Offers", "AllocateOffers", New With {.tripId = Model.trip.Id})
 
 
-        <Table Class="table">
+
+        <Table class="table table-striped table-hover table-condensed">
             <tr>
             <th>
             Card No
@@ -233,7 +235,7 @@ End Code
                         @Html.DisplayFor(Function(modelItem) item.postalCode)
                     </td>
                     <td>                                                                                                                         
-                        @Html.ActionLink("X", "DeletePerson", New With {.id = item.Id, .tripId = Model.trip.Id})
+                        <a href="@Url.Action("DeletePerson", "CharterTrips", New With {.id = item.Id, .tripId = Model.trip.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
                     </td>
                 </tr>
             Next
@@ -246,7 +248,7 @@ End Code
         @Using Html.BeginForm("SubmitNotes", "CharterTrips", FormMethod.Post)
             @Html.Hidden("id", Model.trip.Id)
             @Html.TextArea("tripNotes", Model.trip.TripNotes, New With {.class = "form-control", .name = "tripNotes"})
-            @<input id="notesButton" type="submit" value="Save Notes" title="" />
+            @<input id="notesButton" type="submit" value="Save Notes" title="" class="btn btn-success"/>
         End Using
 
         
