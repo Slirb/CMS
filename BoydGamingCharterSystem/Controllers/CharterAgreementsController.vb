@@ -54,7 +54,6 @@ Namespace Controllers
                     trip.CharterAgreements = charterAgreement
                     trip.TripCity = charterAgreement.City
                     trip.TripStatus = "Potential"
-                    trip.TripCity = charterAgreement.City
                 Next
 
                 db.agreements.Add(charterAgreement)
@@ -118,13 +117,14 @@ Namespace Controllers
                     saveTrip.CharterManifests = trip.CharterManifests
                     saveTrip.Confirmation = trip.Confirmation
                     saveTrip.ManifestCount = trip.ManifestCount
-                    saveTrip.TripCity = trip.TripCity
+
                     saveTrip.TripNotes = trip.TripNotes
                     saveTrip.TripStatus = trip.TripStatus
                 Next
 
                 For Each trip In charterAgreement.CharterTrips
                     trip.CharterAgreements = charterAgreement
+                    trip.TripCity = charterAgreement.City
                     If trip.Id < 0 Then
                         db.Entry(trip).State = EntityState.Added
                     Else
