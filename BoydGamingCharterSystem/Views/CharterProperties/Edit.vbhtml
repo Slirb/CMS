@@ -77,5 +77,5 @@ End Code
 End Using
 
 <div>
-    @Html.ActionLink("Back to Administration", "Index")               @Html.ActionLink("Delete Record", "Delete", New With {.id = Model.ID})
+    @Html.ActionLink("Back to Administration", "Index")               <!--@Html.ActionLink("Delete Record", "Delete", New With {.id = Model.ID})-->
 </div>

@@ -1,26 +1,26 @@
 ﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterAgreement)
 @Code
-ViewData("Title") = "Index"
+    ViewData("Title") = "Agreements"
 End Code
 
-<h2>Index</h2>
+<h2>Agreements</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+    <a href="@Url.Action("Create", "CharterAgreements")" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span> Create New Agreement</a>
+    </p>
+<table class="table table-striped table-hover table-condensed">
     <tr>
         <th>
-            @Html.DisplayNameFor(Function(model) model.Name)
+            Agreement Name
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.CharterCarrier)
+            Carrier
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.CharterOperator)
+          Operator
         </th>
         <th>
-            @Html.DisplayNameFor(Function(model) model.CreatedDateTime)
+            Date Created
         </th>
         <th></th>
     </tr>
@@ -40,8 +40,8 @@ End Code
             @Html.DisplayFor(Function(modelItem) item.CreatedDateTime)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", New With {.id = item.Id }) |
-            @Html.ActionLink("Details", "Details", New With {.id = item.Id }) 
+            <a href="@Url.Action("Edit", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+            <a href="@Url.Action("Details", "CharterAgreements", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Details</a>
         </td>
     </tr>
 Next

@@ -418,7 +418,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterTrips As CharterTrips = (From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company)
+            Dim charterTrips As CharterTrips = (From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Include(Function(c) c.CharterAgreements.CharterProperty)
                                                 Select t Where t.Id = id).FirstOrDefault()
             If IsNothing(charterTrips) Then
                 Return HttpNotFound()
@@ -497,7 +497,7 @@ Namespace Controllers
                 'Check for confirmation number and generate if needed
                 If charterTrip.Confirmation Is Nothing Or charterTrip.Confirmation = "" Then
 
-                    charterTrip.Confirmation = "BI" + Date.Now.ToString("MMddyyyy") '+ charterTrip.CarrierId.ToString() + charterTrip.OperatorId.ToString()
+                    charterTrip.Confirmation = "AB" + Date.Now.ToString("MMddyyyy") '+ charterTrip.CarrierId.ToString() + charterTrip.OperatorId.ToString()
                 End If
 
                 'Check for trip status and set to active if not currently finished or active
@@ -577,26 +577,26 @@ Namespace Controllers
             End If
 
             Dim people As New List(Of CharterManifest)
-            Dim state As State = db.states.Find(2)
+            Dim state As State = db.states.Find(14)
             Dim charterTrip As CharterTrips = db.trips.Find(tripId)
 
             With people
-                .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Michigan City", state, "46361", charterTrip))
             End With
 
 
@@ -663,26 +663,26 @@ Namespace Controllers
 
 
             Dim people As New List(Of CharterManifest)
-            Dim state As State = db.states.Find(2)
+            Dim state As State = db.states.Find(14)
             Dim charterTrip As CharterTrips = db.trips.Find(id)
 
             With people
-                .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Houston", state, "46511", charterTrip))
-                .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Orlando", state, "56533", charterTrip))
-                .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Orlando", state, "56533", charterTrip))
+                .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Michigan City", state, "46361", charterTrip))
+                .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Michigan City", state, "46361", charterTrip))
             End With
 
 
@@ -751,7 +751,7 @@ Namespace Controllers
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)
             End If
-            Dim charterTrips As CharterTrips = (From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company.State).Include(Function(c) c.CharterAgreements.CharterCarrier.Company.State).ToList()
+            Dim charterTrips As CharterTrips = (From t In db.trips.Include(Function(c) c.CharterAgreements).Include(Function(c) c.CharterAgreements.CharterCarrier.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company).Include(Function(c) c.CharterAgreements.CharterOperator.Company.State).Include(Function(c) c.CharterAgreements.CharterCarrier.Company.State).Include(Function(c) c.CharterAgreements.CharterProperty).ToList()
                                                 Select t Where t.Id = id).FirstOrDefault()
             If IsNothing(charterTrips) Then
                 Return HttpNotFound()

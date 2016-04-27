@@ -79,18 +79,18 @@ Public Class CharterSystemInitializer
 
         Dim companies As New List(Of CharterCompany)
         With companies
-            .Add(New CharterCompany("Greyhound", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Metra", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Bob's Buses", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Paradise Line", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Spirit Tracks", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Vegas Carriers", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Tim's Travel Services", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Rich Springs Travel Companion", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("First Travel Center", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("First Stop on the Journey Travel Agency", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Vegas Travellers", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
-            .Add(New CharterCompany("Windy City Travel", "Test", Nothing, Nothing, Nothing, "55555", Nothing, "USA", "Valid@hotmail.com"))
+            .Add(New CharterCompany("Greyhound", "1234 Sample Street", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "greyhound@hotmail.com"))
+            .Add(New CharterCompany("Metra", "536 Main Street", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "metra@gmail.com"))
+            .Add(New CharterCompany("Bob's Buses", "985 West Avenue", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "bobsbusses@hotmail.com"))
+            .Add(New CharterCompany("Paradise Line", "3214 South Street", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "paradiselines@hotmail.com"))
+            .Add(New CharterCompany("Spirit Tracks", "654 West Parkway", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "spirittracks@gmail.com"))
+            .Add(New CharterCompany("Vegas Carriers", "944 Michigan Street", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "vegascarriers@gmail.com"))
+            .Add(New CharterCompany("Tim's Travel Services", "198 Long Avenue", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "timstravel@yahoo.com"))
+            .Add(New CharterCompany("Rich Springs Travel Companion", "621 Hill Drive", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "richsprings@yahoo.com"))
+            .Add(New CharterCompany("First Travel Center", "20 Park Avenue", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "1sttravel@gmail.com"))
+            .Add(New CharterCompany("First Stop on the Journey Travel Agency", "67 Lakeshore Drive", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "firststop@hotmail.com"))
+            .Add(New CharterCompany("Vegas Travellers", "327 Fairview Lane", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "vegastravellersd@hotmail.com"))
+            .Add(New CharterCompany("Windy City Travel", "361 John Adams Drive", Nothing, "Michigan City", states.Item(13), "46361", Nothing, "USA", "wct@yahoo.com"))
 
         End With
         companies.ForEach(Sub(comp) context.companies.Add(comp))
@@ -150,8 +150,8 @@ Public Class CharterSystemInitializer
         'Properties
         Dim properties As New List(Of CharterProperties)
         With properties
-            .Add(New CharterProperties(1, "Type 1", "T1"))
-            .Add(New CharterProperties(1, "Type 2", "T2"))
+            .Add(New CharterProperties(1, "Property One", "P1", "5741234567", "5743689874"))
+            .Add(New CharterProperties(1, "Property Two", "P2", "5746983214", "5743856492"))
         End With
         properties.ForEach(Sub(p) context.properties.Add(p))
         context.SaveChanges()
@@ -159,9 +159,9 @@ Public Class CharterSystemInitializer
 
         Dim agreements As New List(Of CharterAgreement)
         With agreements
-            .Add(New CharterAgreement(3, carriers.Item(0), operators.Item(2), properties.Item(0)))
-            .Add(New CharterAgreement(456, carriers.Item(4), operators.Item(5), properties.Item(1)))
-            .Add(New CharterAgreement(638, carriers.Item(2), operators.Item(4), properties.Item(0)))
+            .Add(New CharterAgreement(3, carriers.Item(0), operators.Item(2), properties.Item(0), "Jim's Agreement", "Chicago"))
+            .Add(New CharterAgreement(456, carriers.Item(4), operators.Item(5), properties.Item(1), "Sample Agreement", "South Bend"))
+            .Add(New CharterAgreement(638, carriers.Item(2), operators.Item(4), properties.Item(0), "Mary's Agreement", "Boston"))
 
         End With
         agreements.ForEach(Sub(agree) context.agreements.Add(agree))
@@ -177,11 +177,11 @@ Public Class CharterSystemInitializer
 
         Dim trips As New List(Of CharterTrips)
         With trips
-            .Add(New CharterTrips(1, "Biloxi", "Biloxi", "Potential", Nothing, agreements.Item(0), Date.Now, Date.Now.AddDays(3)))
-            .Add(New CharterTrips(2, "Biloxi", "Baton Rouge", "Cancelled", "BI68735TG", agreements.Item(1), Date.Now.AddDays(20), Date.Now.AddDays(23)))
-            .Add(New CharterTrips(3, "Biloxi", "Orlando", "Active", "BI94682TG", agreements.Item(2), Date.Now.AddDays(40), Date.Now.AddDays(43)))
-            .Add(New CharterTrips(4, "Biloxi", "Mobile", "Applied", "BI68742TG", agreements.Item(1), Date.Now.AddDays(60), Date.Now.AddDays(63)))
-            .Add(New CharterTrips(5, "Biloxi", "Atlanta", "Completed", "BI98761TG", agreements.Item(0), Date.Now.AddDays(80), Date.Now.AddDays(83)))
+            .Add(New CharterTrips(1, "Potential", Nothing, agreements.Item(0), Date.Now, Date.Now.AddDays(3)))
+            .Add(New CharterTrips(2, "Cancelled", "AB68735TG", agreements.Item(1), Date.Now.AddDays(20), Date.Now.AddDays(23)))
+            .Add(New CharterTrips(3, "Active", "AB94682TG", agreements.Item(2), Date.Now.AddDays(40), Date.Now.AddDays(43)))
+            .Add(New CharterTrips(4, "Applied", "AB68742TG", agreements.Item(1), Date.Now.AddDays(60), Date.Now.AddDays(63)))
+            .Add(New CharterTrips(5, "Completed", "AB98761TG", agreements.Item(0), Date.Now.AddDays(80), Date.Now.AddDays(83)))
 
 
         End With
@@ -191,8 +191,8 @@ Public Class CharterSystemInitializer
         'Tiered Commissions
         Dim commissions As New List(Of CharterTieredCommissions)
         With commissions
-            .Add(New CharterTieredCommissions(1, "test 1", "example"))
-            .Add(New CharterTieredCommissions(2, "test 1", "example"))
+            .Add(New CharterTieredCommissions(1, "Commission One", "This is an example commission"))
+            .Add(New CharterTieredCommissions(2, "Commission Two", "Another Example"))
         End With
         commissions.ForEach(Sub(commission) context.commissions.Add(commission))
         context.SaveChanges()
@@ -200,8 +200,8 @@ Public Class CharterSystemInitializer
         'Operator Interests
         Dim interests As New List(Of CharterOperatorInterest)
         With interests
-            .Add(New CharterOperatorInterest(1, "Interest 1"))
-            .Add(New CharterOperatorInterest(1, "Interest 2"))
+            .Add(New CharterOperatorInterest(1, "Interest One"))
+            .Add(New CharterOperatorInterest(1, "Interest Two"))
         End With
         interests.ForEach(Sub(interest) context.operatorInterests.Add(interest))
         context.SaveChanges()
@@ -210,8 +210,8 @@ Public Class CharterSystemInitializer
         'Operator Modes
         Dim modes As New List(Of CharterOperatorMode)
         With modes
-            .Add(New CharterOperatorMode(1, "Mode 1"))
-            .Add(New CharterOperatorMode(1, "Mode 2"))
+            .Add(New CharterOperatorMode(1, "Mode One"))
+            .Add(New CharterOperatorMode(1, "Mode Two"))
         End With
         modes.ForEach(Sub(mode) context.operatorModes.Add(mode))
         context.SaveChanges()
@@ -219,8 +219,8 @@ Public Class CharterSystemInitializer
         'Operator Stop Codes
         Dim codes As New List(Of CharterOperatorStopCode)
         With codes
-            .Add(New CharterOperatorStopCode(1, "Stop Code 1"))
-            .Add(New CharterOperatorStopCode(1, "Stop Code 2"))
+            .Add(New CharterOperatorStopCode(1, "Stop Code One"))
+            .Add(New CharterOperatorStopCode(1, "Stop Code Two"))
         End With
         codes.ForEach(Sub(code) context.operatorStopCodes.Add(code))
         context.SaveChanges()
@@ -229,8 +229,8 @@ Public Class CharterSystemInitializer
         'Operator Types
         Dim types As New List(Of CharterOperatorType)
         With types
-            .Add(New CharterOperatorType(1, "Type 1"))
-            .Add(New CharterOperatorType(1, "Type 2"))
+            .Add(New CharterOperatorType(1, "Type One"))
+            .Add(New CharterOperatorType(1, "Type Two"))
         End With
         types.ForEach(Sub(type) context.operatorTypes.Add(type))
         context.SaveChanges()
@@ -238,22 +238,22 @@ Public Class CharterSystemInitializer
         'Manifests
         Dim manifests As New List(Of CharterManifest)
         With manifests
-            .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Houston", states.Item(1), "46511", trips.Item(2)))
-            .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
-            .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Houston", states.Item(1), "46511", trips.Item(1)))
-            .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Orlando", states.Item(2), "56533", trips.Item(1)))
-            .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Houston", states.Item(1), "46511", trips.Item(3)))
-            .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Orlando", states.Item(2), "56533", trips.Item(3)))
-            .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Houston", states.Item(1), "46511", trips.Item(4)))
-            .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Orlando", states.Item(2), "56533", trips.Item(4)))
-            .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Houston", states.Item(1), "46511", trips.Item(3)))
-            .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Houston", states.Item(1), "46511", trips.Item(4)))
-            .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
-            .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Houston", states.Item(1), "46511", trips.Item(3)))
-            .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
-            .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Houston", states.Item(1), "46511", trips.Item(4)))
-            .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
-            .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Orlando", states.Item(2), "56533", trips.Item(2)))
+            .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(2)))
+            .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(2)))
+            .Add(New CharterManifest(3, 300050, "Mark", "Finn", "A", Date.Now, "Test Address 3", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(1)))
+            .Add(New CharterManifest(4, 300831, "Amy", "Hope", "B", Date.Now, "Test Address 4", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(1)))
+            .Add(New CharterManifest(5, 300749, "John", "Jenkins", "C", Date.Now, "Test Address 5", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(3)))
+            .Add(New CharterManifest(6, 302031, "Katy", "Perry", "D", Date.Now, "Test Address 6", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(3)))
+            .Add(New CharterManifest(7, 310049, "Bob", "Villa", "E", Date.Now, "Test Address 7", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(4)))
+            .Add(New CharterManifest(8, 304631, "Ashley", "Higgins", "F", Date.Now, "Test Address 8", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(4)))
+            .Add(New CharterManifest(9, 560049, "Scott", "Speed", "G", Date.Now, "Test Address 9", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(3)))
+            .Add(New CharterManifest(10, 400049, "Sam", "Worthy", "H", Date.Now, "Test Address 10", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(4)))
+            .Add(New CharterManifest(11, 502831, "Nancy", "Monroe", "I", Date.Now, "Test Address 11", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(2)))
+            .Add(New CharterManifest(12, 313049, "Kevin", "Smith", "J", Date.Now, "Test Address 12", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(3)))
+            .Add(New CharterManifest(13, 302491, "Olivia", "Banks", "K", Date.Now, "Test Address 13", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(2)))
+            .Add(New CharterManifest(14, 307349, "Paul", "James", "L", Date.Now, "Test Address 14", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(4)))
+            .Add(New CharterManifest(15, 365831, "Terri", "Long", "M", Date.Now, "Test Address 15", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(2)))
+            .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Michigan City", states.Item(13), "46361", trips.Item(2)))
         End With
         manifests.ForEach(Sub(manifest) context.manifests.Add(manifest))
         context.SaveChanges()

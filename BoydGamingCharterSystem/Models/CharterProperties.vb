@@ -116,10 +116,12 @@ Public Class CharterProperties
 
 
     'Need to finish this
-    Public Sub New(id As Integer, name As String, shortName As String)
+    Public Sub New(id As Integer, name As String, shortName As String, contactNum As String, faxNum As String)
         Me.New()
         Me.ID = id
         Me.Name = name
         Me.ShortName = shortName
+        Me.ContactNumber = contactNum
+        Me.FaxNumber = faxNum
     End Sub
 End Class

@@ -162,7 +162,7 @@ End Using
                 @Html.DisplayFor(Function(modelItem) item.OperatorName)
             </td>
             <td>
-                @Html.DisplayFor(Function(modelItem) item.TripDestination)
+                @Html.DisplayFor(Function(modelItem) item.TripCity)
             </td>
             <td>
                 @Html.DisplayFor(Function(modelItem) item.ManifestCount)
@@ -178,7 +178,7 @@ End Using
                 @Html.DisplayFor(Function(modelItem) item.DisplayDeparture)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", New With {.id = item.Id})
+                <a href="@Url.Action("Edit", "CharterTrips", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span></a>                
             </td>
         </tr>
     Next

@@ -25,17 +25,14 @@
                         </div>
     
                             <nav class="mainNav">
-                    <ul>
-                    
-                        <!--Changed folder names to unify naming scheme-->
-
-                        
-                        <li>@Html.ActionLink("Trips", "Index", "CharterTrips")</li>
-                        <li>@Html.ActionLink("Agreements", "Index", "CharterAgreements")</li>
-                        <li>@Html.ActionLink("Operators", "Index", "CharterOperators")</li>
-                        <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers")</li>
-                        <li>@Html.ActionLink("Reports", "Index", "CharterReports")</li>
-                        <li>@Html.ActionLink("Administration", "Index", "Administration")</li>
+                    <ul>                    
+                        <li>@Html.ActionLink("Trips", "Index", "CharterTrips", Nothing, New With {.class = "btn btn-link"})</li>
+                        <li>@Html.ActionLink("Agreements", "Index", "CharterAgreements", Nothing, New With {.class = "btn btn-link"})</li>
+                        <li>@Html.ActionLink("Operators", "Index", "CharterOperators", Nothing, New With {.class = "btn btn-link"})</li>
+                        <li>@Html.ActionLink("Carriers", "Index", "CharterCarriers", Nothing, New With {.class = "btn btn-link"})</li>
+                        <!--Hidden for presentation purposes-->
+                        <!--<li>@Html.ActionLink("Reports", "Index", "CharterReports", Nothing, New With {.class = "btn btn-link"})</li>-->
+                        <li>@Html.ActionLink("Administration", "Index", "Administration", Nothing, New With {.class = "btn btn-link"})</li>
 
                 
                     </ul>

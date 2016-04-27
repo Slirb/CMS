@@ -88,7 +88,7 @@ End Code
             <td  style="text-align:center">
                 <a href="@Url.Action("Edit", "CharterCarriers", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                 <a href="@Url.Action("Details", "CharterCarriers", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-th-list"></span> Details</a>
-                <a href="@Url.Action("Delete", "CharterCarriers", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-minus"></span> Delete</a>
+                <!--<a href="@Url.Action("Delete", "CharterCarriers", New With {.id = item.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-minus"></span> Delete</a>-->
             </td>
         </tr>
     Next

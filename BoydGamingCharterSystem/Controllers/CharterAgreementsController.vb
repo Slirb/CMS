@@ -52,6 +52,7 @@ Namespace Controllers
                 For Each trip In charterAgreement.CharterTrips
                     trip.CharterAgreements = charterAgreement
                     trip.TripStatus = "Potential"
+                    trip.TripCity = charterAgreement.City
                 Next
 
                 db.agreements.Add(charterAgreement)

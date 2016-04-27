@@ -1,16 +1,15 @@
 ﻿@ModelType BoydGamingCharterSystem.CharterCarrier
 @Code
-    ViewData("Title") = "Create"
+    ViewData("Title") = "Create Carrier"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
-<h2>Create</h2>
+<h2>Create Carrier</h2>
 
 @Using (Html.BeginForm())
     @Html.AntiForgeryToken()
 
     @<div class="form-horizontal">
-        <h4>Add New Charter Carrier</h4>
         <hr />
         @Html.HiddenFor(Function(model) model.Id)
         @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
@@ -80,14 +79,11 @@ End Code
 
         <div Class="form-group">
             <div Class="col-md-offset-2 col-md-10">
-                <input type = "submit" value="Create" Class="btn btn-default" />
+                <input type = "submit" value="Create" Class="btn btn-success" />&emsp;&emsp;&emsp;
+                @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
             </div>
         </div>
 
     </div>
 
-                End Using
-
-                        <div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+End Using

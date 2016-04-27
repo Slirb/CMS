@@ -1,16 +1,15 @@
 ﻿@ModelType BoydGamingCharterSystem.CharterAgreement
 @Code
-    ViewData("Title") = "Create"
+    ViewData("Title") = "Create Agreement"
     Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
-<h2>Create</h2>
+<h2>Create Agreement</h2>
 
 @Using (Html.BeginForm()) 
     @Html.AntiForgeryToken()
 
     @<div class="form-horizontal">
-        <h4>Charter Agreement Create</h4>
         <hr />
         @Html.ValidationSummary(True, "", New With {.class = "text-danger"})
         @Html.HiddenFor(Function(model) model.Id)
@@ -108,11 +107,8 @@ End Code
         </div>
         <div Class="form-group">
             <div Class="col-md-offset-2 col-md-10">
-                <input type = "submit" value="Create" Class="btn btn-default" />
+                <input type = "submit" value="Create" Class="btn btn-success btn-sm" />&emsp;&emsp;&emsp;&emsp;
+                @Html.ActionLink("Back to List", "Index", Nothing, New With {.class = "btn btn-default"})
             </div>
         </div>
     </div>  End Using
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
