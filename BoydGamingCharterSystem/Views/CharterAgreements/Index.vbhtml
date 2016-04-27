@@ -10,16 +10,16 @@ End Code
 </p>
 <table class="table table-striped table-hover table-condensed">
     <tr>
-        <th>
+        <th style="text-align:center">
             @Html.DisplayNameFor(Function(model) model.Name)
         </th>
-        <th>
+        <th style="text-align:center">
             @Html.DisplayNameFor(Function(model) model.CharterCarrier)
         </th>
-        <th>
+        <th style="text-align:center">
             @Html.DisplayNameFor(Function(model) model.CharterOperator)
         </th>
-        <th>
+        <th style="text-align:center">
             @Html.DisplayNameFor(Function(model) model.CreatedDateTime)
         </th>
         <th></th>
@@ -27,16 +27,16 @@ End Code
 
 @For Each item In Model
     @<tr>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(Function(modelItem) item.Name)
         </td>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(Function(modelItem) item.CarrierName)
         </td>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(Function(modelItem) item.OperatorName)
         </td>
-        <td>
+        <td style="text-align:center">
             @Html.DisplayFor(Function(modelItem) item.CreatedDateTime)
         </td>
          <td style="text-align:center">

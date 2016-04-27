@@ -134,9 +134,10 @@ End If
 
             <div Class="form-group">
                 <div Class="col-md-offset-2 col-md-10">
-                    <input type = "submit" value="Save" Class="btn btn-default" />
-                    @Html.ActionLink("Close", "Index")
-                    @Html.ActionLink("Cancel Trip", "CancelTrip", New With {.id = Model.trip.Id})
+                    <button type="submit" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-plus"></span> Save Edit</button>
+                    <a href="@Url.Action("Index", "CharterTrips")" Class="btn btn-warning btn-md"><span class="glyphicon glyphicon-minus"></span> Close Edit</a>
+                    <a href="@Url.Action("CancelTrip", "CharterTrips", New With {.id = Model.trip.Id})" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-map-marker"></span> Cancel Trip</a>
+
                 </div>
             </div>
         </div>
@@ -159,44 +160,25 @@ End If
             @Html.Hidden("tripId", Model.trip.Id)
             @Html.Label("searchLabel", "Card No: ")
             @Html.TextBox("searchPerson", "")
-            @<input id="subButton" type="submit" value="Add" title="" />
+            @<input id="subButton" type="submit" value="Add To Manifest" title="" class="btn btn-success btn-md" />
         End Using
 
         @Using Html.BeginForm("ImportManifest", "CharterTrips", FormMethod.Post, New With {.enctype = "multipart/form-data"})
             @Html.Hidden("id", Model.trip.Id)
-            @<input type = "file" name="manifest" />
-            @<input id = "subButton" type="submit" value="UploadFile" title="" />
+            @<input type="file" name="manifest" />
+            @<input id = "subButton" type="submit" value="Upload File" title="" class="btn btn-success btn-md" />
         End Using
 
-        @Html.ActionLink("Allocate Offers", "AllocateOffers", New With {.tripId = Model.trip.Id})
-
-
-        <Table Class="table">
+        <Table Class="table table-striped table-hover table-condensed">
             <tr>
-            <th>
-            Card No
-                </th>
-                <th>
-            Full Name
-                </th>
-                <th>
-            DOB
-                </th>
-                <th>
-            Addr1
-                </th>
-                <th>
-            Addr2
-                </th>
-                <th>
-            City
-                </th>
-                <th>
-            State
-                </th>
-                <th>
-            Zip
-                </th>
+            <th style = "text-align:center" > Card No</th>
+                <th style = "text-align:center" > Full Name</th>
+                <th style = "text-align:center" > DOB</th>
+                <th style = "text-align:center" > Addr1</th>
+                <th style = "text-align:center" > Addr2</th>
+                <th style = "text-align:center" > City</th>
+                <th style = "text-align:center" > State</th>
+                <th style = "text-align:center" > Zip</th>
                 <th></th>
             </tr>
 
@@ -204,33 +186,33 @@ End If
             @For Each item In Model.manifests
 
                 @<tr>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.cardNumber)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.FullName)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.ShortDate)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.addressLineOne)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.addressLineTwo)
                     </td>
-                    <td>
-                        @Html.DisplayFor(Function(modelItem) item.city)
-                    </td>
-                    <td>
+                     <td style="text-align:center">
+                         @Html.DisplayFor(Function(modelItem) item.city)
+                     </td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.state)
                     </td>
-                    <td>
+                    <td style="text-align:center">
                         @Html.DisplayFor(Function(modelItem) item.postalCode)
                     </td>
-                    <td>                                                                                                                         
-                        @Html.ActionLink("X", "DeletePerson", New With {.id = item.Id, .tripId = Model.trip.Id})
-                    </td>
+                    <td style="text-align:center">
+                        <a href="@Url.Action("DeletePerson", "CharterTrips", New With {.id = item.Id, .tripId = Model.trip.Id})" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                                </td>
                 </tr>
             Next
 
@@ -242,7 +224,7 @@ End If
         @Using Html.BeginForm("SubmitNotes", "CharterTrips", FormMethod.Post)
             @Html.Hidden("id", Model.trip.Id)
             @Html.TextArea("tripNotes", Model.trip.TripNotes, New With {.class = "form-control", .name = "tripNotes"})
-            @<input id="notesButton" type="submit" value="Save Notes" title="" />
+            @<input id="notesButton" type="submit" value="Save Notes" title="" class="btn btn-success btn-md"/>
         End Using
 
         
