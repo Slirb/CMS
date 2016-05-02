@@ -25,12 +25,10 @@ End Code
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />&emsp;&emsp;&emsp;
+                <a href="@Url.Action("Index", "CharterOperatorStopCodes")" Class="btn btn-default btn-md"><span class="glyphicon glyphicon-minus"></span> Back to Administration</a>
+                @Html.ActionLink("Delete Record", "Delete", New With {.id = Model.Id}, New With {.class = "btn btn-danger"})
             </div>
         </div>
     </div>
 End Using
-
-<div>
-    @Html.ActionLink("Back to Administration", "Index")             <!--@Html.ActionLink("Delete Record", "Delete", New With {.id = Model.Id})-->
-</div>

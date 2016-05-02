@@ -55,7 +55,7 @@ End Code
             @Html.LabelFor(Function(model) model.Email, htmlAttributes:=New With {.class = "control-label"})
             @Html.EditorFor(Function(model) model.Email, New With {.htmlAttributes = New With {.class = "form-control"}})
             @Html.ValidationMessageFor(Function(model) model.Email, "", New With {.class = "text-danger"})
-            @:<a href="#" Class="deleteRow">Remove</a>
+            @:<a href="#" Class="deleteRow btn btn-danger btn-md">Remove Contact</a>
             
 
 

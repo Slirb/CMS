@@ -15,10 +15,6 @@ Public Class CharterOperator
     <Display(Name:="Vendor Number")>
     Public Property VendorNumber As String
 
-    'In the current application, Type, Mode, Interest, and Stop Code
-    'are all stored as strings. I don't know how we should handle these
-    'in the actual application, they need a dropdown menu 
-    ' - probably to be administered, so they need tables... ?
     Public Property Type As String
     Public Property Mode As String
     Public Property Interest As String

@@ -80,7 +80,7 @@ End Code
 
         <div Class="form-group">
             <div>
-                <button type="submit" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-plus"></span> Create Carrier</button>&emsp;
+                <button type="submit" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-plus"></span> Create Carrier</button>&emsp;&emsp;&emsp;
                 <a href="@Url.Action("Index", "CharterCarriers")" Class="btn btn-danger btn-md"><span class="glyphicon glyphicon-minus"></span> Back to List</a>
             </div>
         </div>

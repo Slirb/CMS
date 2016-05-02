@@ -26,6 +26,7 @@ Namespace Controllers
             Dim status As New List(Of String)
             Dim trips
 
+            'Check for null confirmation number string 
             If searchString = "" Then
                 searchString = Nothing
             End If
@@ -55,6 +56,9 @@ Namespace Controllers
                 status.Add("Cancelled")
             End If
 
+
+            'This is the search functionality
+            'It can be shortened significantly with some more advanced usage of LINQ queries
 
             'Check for a selected carrier
             If SelectedCarrier IsNot Nothing And SelectedCarrier IsNot "" Then
@@ -488,6 +492,7 @@ Namespace Controllers
         Function Edit(<Bind(Include:="Id,TripCity,TripStatus,Confirmation,ManifestCount,TripNotes", Prefix:="trip")> ByVal charterTrip As CharterTrips,
                        ArrivalDay As String, ArrivalHour As String, ArrivalMinute As String, DepartureDay As String, DepartureHour As String, DepartureMinute As String) As ActionResult
 
+            'Update dates
             charterTrip.Arrival = ArrivalDay + " " + ArrivalHour + ":" + ArrivalMinute + ":00"
             charterTrip.Departure = DepartureDay + " " + DepartureHour + ":" + DepartureMinute + ":00"
 
@@ -497,7 +502,7 @@ Namespace Controllers
                 'Check for confirmation number and generate if needed
                 If charterTrip.Confirmation Is Nothing Or charterTrip.Confirmation = "" Then
 
-                    charterTrip.Confirmation = "AB" + Date.Now.ToString("MMddyyyy") '+ charterTrip.CarrierId.ToString() + charterTrip.OperatorId.ToString()
+                    charterTrip.Confirmation = "AB" + Date.Now.ToString("MMddyyyy")
                 End If
 
                 'Check for trip status and set to active if not currently finished or active
@@ -580,6 +585,7 @@ Namespace Controllers
             Dim state As State = db.states.Find(14)
             Dim charterTrip As CharterTrips = db.trips.Find(tripId)
 
+            'This is just a temporary array to be searched through
             With people
                 .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Michigan City", state, "46361", charterTrip))
                 .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Michigan City", state, "46361", charterTrip))
@@ -599,15 +605,17 @@ Namespace Controllers
                 .Add(New CharterManifest(2, 302001, "Elise", "Kelly", "N", Date.Now, "Test Address 16", Nothing, "Michigan City", state, "46361", charterTrip))
             End With
 
-
+            'Search through the array
             For Each person In people
                 If person.cardNumber.Equals(Integer.Parse(searchPerson)) Then
 
+                    'Check to see if person is already on manifest
                     Dim tempManifest = From t In db.manifests.Where(Function(manifest) manifest.cardNumber.Equals(person.cardNumber)).ToList
                                        Select t Where t.tripId = tripId
 
                     If tempManifest.Count < 1 Then
 
+                        'Add to manifest
                         Dim name As CharterManifest =
                             New CharterManifest(-1, person.cardNumber, person.firstName, person.lastName, person.middleInitial, person.dob, person.addressLineOne,
                                                 person.addressLineTwo, person.city, state, person.postalCode, charterTrip)
@@ -636,6 +644,7 @@ Namespace Controllers
         <HttpPost()>
         Function ImportManifest(ByVal id As Integer, ByVal manifest As HttpPostedFileBase) As ActionResult
 
+            'Read CSV into an array consisting of Card Numbers
             Dim fileName As String
 
             Try
@@ -666,6 +675,7 @@ Namespace Controllers
             Dim state As State = db.states.Find(14)
             Dim charterTrip As CharterTrips = db.trips.Find(id)
 
+            'This is just a temporary array to be searched through
             With people
                 .Add(New CharterManifest(1, 300049, "Steve", "Harvey", "L", Date.Now, "Test Address", Nothing, "Michigan City", state, "46361", charterTrip))
                 .Add(New CharterManifest(2, 302831, "Mary", "Poppins", "T", Date.Now, "Test Address 2", Nothing, "Michigan City", state, "46361", charterTrip))
@@ -686,16 +696,19 @@ Namespace Controllers
             End With
 
 
+            'Search through the array
             For Each person In people
 
                 For Each number In importedNumbers
                     If person.cardNumber.Equals(number) Then
 
+                        'Check to see if person is already on manifest
                         Dim tempManifest = From t In db.manifests.Where(Function(mani) mani.cardNumber.Equals(person.cardNumber)).ToList
                                            Select t Where t.tripId = id
 
                         If tempManifest.Count < 1 Then
 
+                            'Add to manifest
                             Dim name As CharterManifest =
                             New CharterManifest(-1, person.cardNumber, person.firstName, person.lastName, person.middleInitial, person.dob, person.addressLineOne,
                                                 person.addressLineTwo, person.city, state, person.postalCode, charterTrip)
@@ -746,7 +759,7 @@ Namespace Controllers
             Return RedirectToAction("Index")
         End Function
 
-        ' GET: ConfirmationLetter/Edit/5
+        'Generate Confirmation Letter
         Function ConfirmationLetter(ByVal id As Integer?) As ActionResult
             If IsNothing(id) Then
                 Return New HttpStatusCodeResult(HttpStatusCode.BadRequest)

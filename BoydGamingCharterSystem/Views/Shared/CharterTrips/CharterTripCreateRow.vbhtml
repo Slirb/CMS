@@ -30,7 +30,7 @@ End Code
         @Html.Label("Minute:", htmlAttributes:=New With {.class = "control-label"})
         @Html.EditorFor(Function(model) model.DepartureMinute, New With {.htmlAttributes = New With {.class = "form-control"}})
             @:</div>
-            @:<a href="#" class="deleteRow">Remove</a>
+            @:<a href="#" class="deleteRow btn btn-danger btn-md">Remove Trip</a>
         @:</div>
 
     End Using

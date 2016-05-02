@@ -6,7 +6,7 @@ Public Class CharterAgreement
     <Key>
     Public Property Id As Integer
 
-    'Odd property to need
+
     Public Property Name As String
     Public Property Description As String
 
@@ -14,7 +14,7 @@ Public Class CharterAgreement
     Public Property LastUpdatedDateTime As Date?
 
 
-    'Also slightly odd
+
     Public Property City As String
 
     Public Property BenefitDescription As String

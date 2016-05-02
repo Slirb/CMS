@@ -32,11 +32,12 @@ End Code
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-success" />&emsp;&emsp;&emsp;
+                <a href="@Url.Action("Index", "CharterTieredCommissions")" Class="btn btn-ddefault btn-md"><span class="glyphicon glyphicon-minus"></span> Back to Administration</a>
+                @Html.ActionLink("Delete Record", "Delete", New With {.id = Model.TieredCommission.Id}, New With {.class = "btn btn-danger"})
             </div>
         </div>
-    </div>
-End Using
+    </div>  End Using
 
 
 @Using Html.BeginForm("AddValue", "CharterTieredCommissions")
@@ -46,7 +47,7 @@ End Using
     @Html.Label("maxRangeLabel", "Max. Range (Avg) : ")
     @Html.TextBox("maxRange", "")@:&nbsp;&nbsp;
     @Html.Label("commissionLabel", "Commission : ")
-    @Html.TextBox("commission", "") @:&nbsp;&nbsp;<input id="subButton" type="submit" value="Add" title="" />
+    @Html.TextBox("commission", "") @:&nbsp;&nbsp;<input id="subButton" type="submit" value="Add" title="" class="btn btn-success btn-xs"/>
 End Using
 
 
@@ -85,9 +86,3 @@ End Using
     Next
 
 </Table>
-
-
-
-<div>
-    @Html.ActionLink("Back to Administration", "Index")               <!--@Html.ActionLink("Delete Record", "Delete", New With {.id = Model.TieredCommission.Id})-->
-</div>

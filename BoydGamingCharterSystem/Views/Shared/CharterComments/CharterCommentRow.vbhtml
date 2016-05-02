@@ -17,7 +17,7 @@ End Code
             @Html.LabelFor(Function(model) model.Highlight, htmlAttributes:=New With {.class = "control-label"})
             @Html.CheckBoxFor(Function(model) model.Highlight, htmlAttributes:=New With {.class = "form-control col-md-12"})
             @Html.ValidationMessageFor(Function(model) model.Highlight, "", New With {.class = "text-danger"})
-            @:<a href="#" class="deleteRow">Remove</a>
+            @:<a href="#" class="deleteRow btn btn-danger btn-md">Remove Comment</a>
         @:<hr />
         @:</div>
     End Using

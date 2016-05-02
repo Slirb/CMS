@@ -23,12 +23,9 @@ End Code
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />&emsp;&emsp;&emsp;
+                <a href="@Url.Action("Index", "CharterOperatorModes")" Class="btn btn-danger btn-md"><span class="glyphicon glyphicon-minus"></span> Back to Administration</a>
             </div>
         </div>
     </div>
 End Using
-
-<div>
-    @Html.ActionLink("Back to Administration", "Index")
-</div>

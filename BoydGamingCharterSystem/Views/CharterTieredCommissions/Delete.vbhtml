@@ -33,8 +33,8 @@ End Code
         @Html.AntiForgeryToken()
 
         @<div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to Administration", "Index")
+            <input type="submit" value="Delete" class="btn btn-danger btn-md" /> |
+            @Html.ActionLink("Back to Administration", "Index", Nothing, New With {.class = "btn btn-default"})
         </div>
     End Using
 </div>
