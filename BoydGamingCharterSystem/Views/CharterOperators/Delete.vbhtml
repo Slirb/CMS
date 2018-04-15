@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterOperator
+﻿@ModelType CharterSystem.CharterOperator
 @Code
     ViewData("Title") = "Delete Operator"
 End Code

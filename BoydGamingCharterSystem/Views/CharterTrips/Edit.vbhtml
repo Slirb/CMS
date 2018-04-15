@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.EditTripsModel
+﻿@ModelType CharterSystem.EditTripsModel
 
 @Code
     ViewData("Title") = "Trips Edit"

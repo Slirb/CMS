@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
-Imports BoydGamingCharterSystem
+Imports CharterSystem
 <Table("Carrier")>
 Public Class CharterCarrier
     Implements IValidatableObject

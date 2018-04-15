@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterOperator)
+﻿@ModelType IEnumerable(Of CharterSystem.CharterOperator)
 @Code
     ViewData("Title") = "Operators"
     Layout = "~/Views/Shared/_Layout.vbhtml"

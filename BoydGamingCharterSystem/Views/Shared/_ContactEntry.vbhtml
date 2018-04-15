@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterContact
+﻿@ModelType CharterSystem.CharterContact
 @Code
     Layout = Nothing
 End Code

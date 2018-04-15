@@ -3,7 +3,8 @@ Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Web
 Imports System.Data.Entity
-Imports BoydGamingCharterSystem
+Imports CharterSystem
+
 
 Public Class CharterSystemInitializer
     Inherits System.Data.Entity.DropCreateDatabaseAlways(Of CharterSystem)

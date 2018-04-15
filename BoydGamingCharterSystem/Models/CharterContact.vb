@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 
-Imports BoydGamingCharterSystem
+Imports CharterSystem
 <Table("Contact")>
 Public Class CharterContact
     Public Property Id As Integer

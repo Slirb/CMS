@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel.DataAnnotations
 Imports System.ComponentModel.DataAnnotations.Schema
 
-Imports BoydGamingCharterSystem
+Imports CharterSystem
 <Table("Operator")>
 Public Class CharterOperator
 

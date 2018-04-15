@@ -6,7 +6,8 @@ Imports System.Linq
 Imports System.Net
 Imports System.Web
 Imports System.Web.Mvc
-Imports BoydGamingCharterSystem
+Imports CharterSystem
+
 
 Namespace Controllers
     Public Class CharterAgreementsController

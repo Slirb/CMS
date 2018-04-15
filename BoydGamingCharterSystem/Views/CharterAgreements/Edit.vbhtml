@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterAgreement
+﻿@ModelType CharterSystem.CharterAgreement
 @Code
     ViewData("Title") = "Edit Agreement"
     Layout = "~/Views/Shared/_Layout.vbhtml"

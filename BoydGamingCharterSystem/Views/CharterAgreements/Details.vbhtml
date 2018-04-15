@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterAgreement
+﻿@ModelType CharterSystem.CharterAgreement
 @Code
     ViewData("Title") = "Agreement Details"
 End Code

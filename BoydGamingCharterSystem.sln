@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BoydGamingCharterSystem", "BoydGamingCharterSystem\BoydGamingCharterSystem.vbproj", "{6ECC5C9B-D427-47E2-A437-CCBC1FC07C2C}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CharterSystem", "BoydGamingCharterSystem\CharterSystem.vbproj", "{6ECC5C9B-D427-47E2-A437-CCBC1FC07C2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C65651C-C764-4CCE-8313-6EB73E6CCA00}
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,7 @@
 ﻿Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
 Imports System.Data.Entity.ModelConfiguration.Conventions
-Imports BoydGamingCharterSystem
+Imports CharterSystem
 
 Public Class CharterSystem
     Inherits DbContext

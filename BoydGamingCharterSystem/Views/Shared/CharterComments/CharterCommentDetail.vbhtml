@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterComment
+﻿@ModelType CharterSystem.CharterComment
 <dl>
     <dt>
         @Html.DisplayNameFor(Function(model) model.Content)

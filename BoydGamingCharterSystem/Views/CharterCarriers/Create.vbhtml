@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterCarrier
+﻿@ModelType CharterSystem.CharterCarrier
 @Code
     ViewData("Title") = "Create Carrier"
     Layout = "~/Views/Shared/_Layout.vbhtml"

@@ -1,4 +1,4 @@
-﻿@ModelType IEnumerable(Of BoydGamingCharterSystem.CharterCarrier)
+﻿@ModelType IEnumerable(Of CharterSystem.CharterCarrier)
 
 @Code
     ViewData("Title") = "Carriers"

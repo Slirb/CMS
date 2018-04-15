@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.CharterContact
+﻿@ModelType CharterSystem.CharterContact
 <dl>
     
     <dt>

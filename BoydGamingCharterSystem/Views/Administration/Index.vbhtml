@@ -1,4 +1,4 @@
-﻿@ModelType BoydGamingCharterSystem.AdministrationModel
+﻿@ModelType CharterSystem.AdministrationModel
 
 @Code
     ViewData("Title") = "Administration"
